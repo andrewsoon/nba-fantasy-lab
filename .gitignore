@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Node
+node_modules/
+.next/
+
+# Python
+__pycache__/
+*.pyc
+
+# Data
+data/*.json  # optional: include if you want to version JSON
+
