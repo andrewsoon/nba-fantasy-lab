@@ -80,6 +80,10 @@ def fetch_players(season="2025-26"):
                     "last5_stl": 0,
                     "last5_blk": 0,
                     "last5_tov": 0,
+                    "last5_fgm": 0,
+                    "last5_fga": 0,
+                    "last5_ftm": 0,
+                    "last5_fta": 0,
                     "last5_fg_pct": 0,
                     "last5_ft_pct": 0,
                     "last5_fg3m": 0
