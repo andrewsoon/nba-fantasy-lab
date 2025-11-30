@@ -36,6 +36,10 @@ def fetch_players(season="2025-26"):
                 "stl": row["STL"],
                 "blk": row["BLK"],
                 "tov": row["TOV"],
+                "fgm": row["FGM"],
+                "fga": row["FGA"],
+                "ftm": row["FTM"],
+                "fta": row["FTA"],
                 "fg_pct": row["FG_PCT"],
                 "ft_pct": row["FT_PCT"],
                 "fg3m": row["FG3M"]
@@ -58,6 +62,10 @@ def fetch_players(season="2025-26"):
                     "last5_stl": last5_df["STL"].iloc[0],
                     "last5_blk": last5_df["BLK"].iloc[0],
                     "last5_tov": last5_df["TOV"].iloc[0],
+                    "last5_fgm": last5_df["FGM"].iloc[0],
+                    "last5_fga": last5_df["FGA"].iloc[0],
+                    "last5_ftm": last5_df["FTM"].iloc[0],
+                    "last5_fta": last5_df["FTA"].iloc[0],
                     "last5_fg_pct": last5_df["FG_PCT"].iloc[0],
                     "last5_ft_pct": last5_df["FT_PCT"].iloc[0],
                     "last5_fg3m": last5_df["FG3M"].iloc[0]
