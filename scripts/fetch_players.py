@@ -102,7 +102,7 @@ def fetch_players(season="2025-26"):
     }
 
     # Save JSON
-    with open("../data/players.json", "w") as f:
+    with open("data/players.json", "w") as f:
         json.dump(result, f, indent=2)
 
     # Print summary
