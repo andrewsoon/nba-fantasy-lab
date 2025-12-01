@@ -3,6 +3,7 @@
     {
       "id": 1631260,
       "name": "AJ Green",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631260.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 21,
@@ -38,6 +39,7 @@
     {
       "id": 1642358,
       "name": "AJ Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642358.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 9,
@@ -73,6 +75,7 @@
     {
       "id": 203932,
       "name": "Aaron Gordon",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203932.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 13,
@@ -108,6 +111,7 @@
     {
       "id": 1628988,
       "name": "Aaron Holiday",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628988.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 12,
@@ -143,6 +147,7 @@
     {
       "id": 1630174,
       "name": "Aaron Nesmith",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630174.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 11,
@@ -178,6 +183,7 @@
     {
       "id": 1630598,
       "name": "Aaron Wiggins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630598.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 10,
@@ -213,6 +219,7 @@
     {
       "id": 1642846,
       "name": "Ace Bailey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642846.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 19,
@@ -248,6 +255,7 @@
     {
       "id": 1641737,
       "name": "Adem Bona",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641737.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 14,
@@ -283,6 +291,7 @@
     {
       "id": 1642876,
       "name": "Adou Thiero",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642876.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 4,
@@ -318,6 +327,7 @@
     {
       "id": 1642349,
       "name": "Ajay Mitchell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642349.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 21,
@@ -353,6 +363,7 @@
     {
       "id": 201143,
       "name": "Al Horford",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201143.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 12,
@@ -388,6 +399,7 @@
     {
       "id": 1627936,
       "name": "Alex Caruso",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627936.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 15,
@@ -423,6 +435,7 @@
     {
       "id": 1642259,
       "name": "Alex Sarr",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642259.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 16,
@@ -458,6 +471,7 @@
     {
       "id": 1630578,
       "name": "Alperen Sengun",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630578.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 17,
@@ -493,6 +507,7 @@
     {
       "id": 1642873,
       "name": "Amari Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642873.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 4,
@@ -528,6 +543,7 @@
     {
       "id": 1641708,
       "name": "Amen Thompson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641708.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 17,
@@ -545,24 +561,25 @@
       "fg_pct": 0.471,
       "ft_pct": 0.776,
       "fg3m": 0.5,
-      "last5_min": 38.0,
-      "last5_pts": 15.4,
-      "last5_reb": 9.0,
-      "last5_ast": 5.6,
-      "last5_stl": 1.8,
-      "last5_blk": 0.2,
-      "last5_tov": 2.6,
-      "last5_fgm": 6.4,
-      "last5_fga": 13.6,
-      "last5_ftm": 2.2,
-      "last5_fta": 2.6,
-      "last5_fg_pct": 0.471,
-      "last5_ft_pct": 0.846,
-      "last5_fg3m": 0.4
+      "last5_min": 0,
+      "last5_pts": 0,
+      "last5_reb": 0,
+      "last5_ast": 0,
+      "last5_stl": 0,
+      "last5_blk": 0,
+      "last5_tov": 0,
+      "last5_fgm": 0,
+      "last5_fga": 0,
+      "last5_ftm": 0,
+      "last5_fta": 0,
+      "last5_fg_pct": 0,
+      "last5_ft_pct": 0,
+      "last5_fg3m": 0
     },
     {
       "id": 1629599,
       "name": "Amir Coffey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629599.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 16,
@@ -598,6 +615,7 @@
     {
       "id": 203083,
       "name": "Andre Drummond",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203083.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 18,
@@ -633,6 +651,7 @@
     {
       "id": 1641748,
       "name": "Andre Jackson Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641748.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 9,
@@ -668,6 +687,7 @@
     {
       "id": 1629614,
       "name": "Andrew Nembhard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629614.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 12,
@@ -703,6 +723,7 @@
     {
       "id": 203952,
       "name": "Andrew Wiggins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203952.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 17,
@@ -738,6 +759,7 @@
     {
       "id": 1629014,
       "name": "Anfernee Simons",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629014.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 20,
@@ -773,6 +795,7 @@
     {
       "id": 1641710,
       "name": "Anthony Black",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641710.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 20,
@@ -808,6 +831,7 @@
     {
       "id": 203076,
       "name": "Anthony Davis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203076.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 6,
@@ -843,6 +867,7 @@
     {
       "id": 1630162,
       "name": "Anthony Edwards",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630162.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 16,
@@ -878,6 +903,7 @@
     {
       "id": 1630264,
       "name": "Anthony Gill",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630264.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 6,
@@ -913,6 +939,7 @@
     {
       "id": 1641810,
       "name": "Antonio Reeves",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641810.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 2,
@@ -948,6 +975,7 @@
     {
       "id": 1630574,
       "name": "Ariel Hukporti",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630574.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 12,
@@ -983,6 +1011,7 @@
     {
       "id": 1642854,
       "name": "Asa Newell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642854.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 13,
@@ -1018,6 +1047,7 @@
     {
       "id": 1641709,
       "name": "Ausar Thompson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641709.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 16,
@@ -1053,6 +1083,7 @@
     {
       "id": 1630559,
       "name": "Austin Reaves",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630559.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 16,
@@ -1088,6 +1119,7 @@
     {
       "id": 1630245,
       "name": "Ayo Dosunmu",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630245.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 17,
@@ -1123,6 +1155,7 @@
     {
       "id": 1628389,
       "name": "Bam Adebayo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628389.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 14,
@@ -1158,6 +1191,7 @@
     {
       "id": 1631248,
       "name": "Baylor Scheierman",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631248.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 16,
@@ -1193,6 +1227,7 @@
     {
       "id": 1642879,
       "name": "Ben Saraf",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642879.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 8,
@@ -1228,6 +1263,7 @@
     {
       "id": 1641767,
       "name": "Ben Sheppard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641767.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 20,
@@ -1263,6 +1299,7 @@
     {
       "id": 1631097,
       "name": "Bennedict Mathurin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631097.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 9,
@@ -1298,6 +1335,7 @@
     {
       "id": 1641731,
       "name": "Bilal Coulibaly",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641731.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 10,
@@ -1333,6 +1371,7 @@
     {
       "id": 202687,
       "name": "Bismack Biyombo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202687.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 7,
@@ -1368,6 +1407,7 @@
     {
       "id": 1631104,
       "name": "Blake Wesley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631104.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 6,
@@ -1403,6 +1443,7 @@
     {
       "id": 1626171,
       "name": "Bobby Portis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626171.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 21,
@@ -1438,6 +1479,7 @@
     {
       "id": 1641752,
       "name": "Bobi Klintman",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641752.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 6,
@@ -1473,6 +1515,7 @@
     {
       "id": 203992,
       "name": "Bogdan Bogdanovi\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203992.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 9,
@@ -1508,6 +1551,7 @@
     {
       "id": 1630538,
       "name": "Bones Hyland",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630538.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 14,
@@ -1543,6 +1587,7 @@
     {
       "id": 203078,
       "name": "Bradley Beal",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203078.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 6,
@@ -1578,6 +1623,7 @@
     {
       "id": 1642382,
       "name": "Branden Carlson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642382.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 13,
@@ -1613,6 +1659,7 @@
     {
       "id": 1641764,
       "name": "Brandin Podziemski",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641764.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 21,
@@ -1648,6 +1695,7 @@
     {
       "id": 1627742,
       "name": "Brandon Ingram",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627742.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 21,
@@ -1683,6 +1731,7 @@
     {
       "id": 1641706,
       "name": "Brandon Miller",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641706.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 6,
@@ -1718,6 +1767,7 @@
     {
       "id": 1630314,
       "name": "Brandon Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630314.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 19,
@@ -1753,6 +1803,7 @@
     {
       "id": 1641729,
       "name": "Brice Sensabaugh",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641729.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 18,
@@ -1788,6 +1839,7 @@
     {
       "id": 1642355,
       "name": "Bronny James",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642355.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 11,
@@ -1823,6 +1875,7 @@
     {
       "id": 201572,
       "name": "Brook Lopez",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201572.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 17,
@@ -1858,6 +1911,7 @@
     {
       "id": 1642964,
       "name": "Brooks Barnhizer",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642964.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 15,
@@ -1893,6 +1947,7 @@
     {
       "id": 1628971,
       "name": "Bruce Brown",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628971.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 19,
@@ -1928,6 +1983,7 @@
     {
       "id": 1631121,
       "name": "Bryce McGowens",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631121.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 11,
@@ -1963,6 +2019,7 @@
     {
       "id": 1642267,
       "name": "Bub Carrington",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642267.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 18,
@@ -1998,6 +2055,7 @@
     {
       "id": 1627741,
       "name": "Buddy Hield",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627741.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 21,
@@ -2033,6 +2091,7 @@
     {
       "id": 203468,
       "name": "CJ McCollum",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203468.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 18,
@@ -2068,6 +2127,7 @@
     {
       "id": 1630595,
       "name": "Cade Cunningham",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630595.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 17,
@@ -2103,6 +2163,7 @@
     {
       "id": 1631216,
       "name": "Caleb Houstan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631216.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 7,
@@ -2138,6 +2199,7 @@
     {
       "id": 1631126,
       "name": "Caleb Love",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631126.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 12,
@@ -2173,6 +2235,7 @@
     {
       "id": 1628997,
       "name": "Caleb Martin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628997.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 18,
@@ -2208,6 +2271,7 @@
     {
       "id": 1642353,
       "name": "Cam Christie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642353.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 13,
@@ -2243,6 +2307,7 @@
     {
       "id": 1642285,
       "name": "Cam Spencer",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642285.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -2278,6 +2343,7 @@
     {
       "id": 1630560,
       "name": "Cam Thomas",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630560.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 8,
@@ -2313,6 +2379,7 @@
     {
       "id": 1641715,
       "name": "Cam Whitmore",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641715.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 18,
@@ -2348,6 +2415,7 @@
     {
       "id": 1629661,
       "name": "Cameron Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629661.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 18,
@@ -2383,6 +2451,7 @@
     {
       "id": 1627747,
       "name": "Caris LeVert",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627747.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 14,
@@ -2418,6 +2487,7 @@
     {
       "id": 1642868,
       "name": "Carter Bryant",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642868.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 14,
@@ -2453,6 +2523,7 @@
     {
       "id": 1641717,
       "name": "Cason Wallace",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641717.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 20,
@@ -2488,6 +2559,7 @@
     {
       "id": 1642907,
       "name": "Cedric Coward",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642907.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -2523,6 +2595,7 @@
     {
       "id": 1629646,
       "name": "Charles Bassey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629646.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 2,
@@ -2558,6 +2631,7 @@
     {
       "id": 1642404,
       "name": "Chaz Lanier",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642404.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 12,
@@ -2593,6 +2667,7 @@
     {
       "id": 1631096,
       "name": "Chet Holmgren",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631096.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 17,
@@ -2628,6 +2703,7 @@
     {
       "id": 1628449,
       "name": "Chris Boucher",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628449.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 8,
@@ -2663,6 +2739,7 @@
     {
       "id": 1641753,
       "name": "Chris Livingston",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641753.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 1,
@@ -2698,6 +2775,7 @@
     {
       "id": 1643024,
       "name": "Chris Ma\u00f1on",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1643024.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 2,
@@ -2733,6 +2811,7 @@
     {
       "id": 101108,
       "name": "Chris Paul",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/101108.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 15,
@@ -2768,6 +2847,7 @@
     {
       "id": 1642959,
       "name": "Chris Youngblood",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642959.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 16,
@@ -2803,6 +2883,7 @@
     {
       "id": 1631128,
       "name": "Christian Braun",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631128.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 11,
@@ -2838,6 +2919,7 @@
     {
       "id": 1631132,
       "name": "Christian Koloko",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631132.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 2,
@@ -2873,6 +2955,7 @@
     {
       "id": 1642935,
       "name": "Chucky Hepburn",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642935.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 1,
@@ -2908,6 +2991,7 @@
     {
       "id": 203991,
       "name": "Clint Capela",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203991.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 16,
@@ -2943,6 +3027,7 @@
     {
       "id": 1629632,
       "name": "Coby White",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629632.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 5,
@@ -2978,6 +3063,7 @@
     {
       "id": 1628998,
       "name": "Cody Martin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628998.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 4,
@@ -3013,6 +3099,7 @@
     {
       "id": 1642262,
       "name": "Cody Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642262.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 11,
@@ -3048,6 +3135,7 @@
     {
       "id": 1641732,
       "name": "Colby Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641732.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 1,
@@ -3083,6 +3171,7 @@
     {
       "id": 1630175,
       "name": "Cole Anthony",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630175.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 20,
@@ -3118,6 +3207,7 @@
     {
       "id": 1631221,
       "name": "Collin Gillespie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631221.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 21,
@@ -3153,6 +3243,7 @@
     {
       "id": 1642867,
       "name": "Collin Murray-Boyles",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642867.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 16,
@@ -3188,6 +3279,7 @@
     {
       "id": 1629012,
       "name": "Collin Sexton",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629012.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 19,
@@ -3223,6 +3315,7 @@
     {
       "id": 1642843,
       "name": "Cooper Flagg",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642843.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 20,
@@ -3258,6 +3351,7 @@
     {
       "id": 1630557,
       "name": "Corey Kispert",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630557.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 17,
@@ -3293,6 +3387,7 @@
     {
       "id": 1641854,
       "name": "Craig Porter Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641854.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 18,
@@ -3328,6 +3423,7 @@
     {
       "id": 1642938,
       "name": "Curtis Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642938.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 1,
@@ -3363,6 +3459,7 @@
     {
       "id": 1626156,
       "name": "D'Angelo Russell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626156.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 17,
@@ -3398,6 +3495,7 @@
     {
       "id": 1641747,
       "name": "DaRon Holmes II",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641747.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 2,
@@ -3433,6 +3531,7 @@
     {
       "id": 1631342,
       "name": "Daeqwon Plowden",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631342.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 1,
@@ -3468,6 +3567,7 @@
     {
       "id": 1631207,
       "name": "Dalen Terry",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631207.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 10,
@@ -3503,6 +3603,7 @@
     {
       "id": 1642261,
       "name": "Dalton Knecht",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642261.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 16,
@@ -3538,6 +3639,7 @@
     {
       "id": 1629655,
       "name": "Daniel Gafford",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629655.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 14,
@@ -3573,6 +3675,7 @@
     {
       "id": 1642450,
       "name": "Daniss Jenkins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642450.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 15,
@@ -3608,6 +3711,7 @@
     {
       "id": 1642874,
       "name": "Danny Wolf",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642874.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 5,
@@ -3643,6 +3747,7 @@
     {
       "id": 203967,
       "name": "Dario \u0160ari\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203967.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 3,
@@ -3678,6 +3783,7 @@
     {
       "id": 1629636,
       "name": "Darius Garland",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629636.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 7,
@@ -3713,6 +3819,7 @@
     {
       "id": 1642357,
       "name": "David Jones Garcia",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642357.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 7,
@@ -3748,6 +3855,7 @@
     {
       "id": 1630558,
       "name": "Davion Mitchell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630558.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 20,
@@ -3783,6 +3891,7 @@
     {
       "id": 1630549,
       "name": "Day'Ron Sharpe",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630549.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 18,
@@ -3818,6 +3927,7 @@
     {
       "id": 1628368,
       "name": "De'Aaron Fox",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628368.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 11,
@@ -3853,6 +3963,7 @@
     {
       "id": 1629631,
       "name": "De'Andre Hunter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629631.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 17,
@@ -3888,6 +3999,7 @@
     {
       "id": 201599,
       "name": "DeAndre Jordan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201599.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 2,
@@ -3923,6 +4035,7 @@
     {
       "id": 201942,
       "name": "DeMar DeRozan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201942.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 21,
@@ -3958,6 +4071,7 @@
     {
       "id": 1629731,
       "name": "Dean Wade",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629731.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 19,
@@ -3993,6 +4107,7 @@
     {
       "id": 1629028,
       "name": "Deandre Ayton",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629028.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 17,
@@ -4028,6 +4143,7 @@
     {
       "id": 1630166,
       "name": "Deni Avdija",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630166.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 20,
@@ -4063,6 +4179,7 @@
     {
       "id": 203471,
       "name": "Dennis Schr\u00f6der",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203471.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 18,
@@ -4098,6 +4215,7 @@
     {
       "id": 1641726,
       "name": "Dereck Lively II",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641726.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 7,
@@ -4133,6 +4251,7 @@
     {
       "id": 1642852,
       "name": "Derik Queen",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642852.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 21,
@@ -4168,6 +4287,7 @@
     {
       "id": 1627884,
       "name": "Derrick Jones Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627884.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 13,
@@ -4203,6 +4323,7 @@
     {
       "id": 1628401,
       "name": "Derrick White",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628401.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 19,
@@ -4238,6 +4359,7 @@
     {
       "id": 1630217,
       "name": "Desmond Bane",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630217.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 20,
@@ -4273,6 +4395,7 @@
     {
       "id": 1626164,
       "name": "Devin Booker",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626164.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 21,
@@ -4308,6 +4431,7 @@
     {
       "id": 1642269,
       "name": "Devin Carter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642269.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 8,
@@ -4343,6 +4467,7 @@
     {
       "id": 1630170,
       "name": "Devin Vassell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630170.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 19,
@@ -4378,6 +4503,7 @@
     {
       "id": 1628415,
       "name": "Dillon Brooks",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628415.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 15,
@@ -4413,6 +4539,7 @@
     {
       "id": 1627734,
       "name": "Domantas Sabonis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627734.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 11,
@@ -4448,6 +4575,7 @@
     {
       "id": 1631230,
       "name": "Dominick Barlow",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631230.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 10,
@@ -4483,6 +4611,7 @@
     {
       "id": 1642270,
       "name": "Donovan Clingan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642270.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 19,
@@ -4518,6 +4647,7 @@
     {
       "id": 1628378,
       "name": "Donovan Mitchell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628378.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 19,
@@ -4553,6 +4683,7 @@
     {
       "id": 1628978,
       "name": "Donte DiVincenzo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628978.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 20,
@@ -4588,6 +4719,7 @@
     {
       "id": 203926,
       "name": "Doug McDermott",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203926.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 1,
@@ -4623,6 +4755,7 @@
     {
       "id": 1642962,
       "name": "Drake Powell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642962.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 13,
@@ -4658,6 +4791,7 @@
     {
       "id": 203110,
       "name": "Draymond Green",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203110.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 18,
@@ -4693,6 +4827,7 @@
     {
       "id": 1629234,
       "name": "Drew Eubanks",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629234.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 21,
@@ -4728,6 +4863,7 @@
     {
       "id": 1641809,
       "name": "Drew Peterson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641809.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 4,
@@ -4763,6 +4899,7 @@
     {
       "id": 1631166,
       "name": "Drew Timme",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631166.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 1,
@@ -4798,6 +4935,7 @@
     {
       "id": 1630696,
       "name": "Dru Smith",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630696.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 20,
@@ -4833,6 +4971,7 @@
     {
       "id": 1629130,
       "name": "Duncan Robinson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629130.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 20,
@@ -4868,6 +5007,7 @@
     {
       "id": 1641871,
       "name": "Duop Reath",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641871.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 16,
@@ -4903,6 +5043,7 @@
     {
       "id": 203939,
       "name": "Dwight Powell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203939.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 16,
@@ -4938,6 +5079,7 @@
     {
       "id": 1642928,
       "name": "Dylan Cardwell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642928.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 3,
@@ -4973,6 +5115,7 @@
     {
       "id": 1642844,
       "name": "Dylan Harper",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642844.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 9,
@@ -5008,6 +5151,7 @@
     {
       "id": 1630700,
       "name": "Dyson Daniels",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630700.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 21,
@@ -5043,6 +5187,7 @@
     {
       "id": 1630604,
       "name": "E.J. Liddell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630604.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 7,
@@ -5078,6 +5223,7 @@
     {
       "id": 1642856,
       "name": "Egor D\u00ebmin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642856.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 17,
@@ -5113,6 +5259,7 @@
     {
       "id": 1641989,
       "name": "Elijah Harkless",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641989.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 7,
@@ -5148,6 +5295,7 @@
     {
       "id": 1641801,
       "name": "Emanuel Miller",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641801.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 1,
@@ -5183,6 +5331,7 @@
     {
       "id": 201569,
       "name": "Eric Gordon",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201569.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 4,
@@ -5218,6 +5367,7 @@
     {
       "id": 1630596,
       "name": "Evan Mobley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630596.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 20,
@@ -5253,6 +5403,7 @@
     {
       "id": 1630532,
       "name": "Franz Wagner",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630532.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 20,
@@ -5288,6 +5439,7 @@
     {
       "id": 1641713,
       "name": "GG Jackson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641713.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 8,
@@ -5323,6 +5475,7 @@
     {
       "id": 1629216,
       "name": "Gabe Vincent",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629216.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 8,
@@ -5358,6 +5511,7 @@
     {
       "id": 202066,
       "name": "Garrett Temple",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202066.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 3,
@@ -5393,6 +5547,7 @@
     {
       "id": 1629726,
       "name": "Garrison Mathews",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629726.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 5,
@@ -5428,6 +5583,7 @@
     {
       "id": 203914,
       "name": "Gary Harris",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203914.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 14,
@@ -5463,6 +5619,7 @@
     {
       "id": 1627780,
       "name": "Gary Payton II",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627780.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 20,
@@ -5498,6 +5655,7 @@
     {
       "id": 1629018,
       "name": "Gary Trent Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629018.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 21,
@@ -5533,6 +5691,7 @@
     {
       "id": 203507,
       "name": "Giannis Antetokounmpo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203507.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 15,
@@ -5568,6 +5727,7 @@
     {
       "id": 1629048,
       "name": "Goga Bitadze",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629048.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 19,
@@ -5603,6 +5763,7 @@
     {
       "id": 1641711,
       "name": "Gradey Dick",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641711.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 21,
@@ -5638,6 +5799,7 @@
     {
       "id": 1628960,
       "name": "Grayson Allen",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628960.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 14,
@@ -5673,6 +5835,7 @@
     {
       "id": 1627824,
       "name": "Guerschon Yabusele",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627824.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 18,
@@ -5708,6 +5871,7 @@
     {
       "id": 1630611,
       "name": "Gui Santos",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630611.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 15,
@@ -5743,6 +5907,7 @@
     {
       "id": 203084,
       "name": "Harrison Barnes",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203084.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 19,
@@ -5778,6 +5943,7 @@
     {
       "id": 1631127,
       "name": "Harrison Ingram",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631127.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 3,
@@ -5813,6 +5979,7 @@
     {
       "id": 1630529,
       "name": "Herbert Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630529.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 16,
@@ -5848,6 +6015,7 @@
     {
       "id": 1642864,
       "name": "Hugo Gonz\u00e1lez",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642864.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 15,
@@ -5883,6 +6051,7 @@
     {
       "id": 1630621,
       "name": "Hunter Dickinson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630621.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 1,
@@ -5918,6 +6087,7 @@
     {
       "id": 1642282,
       "name": "Hunter Sallis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642282.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 5,
@@ -5953,6 +6123,7 @@
     {
       "id": 1641816,
       "name": "Hunter Tyson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641816.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 7,
@@ -5988,6 +6159,7 @@
     {
       "id": 1630193,
       "name": "Immanuel Quickley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630193.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 21,
@@ -6023,6 +6195,7 @@
     {
       "id": 1642403,
       "name": "Isaac Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642403.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 4,
@@ -6058,6 +6231,7 @@
     {
       "id": 1630171,
       "name": "Isaac Okoro",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630171.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 15,
@@ -6093,6 +6267,7 @@
     {
       "id": 1642268,
       "name": "Isaiah Collier",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642268.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 11,
@@ -6128,6 +6303,7 @@
     {
       "id": 1642384,
       "name": "Isaiah Crawford",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642384.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 1,
@@ -6163,6 +6339,7 @@
     {
       "id": 1628392,
       "name": "Isaiah Hartenstein",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628392.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 19,
@@ -6198,6 +6375,7 @@
     {
       "id": 1630543,
       "name": "Isaiah Jackson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630543.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 20,
@@ -6233,6 +6411,7 @@
     {
       "id": 1630198,
       "name": "Isaiah Joe",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630198.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 16,
@@ -6268,6 +6447,7 @@
     {
       "id": 1630587,
       "name": "Isaiah Livers",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630587.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 13,
@@ -6303,6 +6483,7 @@
     {
       "id": 1630191,
       "name": "Isaiah Stewart",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630191.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 17,
@@ -6338,6 +6519,7 @@
     {
       "id": 1627826,
       "name": "Ivica Zubac",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627826.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 20,
@@ -6373,6 +6555,7 @@
     {
       "id": 1631120,
       "name": "JD Davison",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631120.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 8,
@@ -6408,6 +6591,7 @@
     {
       "id": 1629630,
       "name": "Ja Morant",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629630.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 12,
@@ -6443,6 +6627,7 @@
     {
       "id": 1642266,
       "name": "Ja'Kobe Walter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642266.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 18,
@@ -6478,6 +6663,7 @@
     {
       "id": 1631095,
       "name": "Jabari Smith Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631095.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 16,
@@ -6513,6 +6699,7 @@
     {
       "id": 1631133,
       "name": "Jabari Walker",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631133.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 18,
@@ -6548,6 +6735,7 @@
     {
       "id": 1631210,
       "name": "Jacob Toppin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631210.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 5,
@@ -6583,6 +6771,7 @@
     {
       "id": 1630702,
       "name": "Jaden Hardy",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630702.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 18,
@@ -6618,6 +6807,7 @@
     {
       "id": 1631093,
       "name": "Jaden Ivey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631093.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 5,
@@ -6653,6 +6843,7 @@
     {
       "id": 1630183,
       "name": "Jaden McDaniels",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630183.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 19,
@@ -6688,6 +6879,7 @@
     {
       "id": 1630256,
       "name": "Jae'Sean Tate",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630256.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 10,
@@ -6723,6 +6915,7 @@
     {
       "id": 1642942,
       "name": "Jahmai Mashack",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642942.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 1,
@@ -6758,6 +6951,7 @@
     {
       "id": 1642443,
       "name": "Jahmir Young",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642443.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 4,
@@ -6793,6 +6987,7 @@
     {
       "id": 1643141,
       "name": "Jahmyl Telfort",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1643141.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 7,
@@ -6828,6 +7023,7 @@
     {
       "id": 1631170,
       "name": "Jaime Jaquez Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631170.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 19,
@@ -6863,6 +7059,7 @@
     {
       "id": 1631222,
       "name": "Jake LaRavia",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631222.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 19,
@@ -6898,6 +7095,7 @@
     {
       "id": 1627751,
       "name": "Jakob Poeltl",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627751.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 15,
@@ -6933,6 +7131,7 @@
     {
       "id": 1628973,
       "name": "Jalen Brunson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628973.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 17,
@@ -6968,6 +7167,7 @@
     {
       "id": 1631105,
       "name": "Jalen Duren",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631105.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 17,
@@ -7003,6 +7203,7 @@
     {
       "id": 1630224,
       "name": "Jalen Green",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630224.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 2,
@@ -7038,6 +7239,7 @@
     {
       "id": 1630552,
       "name": "Jalen Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630552.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 19,
@@ -7073,6 +7275,7 @@
     {
       "id": 1629618,
       "name": "Jalen Pickett",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629618.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 8,
@@ -7108,6 +7311,7 @@
     {
       "id": 1630188,
       "name": "Jalen Smith",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630188.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 18,
@@ -7143,6 +7347,7 @@
     {
       "id": 1630591,
       "name": "Jalen Suggs",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630591.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 15,
@@ -7178,6 +7383,7 @@
     {
       "id": 1631114,
       "name": "Jalen Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631114.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 2,
@@ -7213,6 +7419,7 @@
     {
       "id": 1630592,
       "name": "Jalen Wilson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630592.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 16,
@@ -7248,6 +7455,7 @@
     {
       "id": 1631288,
       "name": "Jamal Cain",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631288.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 5,
@@ -7283,6 +7491,7 @@
     {
       "id": 1627750,
       "name": "Jamal Murray",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627750.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 18,
@@ -7318,6 +7527,7 @@
     {
       "id": 1642347,
       "name": "Jamal Shead",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642347.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 21,
@@ -7353,6 +7563,7 @@
     {
       "id": 1631123,
       "name": "Jamaree Bouyea",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631123.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 5,
@@ -7388,6 +7599,7 @@
     {
       "id": 201935,
       "name": "James Harden",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201935.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 19,
@@ -7423,6 +7635,7 @@
     {
       "id": 1630164,
       "name": "James Wiseman",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630164.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 1,
@@ -7458,6 +7671,7 @@
     {
       "id": 1642364,
       "name": "Jamir Watkins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642364.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 5,
@@ -7493,6 +7707,7 @@
     {
       "id": 1642419,
       "name": "Jamison Battle",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642419.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 15,
@@ -7528,6 +7743,7 @@
     {
       "id": 1641716,
       "name": "Jarace Walker",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641716.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 20,
@@ -7563,6 +7779,7 @@
     {
       "id": 1642272,
       "name": "Jared McCain",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642272.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 10,
@@ -7598,6 +7815,7 @@
     {
       "id": 1628991,
       "name": "Jaren Jackson Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628991.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 19,
@@ -7633,6 +7851,7 @@
     {
       "id": 1629020,
       "name": "Jarred Vanderbilt",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629020.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 14,
@@ -7668,6 +7887,7 @@
     {
       "id": 1628386,
       "name": "Jarrett Allen",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628386.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 15,
@@ -7703,6 +7923,7 @@
     {
       "id": 1642859,
       "name": "Jase Richardson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642859.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 11,
@@ -7738,6 +7959,7 @@
     {
       "id": 1642914,
       "name": "Javon Small",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642914.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 8,
@@ -7773,6 +7995,7 @@
     {
       "id": 1631451,
       "name": "Javonte Cooke",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631451.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 3,
@@ -7808,6 +8031,7 @@
     {
       "id": 1629750,
       "name": "Javonte Green",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629750.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 20,
@@ -7843,6 +8067,7 @@
     {
       "id": 1629637,
       "name": "Jaxson Hayes",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629637.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 16,
@@ -7878,6 +8103,7 @@
     {
       "id": 1630643,
       "name": "Jay Huff",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630643.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 20,
@@ -7913,6 +8139,7 @@
     {
       "id": 1627759,
       "name": "Jaylen Brown",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627759.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 20,
@@ -7948,6 +8175,7 @@
     {
       "id": 1641740,
       "name": "Jaylen Clark",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641740.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 18,
@@ -7983,6 +8211,7 @@
     {
       "id": 1642377,
       "name": "Jaylen Wells",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642377.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -8018,6 +8247,7 @@
     {
       "id": 1631119,
       "name": "Jaylin Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631119.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 20,
@@ -8053,6 +8283,7 @@
     {
       "id": 1642281,
       "name": "Jaylon Tyson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642281.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 16,
@@ -8088,6 +8319,7 @@
     {
       "id": 201145,
       "name": "Jeff Green",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201145.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 7,
@@ -8123,6 +8355,7 @@
     {
       "id": 203924,
       "name": "Jerami Grant",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203924.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 19,
@@ -8158,6 +8391,7 @@
     {
       "id": 1642847,
       "name": "Jeremiah Fears",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642847.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 21,
@@ -8193,6 +8427,7 @@
     {
       "id": 1630526,
       "name": "Jeremiah Robinson-Earl",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630526.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 15,
@@ -8228,6 +8463,7 @@
     {
       "id": 1631110,
       "name": "Jeremy Sochan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631110.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 13,
@@ -8263,6 +8499,7 @@
     {
       "id": 1630579,
       "name": "Jericho Sims",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630579.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 15,
@@ -8298,6 +8535,7 @@
     {
       "id": 1641724,
       "name": "Jett Howard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641724.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 14,
@@ -8333,6 +8571,7 @@
     {
       "id": 1628975,
       "name": "Jevon Carter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628975.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 10,
@@ -8368,6 +8607,7 @@
     {
       "id": 202710,
       "name": "Jimmy Butler III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202710.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 19,
@@ -8403,6 +8643,7 @@
     {
       "id": 1642866,
       "name": "Joan Beringer",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642866.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 9,
@@ -8438,6 +8679,7 @@
     {
       "id": 1629111,
       "name": "Jock Landale",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629111.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -8473,6 +8715,7 @@
     {
       "id": 204060,
       "name": "Joe Ingles",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/204060.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 6,
@@ -8508,6 +8751,7 @@
     {
       "id": 203954,
       "name": "Joel Embiid",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203954.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 7,
@@ -8543,6 +8787,7 @@
     {
       "id": 1628381,
       "name": "John Collins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628381.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 20,
@@ -8578,6 +8823,7 @@
     {
       "id": 1629723,
       "name": "John Konchar",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629723.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 19,
@@ -8613,6 +8859,7 @@
     {
       "id": 1641780,
       "name": "Johni Broome",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641780.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 5,
@@ -8648,6 +8895,7 @@
     {
       "id": 1642277,
       "name": "Johnny Furphy",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642277.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 3,
@@ -8683,6 +8931,7 @@
     {
       "id": 1630548,
       "name": "Johnny Juzang",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630548.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 8,
@@ -8718,6 +8967,7 @@
     {
       "id": 202685,
       "name": "Jonas Valan\u010di\u016bnas",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202685.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 19,
@@ -8753,6 +9003,7 @@
     {
       "id": 1628371,
       "name": "Jonathan Isaac",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628371.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 18,
@@ -8788,6 +9039,7 @@
     {
       "id": 1630228,
       "name": "Jonathan Kuminga",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630228.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 14,
@@ -8823,6 +9075,7 @@
     {
       "id": 1642367,
       "name": "Jonathan Mogbo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642367.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 8,
@@ -8858,6 +9111,7 @@
     {
       "id": 203903,
       "name": "Jordan Clarkson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203903.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 19,
@@ -8893,6 +9147,7 @@
     {
       "id": 1630692,
       "name": "Jordan Goodwin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630692.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 18,
@@ -8928,6 +9183,7 @@
     {
       "id": 1641722,
       "name": "Jordan Hawkins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641722.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 17,
@@ -8963,6 +9219,7 @@
     {
       "id": 1629162,
       "name": "Jordan McLaughlin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629162.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 8,
@@ -8998,6 +9255,7 @@
     {
       "id": 1641757,
       "name": "Jordan Miller",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641757.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 3,
@@ -9033,6 +9291,7 @@
     {
       "id": 1629673,
       "name": "Jordan Poole",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629673.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 7,
@@ -9068,6 +9327,7 @@
     {
       "id": 1641775,
       "name": "Jordan Walsh",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641775.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 16,
@@ -9103,6 +9363,7 @@
     {
       "id": 1630631,
       "name": "Jose Alvarado",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630631.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 20,
@@ -9138,6 +9399,7 @@
     {
       "id": 1630581,
       "name": "Josh Giddey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630581.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 17,
@@ -9173,6 +9435,7 @@
     {
       "id": 1628404,
       "name": "Josh Hart",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628404.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 18,
@@ -9208,6 +9471,7 @@
     {
       "id": 1631169,
       "name": "Josh Minott",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631169.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 19,
@@ -9243,6 +9507,7 @@
     {
       "id": 1629006,
       "name": "Josh Okogie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629006.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 17,
@@ -9278,6 +9543,7 @@
     {
       "id": 201950,
       "name": "Jrue Holiday",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201950.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 12,
@@ -9313,6 +9579,7 @@
     {
       "id": 1630577,
       "name": "Julian Champagnie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630577.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 19,
@@ -9348,6 +9615,7 @@
     {
       "id": 1641763,
       "name": "Julian Phillips",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641763.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 17,
@@ -9383,6 +9651,7 @@
     {
       "id": 1631124,
       "name": "Julian Strawther",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631124.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 9,
@@ -9418,6 +9687,7 @@
     {
       "id": 203944,
       "name": "Julius Randle",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203944.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 20,
@@ -9453,6 +9723,7 @@
     {
       "id": 1630551,
       "name": "Justin Champagnie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630551.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 16,
@@ -9488,6 +9759,7 @@
     {
       "id": 1642348,
       "name": "Justin Edwards",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642348.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 17,
@@ -9523,6 +9795,7 @@
     {
       "id": 203994,
       "name": "Jusuf Nurki\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203994.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 19,
@@ -9558,6 +9831,7 @@
     {
       "id": 1642354,
       "name": "KJ Simpson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642354.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 8,
@@ -9593,6 +9867,7 @@
     {
       "id": 1626157,
       "name": "Karl-Anthony Towns",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626157.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 19,
@@ -9628,6 +9903,7 @@
     {
       "id": 1631255,
       "name": "Karlo Matkovi\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631255.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 12,
@@ -9663,6 +9939,7 @@
     {
       "id": 202695,
       "name": "Kawhi Leonard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202695.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 10,
@@ -9698,6 +9975,7 @@
     {
       "id": 1630811,
       "name": "Keaton Wallace",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630811.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 19,
@@ -9733,6 +10011,7 @@
     {
       "id": 1631099,
       "name": "Keegan Murray",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631099.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 6,
@@ -9768,6 +10047,7 @@
     {
       "id": 1642276,
       "name": "Kel'el Ware",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642276.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 20,
@@ -9803,6 +10083,7 @@
     {
       "id": 1629640,
       "name": "Keldon Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629640.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 19,
@@ -9838,6 +10119,7 @@
     {
       "id": 203482,
       "name": "Kelly Olynyk",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203482.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 10,
@@ -9873,6 +10155,7 @@
     {
       "id": 1626162,
       "name": "Kelly Oubre Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626162.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 12,
@@ -9908,6 +10191,7 @@
     {
       "id": 1629026,
       "name": "Kenrich Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629026.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 3,
@@ -9943,6 +10227,7 @@
     {
       "id": 203484,
       "name": "Kentavious Caldwell-Pope",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203484.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -9978,6 +10263,7 @@
     {
       "id": 1631165,
       "name": "Keon Ellis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631165.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 20,
@@ -10013,6 +10299,7 @@
     {
       "id": 1642352,
       "name": "Keshad Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642352.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 8,
@@ -10048,6 +10335,7 @@
     {
       "id": 201142,
       "name": "Kevin Durant",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 15,
@@ -10083,6 +10371,7 @@
     {
       "id": 1628989,
       "name": "Kevin Huerter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628989.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 18,
@@ -10118,6 +10407,7 @@
     {
       "id": 201567,
       "name": "Kevin Love",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201567.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 11,
@@ -10153,6 +10443,7 @@
     {
       "id": 1629645,
       "name": "Kevin Porter Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629645.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 2,
@@ -10188,6 +10479,7 @@
     {
       "id": 1626172,
       "name": "Kevon Looney",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626172.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 11,
@@ -10223,6 +10515,7 @@
     {
       "id": 1641718,
       "name": "Keyonte George",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641718.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 19,
@@ -10258,6 +10551,7 @@
     {
       "id": 1642863,
       "name": "Khaman Maluach",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642863.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 9,
@@ -10293,6 +10587,7 @@
     {
       "id": 203114,
       "name": "Khris Middleton",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203114.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 14,
@@ -10328,6 +10623,7 @@
     {
       "id": 202691,
       "name": "Klay Thompson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202691.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 20,
@@ -10363,6 +10659,7 @@
     {
       "id": 1641738,
       "name": "Kobe Brown",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641738.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 13,
@@ -10398,6 +10695,7 @@
     {
       "id": 1642920,
       "name": "Kobe Sanders",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642920.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 12,
@@ -10433,6 +10731,7 @@
     {
       "id": 1642886,
       "name": "Koby Brea",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642886.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 2,
@@ -10468,6 +10767,7 @@
     {
       "id": 1642851,
       "name": "Kon Knueppel",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642851.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 20,
@@ -10503,6 +10803,7 @@
     {
       "id": 1627739,
       "name": "Kris Dunn",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627739.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 20,
@@ -10538,6 +10839,7 @@
     {
       "id": 1631200,
       "name": "Kris Murray",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631200.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 19,
@@ -10573,6 +10875,7 @@
     {
       "id": 204001,
       "name": "Kristaps Porzi\u0146\u0123is",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/204001.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 12,
@@ -10608,6 +10911,7 @@
     {
       "id": 203937,
       "name": "Kyle Anderson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203937.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 6,
@@ -10643,6 +10947,7 @@
     {
       "id": 1642271,
       "name": "Kyle Filipowski",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642271.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 18,
@@ -10678,6 +10983,7 @@
     {
       "id": 1628398,
       "name": "Kyle Kuzma",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628398.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 20,
@@ -10713,6 +11019,7 @@
     {
       "id": 200768,
       "name": "Kyle Lowry",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/200768.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 2,
@@ -10748,6 +11055,7 @@
     {
       "id": 1642273,
       "name": "Kyshawn George",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642273.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 16,
@@ -10783,6 +11091,7 @@
     {
       "id": 1630163,
       "name": "LaMelo Ball",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630163.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 13,
@@ -10818,6 +11127,7 @@
     {
       "id": 1642950,
       "name": "Lachlan Olbrich",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642950.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 1,
@@ -10853,6 +11163,7 @@
     {
       "id": 1629013,
       "name": "Landry Shamet",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629013.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 15,
@@ -10888,6 +11199,7 @@
     {
       "id": 1626204,
       "name": "Larry Nance Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626204.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 16,
@@ -10923,6 +11235,7 @@
     {
       "id": 1628374,
       "name": "Lauri Markkanen",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628374.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 19,
@@ -10958,6 +11271,7 @@
     {
       "id": 2544,
       "name": "LeBron James",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/2544.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 4,
@@ -10993,6 +11307,7 @@
     {
       "id": 1631159,
       "name": "Leonard Miller",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631159.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 9,
@@ -11028,6 +11343,7 @@
     {
       "id": 1642862,
       "name": "Liam McNeeley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642862.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 14,
@@ -11063,6 +11379,7 @@
     {
       "id": 1630322,
       "name": "Lindy Waters III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630322.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 9,
@@ -11098,6 +11415,7 @@
     {
       "id": 1628366,
       "name": "Lonzo Ball",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628366.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 16,
@@ -11133,6 +11451,7 @@
     {
       "id": 1629652,
       "name": "Luguentz Dort",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629652.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 15,
@@ -11168,6 +11487,7 @@
     {
       "id": 1629029,
       "name": "Luka Don\u010di\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629029.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 15,
@@ -11203,6 +11523,7 @@
     {
       "id": 1630568,
       "name": "Luka Garza",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630568.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 17,
@@ -11238,6 +11559,7 @@
     {
       "id": 1628379,
       "name": "Luke Kennard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628379.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 18,
@@ -11273,6 +11595,7 @@
     {
       "id": 1628436,
       "name": "Luke Kornet",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628436.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 12,
@@ -11308,6 +11631,7 @@
     {
       "id": 1631247,
       "name": "Luke Travers",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631247.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 8,
@@ -11343,6 +11667,7 @@
     {
       "id": 1630644,
       "name": "Mac McClung",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630644.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 3,
@@ -11378,6 +11703,7 @@
     {
       "id": 1631103,
       "name": "Malaki Branham",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631103.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 8,
@@ -11413,6 +11739,7 @@
     {
       "id": 1628370,
       "name": "Malik Monk",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628370.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 18,
@@ -11448,6 +11775,7 @@
     {
       "id": 203935,
       "name": "Marcus Smart",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203935.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 14,
@@ -11483,6 +11811,7 @@
     {
       "id": 1641813,
       "name": "Mark Sears",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641813.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 7,
@@ -11518,6 +11847,7 @@
     {
       "id": 1631109,
       "name": "Mark Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631109.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 17,
@@ -11553,6 +11883,7 @@
     {
       "id": 1628963,
       "name": "Marvin Bagley III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628963.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 14,
@@ -11588,6 +11919,7 @@
     {
       "id": 203486,
       "name": "Mason Plumlee",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203486.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 8,
@@ -11623,6 +11955,7 @@
     {
       "id": 1641824,
       "name": "Matas Buzelis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641824.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 19,
@@ -11658,6 +11991,7 @@
     {
       "id": 1629680,
       "name": "Matisse Thybulle",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629680.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 4,
@@ -11693,6 +12027,7 @@
     {
       "id": 1631108,
       "name": "Max Christie",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631108.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 21,
@@ -11728,6 +12063,7 @@
     {
       "id": 1628467,
       "name": "Maxi Kleber",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628467.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 8,
@@ -11763,6 +12099,7 @@
     {
       "id": 1642875,
       "name": "Maxime Raynaud",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642875.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 13,
@@ -11798,6 +12135,7 @@
     {
       "id": 1642877,
       "name": "Micah Peavy",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642877.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 17,
@@ -11833,6 +12171,7 @@
     {
       "id": 1629008,
       "name": "Michael Porter Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629008.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 16,
@@ -11868,6 +12207,7 @@
     {
       "id": 1628969,
       "name": "Mikal Bridges",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628969.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 19,
@@ -11903,6 +12243,7 @@
     {
       "id": 201144,
       "name": "Mike Conley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201144.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 20,
@@ -11938,6 +12279,7 @@
     {
       "id": 1628970,
       "name": "Miles Bridges",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628970.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 20,
@@ -11973,6 +12315,7 @@
     {
       "id": 1642939,
       "name": "Miles Kelly",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642939.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 2,
@@ -12008,6 +12351,7 @@
     {
       "id": 1630540,
       "name": "Miles McBride",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630540.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 16,
@@ -12043,6 +12387,7 @@
     {
       "id": 1629011,
       "name": "Mitchell Robinson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629011.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 12,
@@ -12078,6 +12423,7 @@
     {
       "id": 1642885,
       "name": "Mohamed Diawara",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642885.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 12,
@@ -12113,6 +12459,7 @@
     {
       "id": 1628420,
       "name": "Monte Morris",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628420.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 6,
@@ -12148,6 +12495,7 @@
     {
       "id": 1630541,
       "name": "Moses Moody",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630541.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 19,
@@ -12183,6 +12531,7 @@
     {
       "id": 1631243,
       "name": "Mouhamed Gueye",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631243.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 21,
@@ -12218,6 +12567,7 @@
     {
       "id": 1630619,
       "name": "Moussa Cisse",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630619.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 16,
@@ -12253,6 +12603,7 @@
     {
       "id": 1631217,
       "name": "Moussa Diabat\u00e9",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631217.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 20,
@@ -12288,6 +12639,7 @@
     {
       "id": 1626167,
       "name": "Myles Turner",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626167.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 21,
@@ -12323,6 +12675,7 @@
     {
       "id": 1642066,
       "name": "Myron Gardner",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642066.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 3,
@@ -12358,6 +12711,7 @@
     {
       "id": 1642368,
       "name": "N'Faly Dante",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642368.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 4,
@@ -12393,6 +12747,7 @@
     {
       "id": 1641772,
       "name": "Nae'Qwan Tomlin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641772.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 12,
@@ -12428,6 +12783,7 @@
     {
       "id": 1630230,
       "name": "Naji Marshall",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630230.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 21,
@@ -12463,6 +12819,7 @@
     {
       "id": 1629675,
       "name": "Naz Reid",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629675.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 20,
@@ -12498,6 +12855,7 @@
     {
       "id": 1629674,
       "name": "Neemias Queta",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629674.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 18,
@@ -12533,6 +12891,7 @@
     {
       "id": 1629651,
       "name": "Nic Claxton",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629651.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 19,
@@ -12568,6 +12927,7 @@
     {
       "id": 1630208,
       "name": "Nick Richards",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630208.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 21,
@@ -12603,6 +12963,7 @@
     {
       "id": 1641733,
       "name": "Nick Smith Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641733.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 6,
@@ -12638,6 +12999,7 @@
     {
       "id": 1629638,
       "name": "Nickeil Alexander-Walker",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629638.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 19,
@@ -12673,6 +13035,7 @@
     {
       "id": 201587,
       "name": "Nicolas Batum",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201587.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 20,
@@ -12708,6 +13071,7 @@
     {
       "id": 1628502,
       "name": "Nigel Hayes-Davis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628502.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 15,
@@ -12743,6 +13107,7 @@
     {
       "id": 203999,
       "name": "Nikola Joki\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203999.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 19,
@@ -12778,6 +13143,7 @@
     {
       "id": 1631107,
       "name": "Nikola Jovi\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631107.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 15,
@@ -12813,6 +13179,7 @@
     {
       "id": 202696,
       "name": "Nikola Vu\u010devi\u0107",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202696.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 18,
@@ -12848,6 +13215,7 @@
     {
       "id": 1642363,
       "name": "Nique Clifford",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642363.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 17,
@@ -12883,6 +13251,7 @@
     {
       "id": 1642855,
       "name": "Noa Essengue",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642855.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 2,
@@ -12918,6 +13287,7 @@
     {
       "id": 1641730,
       "name": "Noah Clowney",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641730.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 19,
@@ -12953,6 +13323,7 @@
     {
       "id": 1642869,
       "name": "Noah Penda",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642869.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 10,
@@ -12988,6 +13359,7 @@
     {
       "id": 1642849,
       "name": "Nolan Traore",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642849.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 4,
@@ -13023,6 +13395,7 @@
     {
       "id": 1626181,
       "name": "Norman Powell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626181.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 16,
@@ -13058,6 +13431,7 @@
     {
       "id": 1628384,
       "name": "OG Anunoby",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628384.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 12,
@@ -13093,6 +13467,7 @@
     {
       "id": 1630167,
       "name": "Obi Toppin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630167.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 3,
@@ -13128,6 +13503,7 @@
     {
       "id": 1630534,
       "name": "Ochai Agbaji",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630534.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 15,
@@ -13163,6 +13539,7 @@
     {
       "id": 1641765,
       "name": "Olivier-Maxence Prosper",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641765.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 11,
@@ -13198,6 +13575,7 @@
     {
       "id": 1630168,
       "name": "Onyeka Okongwu",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630168.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 20,
@@ -13233,6 +13611,7 @@
     {
       "id": 1631115,
       "name": "Orlando Robinson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631115.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 3,
@@ -13268,6 +13647,7 @@
     {
       "id": 1642345,
       "name": "Oso Ighodaro",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642345.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 21,
@@ -13303,6 +13683,7 @@
     {
       "id": 1631172,
       "name": "Ousmane Dieng",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631172.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 14,
@@ -13338,6 +13719,7 @@
     {
       "id": 1629023,
       "name": "P.J. Washington",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629023.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 19,
@@ -13373,6 +13755,7 @@
     {
       "id": 1641790,
       "name": "PJ Hall",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641790.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 7,
@@ -13408,6 +13791,7 @@
     {
       "id": 1642359,
       "name": "Pac\u00f4me Dadiet",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642359.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 8,
@@ -13443,6 +13827,7 @@
     {
       "id": 1631094,
       "name": "Paolo Banchero",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631094.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 12,
@@ -13478,6 +13863,7 @@
     {
       "id": 1627783,
       "name": "Pascal Siakam",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627783.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 19,
@@ -13513,6 +13899,7 @@
     {
       "id": 1626192,
       "name": "Pat Connaughton",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626192.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 12,
@@ -13548,6 +13935,7 @@
     {
       "id": 1630311,
       "name": "Pat Spencer",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630311.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 13,
@@ -13583,6 +13971,7 @@
     {
       "id": 1630172,
       "name": "Patrick Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630172.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 18,
@@ -13618,6 +14007,7 @@
     {
       "id": 202331,
       "name": "Paul George",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202331.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 5,
@@ -13653,6 +14043,7 @@
     {
       "id": 1630194,
       "name": "Paul Reed",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630194.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 16,
@@ -13688,6 +14079,7 @@
     {
       "id": 1630202,
       "name": "Payton Pritchard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630202.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 20,
@@ -13723,6 +14115,7 @@
     {
       "id": 1641796,
       "name": "Pelle Larsson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641796.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 20,
@@ -13758,6 +14151,7 @@
     {
       "id": 1631250,
       "name": "Pete Nance",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631250.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 3,
@@ -13793,6 +14187,7 @@
     {
       "id": 1631212,
       "name": "Peyton Watson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631212.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 19,
@@ -13828,6 +14223,7 @@
     {
       "id": 1630173,
       "name": "Precious Achiuwa",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630173.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 14,
@@ -13863,6 +14259,7 @@
     {
       "id": 1629656,
       "name": "Quentin Grimes",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629656.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 19,
@@ -13898,6 +14295,7 @@
     {
       "id": 1631245,
       "name": "Quenton Jackson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631245.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 5,
@@ -13933,6 +14331,7 @@
     {
       "id": 1642366,
       "name": "Quinten Post",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642366.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 21,
@@ -13968,6 +14367,7 @@
     {
       "id": 1629628,
       "name": "RJ Barrett",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629628.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 17,
@@ -14003,6 +14403,7 @@
     {
       "id": 1642853,
       "name": "Rasheer Fleming",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642853.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 10,
@@ -14038,6 +14439,7 @@
     {
       "id": 1642484,
       "name": "RayJ Dennis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642484.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 13,
@@ -14073,6 +14475,7 @@
     {
       "id": 1641712,
       "name": "Rayan Rupert",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641712.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 13,
@@ -14108,6 +14511,7 @@
     {
       "id": 1642263,
       "name": "Reed Sheppard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642263.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 17,
@@ -14143,6 +14547,7 @@
     {
       "id": 1642434,
       "name": "Riley Minix",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642434.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 3,
@@ -14178,6 +14583,7 @@
     {
       "id": 1642265,
       "name": "Rob Dillingham",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642265.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 18,
@@ -14213,6 +14619,7 @@
     {
       "id": 1629057,
       "name": "Robert Williams III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629057.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 13,
@@ -14248,6 +14655,7 @@
     {
       "id": 1631199,
       "name": "Ron Harper Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631199.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 3,
@@ -14283,6 +14691,7 @@
     {
       "id": 1641842,
       "name": "Ronald Holland II",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641842.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 20,
@@ -14318,6 +14727,7 @@
     {
       "id": 1626220,
       "name": "Royce O'Neale",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626220.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 21,
@@ -14353,6 +14763,7 @@
     {
       "id": 203497,
       "name": "Rudy Gobert",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203497.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 20,
@@ -14388,6 +14799,7 @@
     {
       "id": 1629060,
       "name": "Rui Hachimura",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629060.png",
       "team_id": 1610612747,
       "team": "LAL",
       "games_played": 18,
@@ -14423,6 +14835,7 @@
     {
       "id": 201566,
       "name": "Russell Westbrook",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201566.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 21,
@@ -14458,6 +14871,7 @@
     {
       "id": 1642346,
       "name": "Ryan Dunn",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642346.png",
       "team_id": 1610612756,
       "team": "PHX",
       "games_played": 16,
@@ -14493,6 +14907,7 @@
     {
       "id": 1641750,
       "name": "Ryan Kalkbrenner",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641750.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 18,
@@ -14528,6 +14943,7 @@
     {
       "id": 1642948,
       "name": "Ryan Nembhard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642948.png",
       "team_id": 1610612742,
       "team": "DAL",
       "games_played": 8,
@@ -14563,6 +14979,7 @@
     {
       "id": 1631157,
       "name": "Ryan Rollins",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631157.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 21,
@@ -14598,6 +15015,7 @@
     {
       "id": 1630180,
       "name": "Saddiq Bey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630180.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 20,
@@ -14633,6 +15051,7 @@
     {
       "id": 1630573,
       "name": "Sam Hauser",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630573.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 20,
@@ -14668,6 +15087,7 @@
     {
       "id": 1630241,
       "name": "Sam Merrill",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630241.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 12,
@@ -14703,6 +15123,7 @@
     {
       "id": 1630572,
       "name": "Sandro Mamukelashvili",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630572.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 20,
@@ -14738,6 +15159,7 @@
     {
       "id": 1630583,
       "name": "Santi Aldama",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630583.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 21,
@@ -14773,6 +15195,7 @@
     {
       "id": 1630567,
       "name": "Scottie Barnes",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630567.png",
       "team_id": 1610612761,
       "team": "TOR",
       "games_played": 21,
@@ -14808,6 +15231,7 @@
     {
       "id": 1631101,
       "name": "Shaedon Sharpe",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631101.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 16,
@@ -14843,6 +15267,7 @@
     {
       "id": 1628983,
       "name": "Shai Gilgeous-Alexander",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628983.png",
       "team_id": 1610612760,
       "team": "OKC",
       "games_played": 21,
@@ -14878,6 +15303,7 @@
     {
       "id": 1630536,
       "name": "Sharife Cooper",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630536.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 4,
@@ -14913,6 +15339,7 @@
     {
       "id": 1631321,
       "name": "Sidy Cissoko",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631321.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 15,
@@ -14948,6 +15375,7 @@
     {
       "id": 1631323,
       "name": "Simone Fontecchio",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631323.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 19,
@@ -14983,6 +15411,7 @@
     {
       "id": 1642883,
       "name": "Sion James",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642883.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 20,
@@ -15018,6 +15447,7 @@
     {
       "id": 1642461,
       "name": "Spencer Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642461.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 15,
@@ -15053,6 +15483,7 @@
     {
       "id": 201939,
       "name": "Stephen Curry",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 16,
@@ -15088,6 +15519,7 @@
     {
       "id": 1642264,
       "name": "Stephon Castle",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642264.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 13,
@@ -15123,6 +15555,7 @@
     {
       "id": 203500,
       "name": "Steven Adams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203500.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 15,
@@ -15158,6 +15591,7 @@
     {
       "id": 1629004,
       "name": "Svi Mykhailiuk",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629004.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 19,
@@ -15193,6 +15627,7 @@
     {
       "id": 204456,
       "name": "T.J. McConnell",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/204456.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 10,
@@ -15228,6 +15663,7 @@
     {
       "id": 1643007,
       "name": "Taelon Peter",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1643007.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 12,
@@ -15263,6 +15699,7 @@
     {
       "id": 1631106,
       "name": "Tari Eason",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631106.png",
       "team_id": 1610612745,
       "team": "HOU",
       "games_played": 11,
@@ -15298,6 +15735,7 @@
     {
       "id": 1627752,
       "name": "Taurean Prince",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1627752.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 8,
@@ -15333,6 +15771,7 @@
     {
       "id": 1641707,
       "name": "Taylor Hendricks",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641707.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 11,
@@ -15368,6 +15807,7 @@
     {
       "id": 1629611,
       "name": "Terance Mann",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629611.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 19,
@@ -15403,6 +15843,7 @@
     {
       "id": 1630545,
       "name": "Terrence Shannon Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630545.png",
       "team_id": 1610612750,
       "team": "MIN",
       "games_played": 11,
@@ -15438,6 +15879,7 @@
     {
       "id": 203648,
       "name": "Thanasis Antetokounmpo",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203648.png",
       "team_id": 1610612749,
       "team": "MIL",
       "games_played": 7,
@@ -15473,6 +15915,7 @@
     {
       "id": 1628418,
       "name": "Thomas Bryant",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628418.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 14,
@@ -15508,6 +15951,7 @@
     {
       "id": 1642275,
       "name": "Tidjane Sala\u00fcn",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642275.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 7,
@@ -15543,6 +15987,7 @@
     {
       "id": 203501,
       "name": "Tim Hardaway Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203501.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 19,
@@ -15578,6 +16023,7 @@
     {
       "id": 202699,
       "name": "Tobias Harris",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/202699.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 11,
@@ -15613,6 +16059,7 @@
     {
       "id": 1642449,
       "name": "Tolu Smith",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642449.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 2,
@@ -15648,6 +16095,7 @@
     {
       "id": 1628396,
       "name": "Tony Bradley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628396.png",
       "team_id": 1610612754,
       "team": "IND",
       "games_played": 18,
@@ -15683,6 +16131,7 @@
     {
       "id": 1641787,
       "name": "Tosan Evbuomwan",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641787.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 2,
@@ -15718,6 +16167,7 @@
     {
       "id": 1641739,
       "name": "Toumani Camara",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641739.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 20,
@@ -15753,6 +16203,7 @@
     {
       "id": 1629027,
       "name": "Trae Young",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629027.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 5,
@@ -15788,6 +16239,7 @@
     {
       "id": 1631218,
       "name": "Trayce Jackson-Davis",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631218.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 12,
@@ -15823,6 +16275,7 @@
     {
       "id": 1642848,
       "name": "Tre Johnson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642848.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 15,
@@ -15858,6 +16311,7 @@
     {
       "id": 1630200,
       "name": "Tre Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630200.png",
       "team_id": 1610612741,
       "team": "CHI",
       "games_played": 16,
@@ -15893,6 +16347,7 @@
     {
       "id": 1630544,
       "name": "Tre Mann",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630544.png",
       "team_id": 1610612766,
       "team": "CHA",
       "games_played": 18,
@@ -15928,6 +16383,7 @@
     {
       "id": 1630570,
       "name": "Trendon Watford",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630570.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 14,
@@ -15963,6 +16419,7 @@
     {
       "id": 1641725,
       "name": "Trey Alexander",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641725.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 1,
@@ -15998,6 +16455,7 @@
     {
       "id": 1641998,
       "name": "Trey Jemison III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641998.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 2,
@@ -16033,6 +16491,7 @@
     {
       "id": 1630530,
       "name": "Trey Murphy III",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630530.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 19,
@@ -16068,6 +16527,7 @@
     {
       "id": 1641774,
       "name": "Tristan Vukcevic",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641774.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 15,
@@ -16103,6 +16563,7 @@
     {
       "id": 1641783,
       "name": "Tristan da Silva",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641783.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 20,
@@ -16138,6 +16599,7 @@
     {
       "id": 1629639,
       "name": "Tyler Herro",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629639.png",
       "team_id": 1610612748,
       "team": "MIA",
       "games_played": 3,
@@ -16173,6 +16635,7 @@
     {
       "id": 1642278,
       "name": "Tyler Kolek",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642278.png",
       "team_id": 1610612752,
       "team": "NYK",
       "games_played": 15,
@@ -16208,6 +16671,7 @@
     {
       "id": 1631213,
       "name": "Tyrese Martin",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631213.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 19,
@@ -16243,6 +16707,7 @@
     {
       "id": 1630178,
       "name": "Tyrese Maxey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630178.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 19,
@@ -16278,6 +16743,7 @@
     {
       "id": 1642878,
       "name": "Tyrese Proctor",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642878.png",
       "team_id": 1610612739,
       "team": "CLE",
       "games_played": 17,
@@ -16313,6 +16779,7 @@
     {
       "id": 1630623,
       "name": "Tyson Etienne",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630623.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 7,
@@ -16348,6 +16815,7 @@
     {
       "id": 1626145,
       "name": "Tyus Jones",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1626145.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 20,
@@ -16383,6 +16851,7 @@
     {
       "id": 1642845,
       "name": "VJ Edgecombe",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642845.png",
       "team_id": 1610612755,
       "team": "PHI",
       "games_played": 16,
@@ -16418,6 +16887,7 @@
     {
       "id": 1641705,
       "name": "Victor Wembanyama",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641705.png",
       "team_id": 1610612759,
       "team": "SAS",
       "games_played": 12,
@@ -16453,6 +16923,7 @@
     {
       "id": 1631246,
       "name": "Vince Williams Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631246.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 16,
@@ -16488,6 +16959,7 @@
     {
       "id": 1630249,
       "name": "V\u00edt Krej\u010d\u00ed",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630249.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 17,
@@ -16523,6 +16995,7 @@
     {
       "id": 1631117,
       "name": "Walker Kessler",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631117.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 5,
@@ -16558,6 +17031,7 @@
     {
       "id": 1642383,
       "name": "Walter Clayton Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642383.png",
       "team_id": 1610612762,
       "team": "UTA",
       "games_played": 15,
@@ -16593,6 +17067,7 @@
     {
       "id": 1628976,
       "name": "Wendell Carter Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1628976.png",
       "team_id": 1610612753,
       "team": "ORL",
       "games_played": 19,
@@ -16628,6 +17103,7 @@
     {
       "id": 1631111,
       "name": "Wendell Moore Jr.",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1631111.png",
       "team_id": 1610612765,
       "team": "DET",
       "games_played": 3,
@@ -16663,6 +17139,7 @@
     {
       "id": 1642954,
       "name": "Will Richard",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642954.png",
       "team_id": 1610612744,
       "team": "GSW",
       "games_played": 19,
@@ -16698,6 +17175,7 @@
     {
       "id": 1642860,
       "name": "Will Riley",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642860.png",
       "team_id": 1610612764,
       "team": "WAS",
       "games_played": 13,
@@ -16733,6 +17211,7 @@
     {
       "id": 1630214,
       "name": "Xavier Tillman",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630214.png",
       "team_id": 1610612738,
       "team": "BOS",
       "games_played": 9,
@@ -16768,6 +17247,7 @@
     {
       "id": 1642905,
       "name": "Yang Hansen",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642905.png",
       "team_id": 1610612757,
       "team": "POR",
       "games_played": 11,
@@ -16803,6 +17283,7 @@
     {
       "id": 1642949,
       "name": "Yanic Konan Niederh\u00e4user",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642949.png",
       "team_id": 1610612746,
       "team": "LAC",
       "games_played": 9,
@@ -16838,6 +17319,7 @@
     {
       "id": 1642274,
       "name": "Yves Missi",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642274.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 16,
@@ -16873,6 +17355,7 @@
     {
       "id": 1642258,
       "name": "Zaccharie Risacher",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1642258.png",
       "team_id": 1610612737,
       "team": "ATL",
       "games_played": 18,
@@ -16908,6 +17391,7 @@
     {
       "id": 1641744,
       "name": "Zach Edey",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1641744.png",
       "team_id": 1610612763,
       "team": "MEM",
       "games_played": 8,
@@ -16943,6 +17427,7 @@
     {
       "id": 203897,
       "name": "Zach LaVine",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/203897.png",
       "team_id": 1610612758,
       "team": "SAC",
       "games_played": 19,
@@ -16978,6 +17463,7 @@
     {
       "id": 1630192,
       "name": "Zeke Nnaji",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630192.png",
       "team_id": 1610612743,
       "team": "DEN",
       "games_played": 10,
@@ -17013,6 +17499,7 @@
     {
       "id": 1630533,
       "name": "Ziaire Williams",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1630533.png",
       "team_id": 1610612751,
       "team": "BKN",
       "games_played": 16,
@@ -17048,6 +17535,7 @@
     {
       "id": 1629627,
       "name": "Zion Williamson",
+      "head_shot": "https://cdn.nba.com/headshots/nba/latest/1040x760/1629627.png",
       "team_id": 1610612740,
       "team": "NOP",
       "games_played": 10,
