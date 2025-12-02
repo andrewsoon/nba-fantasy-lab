@@ -1,7 +1,6 @@
 import { PlayerStats, PlayerStatsRaw } from "@/types/types";
 
 export const StatsToUse = ["pts", "reb", "ast", "stl", "blk", "fg_pct_rating", "ft_pct_rating", "fg3m", "tov"] as const
-export const Last5StatsToUse = ["last5_pts", "last5_reb", "last5_ast", "last5_stl", "last5_blk", "last5_fg_pct_rating", "last5_ft_pct_rating", "last5_fg3m", "last5_tov"] as const
 
 export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
   // Step 1: Prepare adjusted stats
@@ -12,7 +11,7 @@ export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
       last5_player_rating: 0,
       fg_pct_rating: p.fg_pct * p.fga,
       ft_pct_rating: p.ft_pct * p.fta,
-      last5_fg_pct_rating: p.last5_fg_pct * p.fga,
+      last5_fg_pct_rating: p.last5_fg_pct * p.last5_fga,
       last5_ft_pct_rating: p.last5_ft_pct * p.last5_fta,
     }
   });
@@ -22,9 +21,27 @@ export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
   const statsStd: Record<string, number> = {};
 
   StatsToUse.forEach((cat) => {
-    const vals = adjustedStats.map((p) => p[cat] ?? 0);
-    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
-    const std = Math.sqrt(vals.reduce((sum, v) => sum + (v - mean) ** 2, 0) / vals.length);
+    const { sum, count } = adjustedStats.reduce(
+      (acc, p) => {
+        const v = p[cat];
+        if (v !== undefined && v !== null) {
+          acc.sum += v;
+          acc.count += 1;
+        }
+        return acc;
+      },
+      { sum: 0, count: 0 }
+    );
+
+    const mean = count > 0 ? sum / count : 0;
+
+    const std = Math.sqrt(
+      adjustedStats.reduce((acc, p) => {
+        const v = p[cat];
+        return v !== undefined && v !== null ? acc + (v - mean) ** 2 : acc;
+      }, 0) / (count || 1)
+    );
+
     statsMean[cat] = mean;
     statsStd[cat] = std || 1; // prevent divide by zero
   });
@@ -32,8 +49,8 @@ export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
   const last5StatsMean: Record<string, number> = {};
   const last5StatsStd: Record<string, number> = {};
 
-  Last5StatsToUse.forEach((cat) => {
-    const vals = adjustedStats.map((p) => p[cat] ?? 0);
+  StatsToUse.forEach((cat) => {
+    const vals = adjustedStats.map((p) => p[`last5_${cat}`] ?? 0);
     const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
     const std = Math.sqrt(vals.reduce((sum, v) => sum + (v - mean) ** 2, 0) / vals.length);
     last5StatsMean[cat] = mean;
@@ -49,9 +66,9 @@ export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
       if (cat === "tov") z *= -0.25; // lower TOV = better
       rating += z;
     });
-    Last5StatsToUse.forEach((cat) => {
-      let z = ((p[cat] ?? 0) - last5StatsMean[cat]) / last5StatsStd[cat];
-      if (cat === "last5_tov") z *= -0.25; // lower TOV = better
+    StatsToUse.forEach((cat) => {
+      let z = ((p[`last5_${cat}`] ?? 0) - last5StatsMean[cat]) / last5StatsStd[cat];
+      if (cat === "tov") z *= -0.25; // lower TOV = better
       last5Rating += z;
     });
     p.last5_player_rating = last5Rating;
@@ -65,7 +82,7 @@ export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
 }
 
 export function getHeatmapColor(value: number, min: number, max: number, invert = false, isDark = false) {
-  if (max === min) return "#f0f0f0"; // fallback for no range
+  if (max === min) return "transparent"; // fallback for no range
   let norm = (value - min) / (max - min);
   if (invert) norm = 1 - norm; // for TOV, lower is better
 
@@ -74,23 +91,23 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
 
   // Predefined scale (deep → faint → neutral → faint → deep)
   const light_colors = [
-    "#b40000",
-    "#d03c3c",
-    "#e87a7a",
-    "#ffffff",
-    "#7ac27a",
-    "#3c9e3c",
-    "#007a00",
+    "#b2182b", // deep red
+    "#d6604d", // soft red
+    "#f4a582", // light salmon
+    "#f7f7f7", // neutral light
+    "#b8e3b8", // pale green
+    "#66c266", // medium green
+    "#1a8e1a", // deep green
   ];
 
   const dark_colors = [
-    "#B71C1C",
-    "#D32F2F",
-    "#F57C00",
-    "#FBC02D",
-    "#AFB42B",
-    "#388E3C",
-    "#1B5E20"
+    "#8c1d1d", // deep red
+    "#b53a3a", // red
+    "#d67c7c", // soft red
+    "#2b2b2b", // neutral dark
+    "#5fa85f", // pale green (dark mode friendly)
+    "#2e8b2e", // medium green
+    "#166616", // deep green
   ]
 
   const colors = isDark ? dark_colors : light_colors

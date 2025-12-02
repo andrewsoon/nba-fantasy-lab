@@ -46,7 +46,7 @@ const statColumns: StatColumn[] = [
 
 export const PlayersTable = ({ players }: PlayersTableProps) => {
   const [useSeasonAvg, setUseSeasonAvg] = React.useState(false)
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -57,6 +57,10 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
 
     return () => darkQuery.removeEventListener('change', listener);
   }, []);
+
+  const isLoading = React.useMemo(() => {
+    return isDarkMode === undefined
+  }, [isDarkMode])
 
   const sortPlayers = (playerStats: PlayerStats[], sort: string = 'last5') => {
     if (sort === 'last5') {
@@ -78,6 +82,14 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
       return acc
     }, {} as Record<typeof StatsToUse[number], { min: number; max: number }>)
   }, [processedPlayers])
+
+  if (isLoading) {
+    return (
+      <div className="h-32 flex flex-row items-center justify-center">
+        <div className="animate-spin rounded-full border-2 border-gray-300 border-t-transparent h-12 w-12" />
+      </div>
+    )
+  }
 
   return (
     <div className="overflow-x-auto px-8 sm:px-12 md:px-15 pb-16">
