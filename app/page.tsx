@@ -1,14 +1,11 @@
+import PlayersData from "@/data/players.json";
+import { PlayerStatsRaw } from "@/types/types";
+
 import { PlayersTable } from "./PlayerTable";
 
-import PlayersData from "@/data/players.json"
-import { PlayerStats, PlayerStatsRaw } from "@/types/types"
-import { computePlayerRatings } from "@/utils/compute";
 
 export default function Home() {
   const playersRaw = PlayersData.players as PlayerStatsRaw[]
-
-  const processedPlayers: PlayerStats[] = computePlayerRatings(playersRaw).sort((a, b) => b.player_rating - a.player_rating)
-
   return (
     <div className="flex justify-center font-sans">
       <main className="flex flex-col w-full min-h-screen max-w-7xl ">
@@ -23,7 +20,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <PlayersTable players={processedPlayers} />
+        <PlayersTable players={playersRaw} />
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { PlayerStats, PlayerStatsRaw } from "@/types/types";
 export const StatsToUse = ["pts", "reb", "ast", "stl", "blk", "fg_pct_rating", "ft_pct_rating", "fg3m", "tov"] as const
 export const Last5StatsToUse = ["last5_pts", "last5_reb", "last5_ast", "last5_stl", "last5_blk", "last5_fg_pct_rating", "last5_ft_pct_rating", "last5_fg3m", "last5_tov"] as const
 
-export function computePlayerRatings(players: PlayerStatsRaw[], last5: boolean = false): PlayerStats[] {
+export function computePlayerRatings(players: PlayerStatsRaw[]): PlayerStats[] {
   // Step 1: Prepare adjusted stats
   const adjustedStats: PlayerStats[] = players.map((p) => {
     return {
@@ -21,8 +21,7 @@ export function computePlayerRatings(players: PlayerStatsRaw[], last5: boolean =
   const statsMean: Record<string, number> = {};
   const statsStd: Record<string, number> = {};
 
-  const usedStats = last5 ? Last5StatsToUse : StatsToUse
-  usedStats.forEach((cat) => {
+  StatsToUse.forEach((cat) => {
     const vals = adjustedStats.map((p) => p[cat] ?? 0);
     const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
     const std = Math.sqrt(vals.reduce((sum, v) => sum + (v - mean) ** 2, 0) / vals.length);
@@ -30,14 +29,32 @@ export function computePlayerRatings(players: PlayerStatsRaw[], last5: boolean =
     statsStd[cat] = std || 1; // prevent divide by zero
   });
 
+  const last5StatsMean: Record<string, number> = {};
+  const last5StatsStd: Record<string, number> = {};
+
+  Last5StatsToUse.forEach((cat) => {
+    const vals = adjustedStats.map((p) => p[cat] ?? 0);
+    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+    const std = Math.sqrt(vals.reduce((sum, v) => sum + (v - mean) ** 2, 0) / vals.length);
+    last5StatsMean[cat] = mean;
+    last5StatsStd[cat] = std || 1; // prevent divide by zero
+  });
+
   // Step 3: Compute z-scores and player_rating
   adjustedStats.forEach((p) => {
     let rating = 0;
+    let last5Rating = 0;
     StatsToUse.forEach((cat) => {
       let z = ((p[cat] ?? 0) - statsMean[cat]) / statsStd[cat];
-      if (cat === "tov") z *= -1; // lower TOV = better
+      if (cat === "tov") z *= -0.25; // lower TOV = better
       rating += z;
     });
+    Last5StatsToUse.forEach((cat) => {
+      let z = ((p[cat] ?? 0) - last5StatsMean[cat]) / last5StatsStd[cat];
+      if (cat === "last5_tov") z *= -0.25; // lower TOV = better
+      last5Rating += z;
+    });
+    p.last5_player_rating = last5Rating;
     p.player_rating = rating;
   });
 
@@ -57,23 +74,23 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
 
   // Predefined scale (deep → faint → neutral → faint → deep)
   const light_colors = [
-    "#b40000", // very low (rich deep red)
-    "#d03c3c", // low
-    "#e87a7a", // slightly low
-    "#ffffff", // neutral
-    "#7ac27a", // slightly high
-    "#3c9e3c", // high
-    "#007a00", // very high (rich deep green)
+    "#b40000",
+    "#d03c3c",
+    "#e87a7a",
+    "#ffffff",
+    "#7ac27a",
+    "#3c9e3c",
+    "#007a00",
   ];
 
   const dark_colors = [
-    "#7a0000", // very low (dark rich red)
-    "#8c1e1e", // low
-    "#a53a3a", // slightly low
-    "#1f1f1f", // neutral (dark grey)
-    "#3aa53a", // slightly high
-    "#1e8c1e", // high
-    "#007a00", // very high (dark rich green)
+    "#B71C1C",
+    "#D32F2F",
+    "#F57C00",
+    "#FBC02D",
+    "#AFB42B",
+    "#388E3C",
+    "#1B5E20"
   ]
 
   const colors = isDark ? dark_colors : light_colors
