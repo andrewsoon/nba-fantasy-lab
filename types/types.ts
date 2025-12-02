@@ -1,4 +1,4 @@
-export interface PlayerStats {
+export interface PlayerStatsRaw {
   id: number,
   name: string,
   team_id: number,
@@ -32,4 +32,13 @@ export interface PlayerStats {
   last5_fg_pct: number,
   last5_ft_pct: number,
   last5_fg3m: number
+}
+
+export interface PlayerStats extends PlayerStatsRaw {
+  player_rating: number,
+  last5_player_rating: number,
+  fg_pct_rating: number,
+  ft_pct_rating: number,
+  last5_fg_pct_rating: number,
+  last5_ft_pct_rating: number,
 }
