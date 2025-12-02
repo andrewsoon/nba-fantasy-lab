@@ -109,7 +109,8 @@ def fetch_players(season="2025-26"):
             "season": season,
             "total_players": len(season_df),
             "players_loaded": len(players_list),
-            "players_failed": len(failed_players)
+            "players_failed": len(failed_players),
+            "fetched_at": time.time()
         }
     }
 
@@ -118,11 +119,10 @@ def fetch_players(season="2025-26"):
         json.dump(result, f, indent=2)
 
     # Print summary
-    end_time = time.time()
     print(f"\n✅ Finished! {len(players_list)}/{len(season_df)} players loaded successfully.")
     if failed_players:
         print(f"❌ {len(failed_players)} players failed. See 'failed_players' in JSON.")
-    print(f"⏱ Script completed in {end_time - start_time:.2f} seconds.")
+    print(f"⏱ Script completed in {time.time() - start_time:.2f} seconds.")
 
 
 if __name__ == "__main__":
