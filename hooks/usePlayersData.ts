@@ -10,7 +10,7 @@ type StatCategoryStats = Record<keyof StatCategory, { mean: number; std: number 
 
 function computeZScore(
   playerStats: StatCategory,
-  stats: StatCategoryStats
+  stats: Partial<StatCategoryStats>
 ): number {
   let zScore = 0;
   for (const key of Object.keys(playerStats) as (keyof StatCategory)[]) {
@@ -29,8 +29,8 @@ function computeZScore(
 };
 
 
-function computeStats(players: Player[], keyPrefix: PlayerStatsKeys): StatCategoryStats {
-  const stats: StatCategoryStats = {} as any;
+function computeStats(players: Player[], keyPrefix: PlayerStatsKeys): Partial<StatCategoryStats> {
+  const stats: Partial<StatCategoryStats> = {};
   for (const key of Object.keys(players[0][keyPrefix]) as (keyof StatCategory)[]) {
     if (key === 'gp') continue;
     const values = players.map(p => p[keyPrefix][key] ?? 0);
@@ -42,7 +42,9 @@ function computeStats(players: Player[], keyPrefix: PlayerStatsKeys): StatCatego
 };
 
 
-function toStatCategory(raw: any, totalsGP?: number): StatCategory {
+function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCategory {
+  const fg_pct = (raw.fga && raw.fgm) ? raw.fgm / raw.fga : 0
+  const ft_pct = (raw.fta && raw.ftm) ? raw.ftm / raw.fta : 0
   return {
     min: raw.min ?? 0,
     pts: raw.pts ?? 0,
@@ -57,13 +59,12 @@ function toStatCategory(raw: any, totalsGP?: number): StatCategory {
     fta: raw.fta ?? 0,
     fg3m: raw.fg3m ?? 0,
     fg3a: raw.fg3a ?? 0,
-    fg_pct: raw.fga > 0 ? (raw.fgm / raw.fga) : 0,
-    ft_pct: raw.fta > 0 ? (raw.ftm / raw.fta) : 0,
+    fg_pct,
+    ft_pct,
     gp: totalsGP ?? raw.gp ?? 0,
 
-
-    fg_weighted: (raw.fga > 0 ? (raw.fgm / raw.fga) : 0) * (raw.fga ?? 0),
-    ft_weighted: (raw.fta > 0 ? (raw.ftm / raw.fta) : 0) * (raw.fta ?? 0),
+    fg_weighted: fg_pct * (raw.fga ?? 0),
+    ft_weighted: ft_pct * (raw.fta ?? 0),
   }
 };
 
