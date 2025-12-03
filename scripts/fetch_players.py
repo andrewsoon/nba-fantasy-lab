@@ -9,26 +9,58 @@ from nba_api.stats.endpoints import LeagueDashPlayerStats, PlayerGameLog
 # ---------------------------
 season = "2025-26"
 sleep_time = 0.3  # seconds between API calls to avoid rate limiting
+categories = ['MIN','PTS','REB','AST','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3M','FG3A']
 
 # ---------------------------
-# Helper function
+# Helper functions
 # ---------------------------
+def safe_get(d, key, default=0):
+    return d.get(key, default) if d else default
+
 def compute_totals_and_avgs(df):
+    """Compute totals and averages from a player game log DataFrame with lowercase keys."""
     if df.empty:
-        return {}, {}
-    totals = df[['MIN','PTS','REB','AST','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3M','FG3A']].sum().to_dict()
+        return {k.lower(): 0 for k in categories}, {k.lower(): 0 for k in categories}
+    
+    totals = {k.lower(): v for k, v in df[categories].sum().to_dict().items()}
     gp = len(df)
-    avgs = {k: v / gp for k, v in totals.items()}
-    avgs['fg_pct'] = totals['FGM'] / totals['FGA'] if totals['FGA'] > 0 else 0
-    avgs['ft_pct'] = totals['FTM'] / totals['FTA'] if totals['FTA'] > 0 else 0
-    avgs['fg3_pct'] = totals['FG3M'] / totals['FG3A'] if totals['FG3A'] > 0 else 0
+    avgs = {k: (v / gp if v is not None else 0) for k, v in totals.items()}
+    
+    # Percentages
+    avgs['fg_pct'] = totals['fgm'] / totals['fga'] if totals['fga'] > 0 else 0
+    avgs['ft_pct'] = totals['ftm'] / totals['fta'] if totals['fta'] > 0 else 0
+    avgs['fg3_pct'] = totals['fg3m'] / totals['fg3a'] if totals['fg3a'] > 0 else 0
+    
     totals['gp'] = gp
     return totals, avgs
 
-# ---------------------------
-# Load cached data if exists
-# ---------------------------
+def compute_min_max(players, key_prefix):
+    """Compute min/max per category for a group (season, last7, last14)."""
+    min_max = {}
+
+    # Regular counting stats
+    for cat in categories:
+        cat_lc = cat.lower()
+        values = [safe_get(p.get(key_prefix, {}), cat_lc, 0) for p in players]
+        min_max[cat_lc] = {"min": min(values), "max": max(values)}
+
+    # Percentages + weighted makes
+    for pct, attempts in [('fg_pct', 'fga'), ('ft_pct', 'fta')]:
+        raw_values = [safe_get(p.get(key_prefix, {}), pct, 0) for p in players]
+        weighted_values = [
+            safe_get(p.get(key_prefix, {}), pct, 0) * safe_get(p.get(key_prefix, {}), attempts, 0)
+            for p in players
+        ]
+        min_max[pct] = {
+            "min": min(raw_values),
+            "max": max(raw_values),
+            "weighted_min": min(weighted_values),
+            "weighted_max": max(weighted_values)
+        }
+    return min_max
+
 def load_cache():
+    """Load previously cached player data if available."""
     try:
         with open("data/players.json", "r") as f:
             return json.load(f)
@@ -43,7 +75,6 @@ def fetch_players(season=season):
     players_list = []
     failed_players = []
 
-    # Load previous cache
     cache_data = load_cache()
     cached_players = {p["id"]: p for p in cache_data.get("players", [])}
 
@@ -61,32 +92,24 @@ def fetch_players(season=season):
     fourteen_days_ago = today - timedelta(days=14)
 
     for idx, row in season_df.iterrows():
-        player_id = row["PLAYER_ID"]
-        player_name = row["PLAYER_NAME"]
-        gp = row["GP"]
+        player_id = row.get("PLAYER_ID")
+        player_name = row.get("PLAYER_NAME")
+        gp = row.get("GP", 0)
 
         try:
-            season_avgs = {
-                'min': row["MIN"], 'pts': row["PTS"], 'reb': row["REB"], 'ast': row["AST"],
-                'stl': row["STL"], 'blk': row["BLK"], 'tov': row["TOV"], 'fgm': row["FGM"],
-                'fga': row["FGA"], 'ftm': row["FTM"], 'fta': row["FTA"], 'fg3m': row["FG3M"],
-                'fg_pct': row["FG_PCT"], 'ft_pct': row["FT_PCT"], 'fg3_pct': row["FG3_PCT"]
-            }
+            # Season averages and totals with lowercase keys + fallback to 0
+            season_avgs = {k.lower(): row.get(k, 0) for k in ['MIN','PTS','REB','AST','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3M','FG3A','FG_PCT','FT_PCT','FG3_PCT']}
             season_totals = {k: (v * gp if k not in ['fg_pct','ft_pct','fg3_pct'] else v) for k,v in season_avgs.items()}
             season_totals['gp'] = gp
 
-            # -------------------------
-            # GP-based caching check
-            # -------------------------
+            # Check cache
             cached_player = cached_players.get(player_id)
             if cached_player and cached_player.get("season_totals", {}).get("gp") == gp:
-                # GP unchanged → use cached 7/14-day stats
                 last7_totals = cached_player.get("last7_totals", {})
                 last7_avgs = cached_player.get("last7_avgs", {})
                 last14_totals = cached_player.get("last14_totals", {})
                 last14_avgs = cached_player.get("last14_avgs", {})
             else:
-                # GP increased → fetch game logs
                 try:
                     log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
                     log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
@@ -97,19 +120,20 @@ def fetch_players(season=season):
                     last14_df = log_df[log_df['GAME_DATE'] >= fourteen_days_ago]
                     last14_totals, last14_avgs = compute_totals_and_avgs(last14_df)
                 except Exception:
-                    last7_totals, last7_avgs = {}, {}
-                    last14_totals, last14_avgs = {}, {}
+                    last7_totals = {k.lower(): 0 for k in categories}
+                    last7_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
+                    last7_avgs = last7_totals.copy()
+                    last14_totals = {k.lower(): 0 for k in categories}
+                    last14_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
+                    last14_avgs = last14_totals.copy()
 
                 time.sleep(sleep_time)
 
-            # -------------------------
-            # Build player dictionary
-            # -------------------------
             player = {
                 "id": player_id,
                 "name": player_name,
-                "team_id": row["TEAM_ID"],
-                "team": row["TEAM_ABBREVIATION"],
+                "team_id": row.get("TEAM_ID", 0),
+                "team": row.get("TEAM_ABBREVIATION", ""),
                 "season_totals": season_totals,
                 "season_avgs": season_avgs,
                 "last7_totals": last7_totals,
@@ -125,9 +149,24 @@ def fetch_players(season=season):
             failed_players.append({"name": player_name, "reason": str(e) or "fail_to_fetch"})
             print(f"❌ Failed for {player_name}: {e}")
 
-    # -------------------------
+    # Compute min/max for frontend convenience
+    min_max = {
+        "season_totals": compute_min_max(players_list, "season_totals"),
+        "season_avgs": compute_min_max(players_list, "season_avgs"),
+        "last7_totals": compute_min_max(players_list, "last7_totals"),
+        "last7_avgs": compute_min_max(players_list, "last7_avgs"),
+        "last14_totals": compute_min_max(players_list, "last14_totals"),
+        "last14_avgs": compute_min_max(players_list, "last14_avgs")
+    }
+
+    for timeframe in ["season", "last7", "last14"]:
+        totals_key = f"{timeframe}_totals"
+        avgs_key = f"{timeframe}_avgs"
+
+        min_max[totals_key]["fg_pct"] = min_max[avgs_key]["fg_pct"]
+        min_max[totals_key]["ft_pct"] = min_max[avgs_key]["ft_pct"]
+
     # Save JSON
-    # -------------------------
     result = {
         "_meta": {
             "season": season,
@@ -137,7 +176,8 @@ def fetch_players(season=season):
             "fetched_at": datetime.now().isoformat()
         },
         "players": players_list,
-        "failed_players": failed_players
+        "failed_players": failed_players,
+        "min_max": min_max
     }
 
     with open("data/players.json", "w") as f:

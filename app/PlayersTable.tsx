@@ -1,37 +1,33 @@
 "use client"
 
-import { PlayerStats, PlayerStatsRaw } from "@/types/types"
-import { computePlayerRatings, getHeatmapColor, StatsToUse } from "@/utils/compute"
-import Image from "next/image"
-import React from "react"
+import PlayersDataRaw from "@/data/players.json";
+import { usePlayersData } from "@/hooks/usePlayersData";
+import { CategoryColKeys, PlayerStatsKeys, StatCategory } from "@/types/player";
+import { getHeatmapColor } from "@/utils/getHeatmapColor";
+import Image from "next/image";
+import React from "react";
 
-interface PlayersTableProps {
-  players: PlayerStatsRaw[]
-}
 interface StatColumn {
-  key: typeof StatsToUse[number],
+  key: CategoryColKeys,
   label: string,
   invert?: boolean,
-  render?: (player: PlayerStats) => React.ReactNode,
+  render?: (player: StatCategory) => React.ReactNode,
 }
-
-const headerClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-left text-sm font-semibold"
-const cellClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-sm"
 
 const statColumns: StatColumn[] = [
   {
-    key: "fg_pct_rating", label: "FG", render: (player: PlayerStats) => (
+    key: "fg_pct", label: "FG%", render: (cat: StatCategory) => (
       <div className="flex gap-1">
-        <p>{player.fg_pct}</p>
-        <p className="text-xs">({player.fgm}/{player.fga})</p>
+        <p>{cat.fg_pct.toFixed(3)}</p>
+        <p className="text-xs">({cat.fgm.toFixed(1)}/{cat.fga.toFixed(1)})</p>
       </div>
     )
   },
   {
-    key: "ft_pct_rating", label: "FT", render: (player: PlayerStats) => (
+    key: "ft_pct", label: "FT%", render: (cat: StatCategory) => (
       <div className="flex gap-1">
-        <p>{player.ft_pct}</p>
-        <p className="text-xs">({player.ftm}/{player.fta})</p>
+        <p>{cat.ft_pct.toFixed(3)}</p>
+        <p className="text-xs">({cat.ftm.toFixed(1)}/{cat.fta.toFixed(1)})</p>
       </div>
     )
   },
@@ -44,8 +40,10 @@ const statColumns: StatColumn[] = [
   { key: "tov", label: "TOV", invert: true },
 ];
 
-export const PlayersTable = ({ players }: PlayersTableProps) => {
-  const [useSeasonAvg, setUseSeasonAvg] = React.useState(false)
+export function PlayersTable() {
+  const { players: PlayersData, category_min_max: MinMax } = usePlayersData()
+  const [statType, _setStatType] = React.useState<PlayerStatsKeys>('last14_avgs')
+  const [useWeightedPct, _setUseWeightedPct] = React.useState<boolean>(false)
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
 
   React.useEffect(() => {
@@ -62,27 +60,6 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
     return isDarkMode === undefined
   }, [isDarkMode])
 
-  const sortPlayers = (playerStats: PlayerStats[], sort: string = 'last5') => {
-    if (sort === 'last5') {
-      return playerStats.sort((a, b) => b.last5_player_rating - a.last5_player_rating)
-    }
-    return playerStats.sort((a, b) => b.player_rating - a.player_rating)
-  }
-
-  const processedPlayers: PlayerStats[] = React.useMemo(() => {
-    const processedPlayers = computePlayerRatings(players)
-    const sortedPlayers = sortPlayers(processedPlayers, useSeasonAvg ? "" : "last5")
-    return sortedPlayers
-  }, [players, useSeasonAvg])
-
-  const minMax: Record<typeof StatsToUse[number], { min: number; max: number }> = React.useMemo(() => {
-    return StatsToUse.reduce((acc, stat) => {
-      const vals: number[] = processedPlayers.map((p) => p[stat] ?? 0)
-      acc[stat] = { min: Math.min(...vals), max: Math.max(...vals) }
-      return acc
-    }, {} as Record<typeof StatsToUse[number], { min: number; max: number }>)
-  }, [processedPlayers])
-
   if (isLoading) {
     return (
       <div className="h-32 flex flex-row items-center justify-center">
@@ -93,14 +70,16 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
 
   return (
     <div className="overflow-x-auto px-8 sm:px-12 md:px-15 pb-16">
-      <button onClick={() => setUseSeasonAvg((prev) => !prev)}>{useSeasonAvg ? "Season Averages" : "Last 5 Games Averages"}</button>
+      <div className="flex flex-row justify-end pb-1">
+        <p className="text-xs">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
+      </div>
       <table className="min-w-full border border-gray-200 dark:border-gray-700 ">
         <thead className="bg-zinc-100 dark:bg-zinc-800">
           <tr>
-            <th className="">Rk</th>
+            <th className="">RK</th>
             <th className={headerClass}>Player</th>
             <th className={headerClass}>Team</th>
-            {useSeasonAvg && <th className={headerClass}>GP</th>}
+            <th className={headerClass}>GP</th>
             {statColumns.map((col) => (
               <th key={col.key} className={headerClass}>
                 {col.label}
@@ -110,12 +89,14 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
           </tr>
         </thead>
         <tbody>
-          {processedPlayers.map((player, id) => {
+          {PlayersData.sort((a, b) => (b[statType]?.rating ?? 0) - (a[statType]?.rating ?? 0)).map((player, id) => {
             if (id > 199) return
+
+            const stats = player[statType]
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`}>
-                  <td className={cellClass}>{id + 1}</td>
+                  <td className={cellClass}>{stats.rank ?? '-'}</td>
                   <td className={`${cellClass} min-w-50`}>
                     <div className="flex flex-row items-center gap-2">
                       <Image
@@ -129,13 +110,26 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
                     </div>
                   </td>
                   <td className={cellClass}>{player.team}</td>
-                  {useSeasonAvg && <td className={cellClass}>{player.games_played}</td>}
+                  <td className={cellClass}>{stats.gp}</td>
                   {statColumns.map((col) => {
-                    const value = player[col.key] ?? 0;
+                    let value = stats[col.key] ?? 0;
+                    let min = MinMax[statType][col.key].min
+                    let max = MinMax[statType][col.key].max
+
+                    if (col.key === 'fg_pct' && useWeightedPct) {
+                      value = stats.fg_pct * stats.fga
+                      min = MinMax[statType].fg_pct.weighted_min ?? 0
+                      max = MinMax[statType].fg_pct.weighted_max ?? 0
+                    }
+                    if (col.key === 'ft_pct' && useWeightedPct) {
+                      value = stats.ft_pct * stats.fta
+                      min = MinMax[statType].ft_pct.weighted_min ?? 0
+                      max = MinMax[statType].ft_pct.weighted_max ?? 0
+                    }
                     const bgColor = getHeatmapColor(
                       value,
-                      minMax[col.key as keyof typeof minMax].min,
-                      minMax[col.key as keyof typeof minMax].max,
+                      min,
+                      max,
                       col.invert,
                       isDarkMode,
                     );
@@ -146,18 +140,18 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
                         className={`${cellClass} bg-transparent`}
                         style={{ backgroundColor: bgColor }}
                       >
-                        {col.render ? col.render(player) : value}
+                        {col.render ? col.render(stats) : value.toFixed(1)}
                       </td>
                     );
                   })}
-                  <td className={cellClass}>{useSeasonAvg ? player.player_rating.toFixed(2) : player.last5_player_rating.toFixed(2)}</td>
+                  <td className={cellClass}>{stats.rating?.toFixed(2) ?? 0}</td>
                 </tr>
                 {(id + 1) % 15 === 0 && (
                   <tr key={id} className="bg-zinc-100 dark:bg-zinc-800">
                     <th className={headerClass}>Rk</th>
                     <th className={headerClass}>Player</th>
                     <th className={headerClass}>Team</th>
-                    {useSeasonAvg && <th className={headerClass}>GP</th>}
+                    <th className={headerClass}>GP</th>
                     {statColumns.map((col) => (
                       <th key={col.key} className={headerClass}>
                         {col.label}
@@ -174,3 +168,6 @@ export const PlayersTable = ({ players }: PlayersTableProps) => {
     </div>
   )
 }
+
+const headerClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-left text-sm font-semibold"
+const cellClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-sm"

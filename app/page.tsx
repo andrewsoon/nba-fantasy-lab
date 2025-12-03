@@ -1,11 +1,6 @@
-import PlayersData from "@/data/players.json";
-import { PlayerStatsRaw } from "@/types/types";
-
-import { PlayersTable } from "./PlayerTable";
-
+import { PlayersTable } from "./PlayersTable";
 
 export default function Home() {
-  const playersRaw = PlayersData.players as PlayerStatsRaw[]
   return (
     <div className="flex justify-center font-sans">
       <main className="flex flex-col w-full min-h-screen max-w-7xl ">
@@ -20,7 +15,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <PlayersTable players={playersRaw} />
+        <PlayersTable />
       </main>
     </div>
   );
