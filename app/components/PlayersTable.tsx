@@ -6,7 +6,7 @@ import { DatasetKeys } from "@/types/player";
 import { getHeatmapColor, weightedFG } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
-import Dropdown from "./components/Dropdown";
+import Dropdown from "./Dropdown";
 
 interface StatColumn {
   key: PlayerRowKeys,
@@ -100,7 +100,7 @@ export function PlayersTable() {
   }, [isDarkMode, processingPlayers])
 
   return (
-    <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl">
+    <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl m-3">
       <div className="flex flex-row justify-center pb-1">
         <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
       </div>
@@ -149,8 +149,11 @@ export function PlayersTable() {
                       </span>
                     )}
                   </th>
-                  <th className={`sticky left-0 ${headerClass}`}>Player</th>
-                  <th className={headerClass}>Team</th>
+                  <th className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}>
+                    Player
+                    <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
+                  </th>
+                  <th className={`${headerClass} border-l-0`}>Team</th>
                   <th
                     className={`${headerClass} cursor-pointer`}
                     onClick={() =>
@@ -193,7 +196,7 @@ export function PlayersTable() {
                     <React.Fragment key={`${id}-row`}>
                       <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
                         <td className={cellClass}>{player.rank ?? '-'}</td>
-                        <td className={`sticky left-0 ${cellClass} min-w-50`}>
+                        <td className={`sticky left-0 ${cellClass} min-w-50 ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
                           <div className="flex flex-row items-center gap-1 sm:gap-2">
                             <Image
                               src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
@@ -203,9 +206,10 @@ export function PlayersTable() {
                               className="h-6 sm:h-10 w-auto"
                             />
                             <p>{player.name}</p>
+                            <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                           </div>
                         </td>
-                        <td className={cellClass}>{player.team}</td>
+                        <td className={`${cellClass} border-l-0`}>{player.team}</td>
                         <td className={cellClass}>{player.gp}</td>
                         {statColumns.map((col) => {
                           minMax
@@ -247,8 +251,11 @@ export function PlayersTable() {
                       {(id + 1) % 15 === 0 && (
                         <tr key={id} className={headerRowClass}>
                           <th className={headerClass}>Rk</th>
-                          <th className={`sticky left-0 ${headerClass}`}>Player</th>
-                          <th className={headerClass}>Team</th>
+                          <th className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}>
+                            Player
+                            <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
+                          </th>
+                          <th className={`${headerClass} border-l-0`}>Team</th>
                           <th className={headerClass}>GP</th>
                           {statColumns.map((col) => (
                             <th key={col.key} className={headerClass}>
@@ -269,6 +276,6 @@ export function PlayersTable() {
   )
 }
 
-const headerClass = "border border-zinc-400 dark:border-zinc-600 px-2 py-1.5 sm:px-4 sm:py-2"
-const headerRowClass = "text-left text-sm font-semibold bg-zinc-300 dark:bg-zinc-700"
-const cellClass = "border border-zinc-400 dark:border-zinc-700 px-2 py-1 sm:px-4 sm:py-2 text-sm"
+const headerClass = "border border-2 border-zinc-500 dark:border-zinc-500 px-2 py-1.5 sm:px-4 sm:py-2"
+const headerRowClass = "text-left text-sm font-semibold bg-zinc-400 dark:bg-zinc-700"
+const cellClass = "border border-t-2 border-zinc-500 dark:border-zinc-600 px-2 py-1 sm:px-4 sm:py-2 text-sm"
