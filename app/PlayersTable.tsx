@@ -100,11 +100,11 @@ export function PlayersTable() {
   }, [isDarkMode, processingPlayers])
 
   return (
-    <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6">
-      <div className="flex flex-row justify-end pb-1">
-        <p className="text-xs">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
+    <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl">
+      <div className="flex flex-row justify-center pb-1">
+        <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
       </div>
-      <div className="bg-zinc-100 dark:bg-zinc-900 px-4 py-4 rounded-md">
+      <div className="px-4 py-4 rounded-md">
         <div className="px-1 py-2 sm:px-4 sm:py-4 flex flex-col sm:flex-row justify-start gap-4 sm:gap-8">
           <Dropdown
             label="Data from"
@@ -121,14 +121,14 @@ export function PlayersTable() {
               checked={useWeightedPct}
               onChange={(e) => setUseWeightedPct(e.target.checked)} // <-- update state here
             />
-            <span className="">Use weighted percentage</span>
+            <span>Use weighted percentage</span>
           </label>
         </div>
         {isLoading ?
           <div className="h-32 flex flex-row items-center justify-center">
             <div className="animate-spin rounded-full border-2 border-zinc-300 border-t-transparent h-12 w-12" />
           </div>
-          : <div className="overflow-x-auto">
+          : <div className="overflow-x-auto rounded-sm">
             <table className="min-w-full">
               <thead>
                 <tr className={headerRowClass}>

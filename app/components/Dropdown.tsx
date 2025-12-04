@@ -20,7 +20,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect 
       <div className="relative inline-block">
         <button
           onClick={() => setOpenDropdown((prev) => !prev)}
-          className="inline-flex justify-center items-center w-full px-2 py-1 bg-zinc-300 dark:bg-zinc-600 rounded-sm  hover:bg-zinc-200 dark:hover:bg-zinc-500 focus:outline-none cursor-pointer text-xs sm:text-sm"
+          className="inline-flex justify-center items-center w-full px-2 py-1 bg-zinc-200 dark:bg-zinc-600 rounded-sm  hover:bg-zinc-300 dark:hover:bg-zinc-500 focus:outline-none cursor-pointer text-xs sm:text-sm"
         >
           {selected ?? 'Select'}
           <svg
@@ -44,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect 
               return (
                 <button
                   key={idx}
-                  className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-700 cursor-pointer"
+                  className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 cursor-pointer"
                   onClick={() => {
                     onSelect(option.value)
                     setOpenDropdown(false)
