@@ -1,23 +1,23 @@
 "use client"
 
 import PlayersDataRaw from "@/data/players.json";
-import { usePlayersData } from "@/hooks/usePlayersData";
-import { CategoryColKeys, PlayerStatsKeys, StatCategory } from "@/types/player";
-import { getHeatmapColor } from "@/utils/getHeatmapColor";
+import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
+import { DatasetKeys, StatCategory } from "@/types/player";
+import { getHeatmapColor } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
 import Dropdown from "./components/Dropdown";
 
 interface StatColumn {
-  key: CategoryColKeys,
+  key: PlayerRowKeys,
   label: string,
   invert?: boolean,
-  render?: (player: StatCategory) => React.ReactNode,
+  render?: (player: PlayerRow) => React.ReactNode,
 }
 
 const statColumns: StatColumn[] = [
   {
-    key: "fg_pct", label: "FG%", render: (cat: StatCategory) => (
+    key: "fg_pct", label: "FG%", render: (cat: PlayerRow) => (
       <div className="flex gap-1">
         <p>{cat.fg_pct.toFixed(3)}</p>
         <p className="text-xs">({cat.fgm.toFixed(1)}/{cat.fga.toFixed(1)})</p>
@@ -25,7 +25,7 @@ const statColumns: StatColumn[] = [
     )
   },
   {
-    key: "ft_pct", label: "FT%", render: (cat: StatCategory) => (
+    key: "ft_pct", label: "FT%", render: (cat: PlayerRow) => (
       <div className="flex gap-1">
         <p>{cat.ft_pct.toFixed(3)}</p>
         <p className="text-xs">({cat.ftm.toFixed(1)}/{cat.fta.toFixed(1)})</p>
@@ -41,7 +41,7 @@ const statColumns: StatColumn[] = [
   { key: "tov", label: "TOV", invert: true },
 ];
 
-const datasetLabels: Record<PlayerStatsKeys | string, string> = {
+const datasetLabels: Record<DatasetKeys | string, string> = {
   season_avgs: "Season averages",
   season_totals: "Season totals",
   last7_avgs: "Last 7 days averages",
@@ -51,16 +51,17 @@ const datasetLabels: Record<PlayerStatsKeys | string, string> = {
 }
 
 interface SortProps {
-  sortBy: keyof StatCategory,
+  sortBy: PlayerRowKeys,
   isDesc: boolean
 }
 
 export function PlayersTable() {
-  const { players: PlayersData, category_min_max: MinMax } = usePlayersData()
-  const [statType, setStatType] = React.useState<PlayerStatsKeys>('last14_avgs')
+  const [statType, setStatType] = React.useState<DatasetKeys>('last14_avgs')
   const [sort, setSort] = React.useState<SortProps>({ sortBy: 'pts', isDesc: true })
   const [useWeightedPct, _setUseWeightedPct] = React.useState<boolean>(false)
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
+
+  const { rows: playerRows, minMax } = usePlayersData(statType)
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -72,9 +73,27 @@ export function PlayersTable() {
     return () => darkQuery.removeEventListener('change', listener);
   }, []);
 
-  const sortedPlayersData = React.useMemo(() => {
-    return PlayersData.sort((a, b) => (sort.isDesc ? (b[statType]?.[sort.sortBy] ?? 0) - (a[statType]?.[sort.sortBy] ?? 0) : ((a[statType]?.[sort.sortBy] ?? 0) - (b[statType]?.[sort.sortBy] ?? 0))))
-  }, [statType, sort])
+  const sortedPlayerRows = React.useMemo(() => {
+    return [...playerRows].sort((a, b) => {
+      const valA = a[sort.sortBy];
+      const valB = b[sort.sortBy];
+
+      // If both are numbers
+      if (typeof valA === "number" && typeof valB === "number") {
+        return sort.isDesc ? valB - valA : valA - valB;
+      }
+
+      // If both are strings
+      if (typeof valA === "string" && typeof valB === "string") {
+        return sort.isDesc
+          ? valB.localeCompare(valA)
+          : valA.localeCompare(valB);
+      }
+
+      // Fallback if types are mixed or undefined
+      return 0;
+    });
+  }, [playerRows, sort]);
 
   const isLoading = React.useMemo(() => {
     return isDarkMode === undefined
@@ -167,7 +186,7 @@ export function PlayersTable() {
                     setSort((prev) => ({
                       ...prev,
                       sortBy: "rating",
-                      isDesc: prev.sortBy !== "rating" ? false : !prev.isDesc,
+                      isDesc: prev.sortBy !== "rating" ? true : !prev.isDesc,
                     }))
                   }
                 >
@@ -181,12 +200,11 @@ export function PlayersTable() {
               </tr>
             </thead>
             <tbody>
-              {sortedPlayersData.map((player, id) => {
-                const stats = player[statType]
+              {sortedPlayerRows.map((player, id) => {
                 return (
                   <React.Fragment key={`${id}-row`}>
                     <tr key={`${player.id}-stats`}>
-                      <td className={cellClass}>{stats.rank ?? '-'}</td>
+                      <td className={cellClass}>{player.rank ?? '-'}</td>
                       <td className={`${cellClass} min-w-50`}>
                         <div className="flex flex-row items-center gap-2">
                           <Image
@@ -200,22 +218,13 @@ export function PlayersTable() {
                         </div>
                       </td>
                       <td className={cellClass}>{player.team}</td>
-                      <td className={cellClass}>{stats.gp}</td>
+                      <td className={cellClass}>{player.gp}</td>
                       {statColumns.map((col) => {
-                        let value = stats[col.key] ?? 0;
-                        let min = MinMax[statType][col.key].min
-                        let max = MinMax[statType][col.key].max
+                        minMax
+                        let value = player[col.key] as number;
+                        let min = minMax[col.key].min
+                        let max = minMax[col.key].max
 
-                        if (col.key === 'fg_pct' && useWeightedPct) {
-                          value = stats.fg_pct * stats.fga
-                          min = MinMax[statType].fg_pct.weighted_min ?? 0
-                          max = MinMax[statType].fg_pct.weighted_max ?? 0
-                        }
-                        if (col.key === 'ft_pct' && useWeightedPct) {
-                          value = stats.ft_pct * stats.fta
-                          min = MinMax[statType].ft_pct.weighted_min ?? 0
-                          max = MinMax[statType].ft_pct.weighted_max ?? 0
-                        }
                         const bgColor = getHeatmapColor(
                           value,
                           min,
@@ -230,11 +239,11 @@ export function PlayersTable() {
                             className={`${cellClass} bg-transparent`}
                             style={{ backgroundColor: bgColor }}
                           >
-                            {col.render ? col.render(stats) : value.toFixed(1)}
+                            {col.render ? col.render(player) : value.toFixed(1)}
                           </td>
                         );
                       })}
-                      <td className={cellClass}>{stats.rating?.toFixed(2) ?? 0}</td>
+                      <td className={cellClass}>{player.rating.toFixed(2) ?? 0}</td>
                     </tr>
                     {(id + 1) % 15 === 0 && (
                       <tr key={id}>
