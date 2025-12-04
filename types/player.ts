@@ -17,7 +17,7 @@ export type PlayerStatsKeys =
   | 'last7_totals'
   | 'last7_avgs'
   | 'last14_totals'
-  | 'last14_avgs';
+  | 'last14_avgs'
 
 export interface StatCategory {
   min: number,

@@ -3,15 +3,23 @@ import { PlayersTable } from "./PlayersTable";
 export default function Home() {
   return (
     <div className="flex justify-center font-sans">
-      <main className="flex flex-col w-full min-h-screen max-w-7xl ">
-        <div className="flex flex-col items-center gap-6 py-24 pb-16 px-8 sm:py-28 sm:pb-16 sm:px-12 md:py-32 md:pb-16 md:px-15">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">NBA Fantasy Simulator</h1>
+      <main className="flex flex-col w-full min-h-screen max-w-7xl">
+        <div className="flex flex-col items-center gap-6 py-12 md:py-14 px-8 sm:px-12 md:px-15">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-5xl font-extrabold flex flex-row items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2a9.99 9.99 0 016.364 2.364A10 10 0 0112 22a9.99 9.99 0 01-6.364-2.364A10 10 0 0112 2zm0 0v20m-7.071-7.071h14.142M4.929 4.929c4.686 4.686 4.686 9.456 0 14.142M19.071 4.929c-4.686 4.686-4.686 9.456 0 14.142" />
+            </svg>
+            NBA Fantasy Simulator
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2a9.99 9.99 0 016.364 2.364A10 10 0 0112 22a9.99 9.99 0 01-6.364-2.364A10 10 0 0112 2zm0 0v20m-7.071-7.071h14.142M4.929 4.929c4.686 4.686 4.686 9.456 0 14.142M19.071 4.929c-4.686 4.686-4.686 9.456 0 14.142" />
+            </svg>
+          </h1>
           <div className="flex flex-col items-center gap-2 text-center">
-            <h3 className="text-lg font-semibold">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce consequat rutrum consectetur.
+            <h3 className="text-lg sm:text-2xl font-semibold text-zinc-200">
+              Season 2025-26
             </h3>
-            <p className="text-md">
-              Phasellus justo nisl, fringilla et nisi quis, posuere sagittis justo. Quisque sed risus ut dui feugiat tempus eu quis ipsum. Phasellus vestibulum erat leo, sed venenatis dui volutpat sed.
+            <p className="text-md sm:text-lg text-zinc-300 ">
+              Showing stats for all active players. Click a column to sort.
             </p>
           </div>
         </div>

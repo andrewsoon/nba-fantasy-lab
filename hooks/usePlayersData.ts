@@ -124,6 +124,6 @@ export function usePlayersData(): UsePlayersData {
 
   return {
     players: processedPlayersData,
-    category_min_max: category_min_max,
+    category_min_max,
   }
 }
