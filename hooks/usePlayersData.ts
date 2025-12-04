@@ -121,10 +121,13 @@ function flattenPlayer(player: Player, key: DatasetKeys): PlayerRow {
 function computeMinMax(rows: PlayerRow[]) {
   const result: Record<string, { min: number; max: number }> = {};
 
-  const numericKeys = Object.keys(rows[0]).filter(k => typeof (rows[0] as any)[k] === "number");
+  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
+    (k) => typeof rows[0][k] === "number"
+  );
+
 
   numericKeys.forEach(k => {
-    const values = rows.map(r => (r as any)[k] as number);
+    const values = rows.map(r => r[k as keyof PlayerRow] as number);
     result[k] = {
       min: Math.min(...values),
       max: Math.max(...values),
@@ -152,12 +155,12 @@ export function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd
   const datasetMeanStd: Partial<DatasetMeanStd> = {};
 
   // Get all numeric keys from the first row
-  const numericKeys = Object.keys(rows[0]).filter(
-    k => typeof (rows[0] as any)[k] === "number" && k !== "rating" && k !== "rank"
-  ) as (keyof PlayerRow)[];
+  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
+    (k) => typeof rows[0][k] === "number" && k !== "rating" && k !== "rank"
+  );
 
   numericKeys.forEach(k => {
-    const values = rows.map(r => (r as any)[k] as number);
+    const values = rows.map(r => r[k as keyof PlayerRow] as number);
     const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
     const std = Math.sqrt(
       values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length

@@ -102,7 +102,7 @@ export function PlayersTable() {
   return (
     <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl">
       <div className="flex flex-row justify-center pb-1">
-        <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
+        <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
       </div>
       <div className="px-4 py-4 rounded-md">
         <div className="px-1 py-2 sm:px-4 sm:py-4 flex flex-col sm:flex-row justify-start gap-4 sm:gap-8">
@@ -114,7 +114,7 @@ export function PlayersTable() {
             onSelect={setDataset}
             selected={datasetLabels[dataset]}
           />
-          <label className="inline-flex items-center space-x-2">
+          <label className="inline-flex items-center space-x-2 hidden" hidden>
             <input
               type="checkbox"
               className="form-checkbox h-5 w-5 accent-green-500"
