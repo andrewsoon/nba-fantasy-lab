@@ -16,7 +16,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect 
   const [openDropdown, setOpenDropdown] = React.useState(false)
   return (
     <div className="flex flex-row flex-no-wrap items-center gap-1 sm:gap-2 text-xs sm:text-md">
-      {label && <p className="whitespace-nowrap">{label}:&nbsp;</p>}
+      {label && <p className="whitespace-nowrap text:xs sm:text-sm">{label}:&nbsp;</p>}
       <div className="relative inline-block">
         <button
           onClick={() => setOpenDropdown((prev) => !prev)}

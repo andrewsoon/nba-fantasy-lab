@@ -130,6 +130,18 @@ function computeMinMax(rows: PlayerRow[]) {
     };
   });
 
+  const fgWeightedValues = rows.map(r => r.fg_pct * r.fga)
+  result['fg_weighted'] = {
+    min: Math.min(...fgWeightedValues),
+    max: Math.max(...fgWeightedValues),
+  }
+
+  const ftWeightedValues = rows.map(r => r.ft_pct * r.fta)
+  result['ft_weighted'] = {
+    min: Math.min(...ftWeightedValues),
+    max: Math.max(...ftWeightedValues),
+  }
+
   return result;
 }
 

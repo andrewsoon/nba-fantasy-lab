@@ -2,7 +2,7 @@
 
 import PlayersDataRaw from "@/data/players.json";
 import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
-import { DatasetKeys, StatCategory } from "@/types/player";
+import { DatasetKeys } from "@/types/player";
 import { getHeatmapColor } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
@@ -17,18 +17,18 @@ interface StatColumn {
 
 const statColumns: StatColumn[] = [
   {
-    key: "fg_pct", label: "FG%", render: (cat: PlayerRow) => (
+    key: "fg_pct", label: "FG%", render: (statCol: PlayerRow) => (
       <div className="flex gap-1">
-        <p>{cat.fg_pct.toFixed(3)}</p>
-        <p className="text-xs">({cat.fgm.toFixed(1)}/{cat.fga.toFixed(1)})</p>
+        <p>{statCol.fg_pct.toFixed(3)}</p>
+        <p className="text-xs">({statCol.fgm.toFixed(1)}/{statCol.fga.toFixed(1)})</p>
       </div>
     )
   },
   {
-    key: "ft_pct", label: "FT%", render: (cat: PlayerRow) => (
+    key: "ft_pct", label: "FT%", render: (statCol: PlayerRow) => (
       <div className="flex gap-1">
-        <p>{cat.ft_pct.toFixed(3)}</p>
-        <p className="text-xs">({cat.ftm.toFixed(1)}/{cat.fta.toFixed(1)})</p>
+        <p>{statCol.ft_pct.toFixed(3)}</p>
+        <p className="text-xs">({statCol.ftm.toFixed(1)}/{statCol.fta.toFixed(1)})</p>
       </div>
     )
   },
@@ -57,9 +57,9 @@ interface SortProps {
 
 export function PlayersTable() {
   const [dataset, setDataset] = React.useState<DatasetKeys>('last14_avgs')
-  const [sort, setSort] = React.useState<SortProps>({ sortBy: 'pts', isDesc: true })
-  const [useWeightedPct, _setUseWeightedPct] = React.useState<boolean>(false)
+  const [sort, setSort] = React.useState<SortProps>({ sortBy: 'rank', isDesc: false })
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
+  const [useWeightedPct, setUseWeightedPct] = React.useState<boolean>(true)
 
   const { rows: playerRows, minMax, loading: processingPlayers } = usePlayersData(dataset)
 
@@ -114,15 +114,24 @@ export function PlayersTable() {
             onSelect={setDataset}
             selected={datasetLabels[dataset]}
           />
+          <label className="inline-flex items-center space-x-2">
+            <input
+              type="checkbox"
+              className="form-checkbox h-5 w-5 accent-green-500"
+              checked={useWeightedPct}
+              onChange={(e) => setUseWeightedPct(e.target.checked)} // <-- update state here
+            />
+            <span className="">Use weighted percentage</span>
+          </label>
         </div>
         {isLoading ?
           <div className="h-32 flex flex-row items-center justify-center">
-            <div className="animate-spin rounded-full border-2 border-gray-300 border-t-transparent h-12 w-12" />
+            <div className="animate-spin rounded-full border-2 border-zinc-300 border-t-transparent h-12 w-12" />
           </div>
           : <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead>
-                <tr>
+                <tr className={headerRowClass}>
                   <th
                     className={`${headerClass} cursor-pointer`}
                     onClick={() =>
@@ -176,30 +185,13 @@ export function PlayersTable() {
                       )}
                     </th>
                   ))}
-                  <th
-                    className={`${headerClass} cursor-pointer`}
-                    onClick={() =>
-                      setSort((prev) => ({
-                        ...prev,
-                        sortBy: "rating",
-                        isDesc: prev.sortBy !== "rating" ? true : !prev.isDesc,
-                      }))
-                    }
-                  >
-                    Rating
-                    {sort.sortBy === "rating" && (
-                      <span className="ml-1 text-xs">
-                        {sort.isDesc ? "▼" : "▲"}
-                      </span>
-                    )}
-                  </th>
                 </tr>
               </thead>
               <tbody>
                 {sortedPlayerRows.map((player, id) => {
                   return (
                     <React.Fragment key={`${id}-row`}>
-                      <tr key={`${player.id}-stats`}>
+                      <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
                         <td className={cellClass}>{player.rank ?? '-'}</td>
                         <td className={`sticky left-0 ${cellClass} min-w-50`}>
                           <div className="flex flex-row items-center gap-1 sm:gap-2">
@@ -221,6 +213,18 @@ export function PlayersTable() {
                           let min = minMax[col.key].min
                           let max = minMax[col.key].max
 
+                          if (col.key === 'fg_pct' && useWeightedPct) {
+                            value = player.fg_pct * player.fga
+                            min = minMax.fg_weighted.min
+                            max = minMax.fg_weighted.max
+                          }
+
+                          if (col.key === 'ft_pct' && useWeightedPct) {
+                            value = player.ft_pct * player.fta
+                            min = minMax.ft_weighted.min
+                            max = minMax.ft_weighted.max
+                          }
+
                           const bgColor = getHeatmapColor(
                             value,
                             min,
@@ -232,17 +236,16 @@ export function PlayersTable() {
                           return (
                             <td
                               key={col.key}
-                              className={`${cellClass} bg-transparent`}
+                              className={cellClass}
                               style={{ backgroundColor: bgColor }}
                             >
                               {col.render ? col.render(player) : value.toFixed(1)}
                             </td>
                           );
                         })}
-                        <td className={cellClass}>{player.rating.toFixed(2) ?? 0}</td>
                       </tr>
                       {(id + 1) % 15 === 0 && (
-                        <tr key={id}>
+                        <tr key={id} className={headerRowClass}>
                           <th className={headerClass}>Rk</th>
                           <th className={`sticky left-0 ${headerClass}`}>Player</th>
                           <th className={headerClass}>Team</th>
@@ -252,7 +255,6 @@ export function PlayersTable() {
                               {col.label}
                             </th>
                           ))}
-                          <th className={headerClass}>Rating</th>
                         </tr>
                       )}
                     </React.Fragment>
@@ -267,5 +269,6 @@ export function PlayersTable() {
   )
 }
 
-const headerClass = "border border-zinc-400 dark:border-zinc-800 px-2 py-1.5 sm:px-4 sm:py-2 text-left text-sm font-semibold bg-zinc-300 dark:bg-zinc-700"
-const cellClass = "border border-zinc-400 dark:border-zinc-800 px-2 py-1 sm:px-4 sm:py-2 text-sm bg-zinc-100 dark:bg-zinc-900"
+const headerClass = "border border-zinc-400 dark:border-zinc-600 px-2 py-1.5 sm:px-4 sm:py-2"
+const headerRowClass = "text-left text-sm font-semibold bg-zinc-300 dark:bg-zinc-700"
+const cellClass = "border border-zinc-400 dark:border-zinc-700 px-2 py-1 sm:px-4 sm:py-2 text-sm"

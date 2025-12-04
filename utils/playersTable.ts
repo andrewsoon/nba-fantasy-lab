@@ -19,7 +19,7 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
     "#b2182b", // deep red
     "#d6604d", // soft red
     "#f4a582", // light salmon
-    "#f7f7f7", // neutral light
+    "transparent", // neutral light
     "#b8e3b8", // pale green
     "#66c266", // medium green
     "#1a8e1a", // deep green
@@ -29,7 +29,7 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
     "#bb0000", // lowest (strong negative)
     "#880000",
     "#444400", // slightly negative / neutral-ish
-    "#222222", // true neutral
+    "transparent", // true neutral
     "#004400", // slightly positive
     "#008800",
     "#00bb00"  // highest (strong positive)
