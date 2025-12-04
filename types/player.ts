@@ -11,13 +11,13 @@ export interface Player {
   last14_avgs: StatCategory,
 }
 
-export type PlayerStatsKeys =
+export type DatasetKeys =
   | 'season_totals'
   | 'season_avgs'
   | 'last7_totals'
   | 'last7_avgs'
   | 'last14_totals'
-  | 'last14_avgs';
+  | 'last14_avgs'
 
 export interface StatCategory {
   min: number,
@@ -41,34 +41,4 @@ export interface StatCategory {
 
   fg_weighted: number;   // fg_pct * fga
   ft_weighted: number;   // ft_pct * fta
-}
-
-export interface MinMaxCategory {
-  min: number,
-  max: number,
-  weighted_min?: number,
-  weighted_max?: number,
-}
-
-export type CategoryColKeys = Exclude<keyof StatCategory, 'min' | 'fgm' | 'fga' | 'ftm' | 'fta' | 'fg3a' | 'gp' | 'rating' | 'rank' | 'fg_weighted' | 'ft_weighted'>
-
-export type StatCategoryMinMax = {
-  season_totals: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
-  season_avgs: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
-  last7_totals: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
-  last7_avgs: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
-  last14_totals: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
-  last14_avgs: {
-    [K in CategoryColKeys]: MinMaxCategory
-  },
 }

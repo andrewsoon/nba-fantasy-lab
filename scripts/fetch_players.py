@@ -34,31 +34,6 @@ def compute_totals_and_avgs(df):
     totals['gp'] = gp
     return totals, avgs
 
-def compute_min_max(players, key_prefix):
-    """Compute min/max per category for a group (season, last7, last14)."""
-    min_max = {}
-
-    # Regular counting stats
-    for cat in categories:
-        cat_lc = cat.lower()
-        values = [safe_get(p.get(key_prefix, {}), cat_lc, 0) for p in players]
-        min_max[cat_lc] = {"min": min(values), "max": max(values)}
-
-    # Percentages + weighted makes
-    for pct, attempts in [('fg_pct', 'fga'), ('ft_pct', 'fta')]:
-        raw_values = [safe_get(p.get(key_prefix, {}), pct, 0) for p in players]
-        weighted_values = [
-            safe_get(p.get(key_prefix, {}), pct, 0) * safe_get(p.get(key_prefix, {}), attempts, 0)
-            for p in players
-        ]
-        min_max[pct] = {
-            "min": min(raw_values),
-            "max": max(raw_values),
-            "weighted_min": min(weighted_values),
-            "weighted_max": max(weighted_values)
-        }
-    return min_max
-
 def load_cache():
     """Load previously cached player data if available."""
     try:
@@ -149,22 +124,9 @@ def fetch_players(season=season):
             failed_players.append({"name": player_name, "reason": str(e) or "fail_to_fetch"})
             print(f"❌ Failed for {player_name}: {e}")
 
-    # Compute min/max for frontend convenience
-    min_max = {
-        "season_totals": compute_min_max(players_list, "season_totals"),
-        "season_avgs": compute_min_max(players_list, "season_avgs"),
-        "last7_totals": compute_min_max(players_list, "last7_totals"),
-        "last7_avgs": compute_min_max(players_list, "last7_avgs"),
-        "last14_totals": compute_min_max(players_list, "last14_totals"),
-        "last14_avgs": compute_min_max(players_list, "last14_avgs")
-    }
-
     for timeframe in ["season", "last7", "last14"]:
         totals_key = f"{timeframe}_totals"
         avgs_key = f"{timeframe}_avgs"
-
-        min_max[totals_key]["fg_pct"] = min_max[avgs_key]["fg_pct"]
-        min_max[totals_key]["ft_pct"] = min_max[avgs_key]["ft_pct"]
 
     # Save JSON
     result = {
@@ -177,7 +139,6 @@ def fetch_players(season=season):
         },
         "players": players_list,
         "failed_players": failed_players,
-        "min_max": min_max
     }
 
     with open("data/players.json", "w") as f:
