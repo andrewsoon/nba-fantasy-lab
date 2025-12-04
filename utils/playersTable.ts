@@ -3,8 +3,7 @@ const NUM_TIERS = 7;
 // norm: normalized score 0–1
 function getTier(norm: number): number {
   // apply a power curve to stretch higher scores
-  const adjusted = Math.pow(norm, 0.5); // sqrt makes top values more granular
-  return Math.min(Math.floor(adjusted * NUM_TIERS), NUM_TIERS - 1);
+  return Math.min(Math.floor(norm * NUM_TIERS), NUM_TIERS - 1);
 }
 
 export function getHeatmapColor(value: number, min: number, max: number, invert = false, isDark = false) {
@@ -20,20 +19,20 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
     "#b2182b", // deep red
     "#d6604d", // soft red
     "#f4a582", // light salmon
-    "#f7f7f7", // neutral light
+    "transparent", // neutral light
     "#b8e3b8", // pale green
     "#66c266", // medium green
     "#1a8e1a", // deep green
   ];
 
   const dark_colors = [
-    "#001100", // lowest (very dark green)
-    "#003300",
-    "#005500",
-    "#007700",
-    "#009900",
-    "#00bb00",
-    "#00dc00ff", // highest (bright green)
+    "#bb0000", // lowest (strong negative)
+    "#880000",
+    "#444400", // slightly negative / neutral-ish
+    "transparent", // true neutral
+    "#004400", // slightly positive
+    "#008800",
+    "#00bb00"  // highest (strong positive)
   ]
 
   const colors = isDark ? dark_colors : light_colors

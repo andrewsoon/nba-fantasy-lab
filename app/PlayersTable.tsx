@@ -1,33 +1,34 @@
 "use client"
 
 import PlayersDataRaw from "@/data/players.json";
-import { usePlayersData } from "@/hooks/usePlayersData";
-import { CategoryColKeys, PlayerStatsKeys, StatCategory } from "@/types/player";
-import { getHeatmapColor } from "@/utils/getHeatmapColor";
+import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
+import { DatasetKeys } from "@/types/player";
+import { getHeatmapColor } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
+import Dropdown from "./components/Dropdown";
 
 interface StatColumn {
-  key: CategoryColKeys,
+  key: PlayerRowKeys,
   label: string,
   invert?: boolean,
-  render?: (player: StatCategory) => React.ReactNode,
+  render?: (player: PlayerRow) => React.ReactNode,
 }
 
 const statColumns: StatColumn[] = [
   {
-    key: "fg_pct", label: "FG%", render: (cat: StatCategory) => (
+    key: "fg_pct", label: "FG%", render: (statCol: PlayerRow) => (
       <div className="flex gap-1">
-        <p>{cat.fg_pct.toFixed(3)}</p>
-        <p className="text-xs">({cat.fgm.toFixed(1)}/{cat.fga.toFixed(1)})</p>
+        <p>{statCol.fg_pct.toFixed(3)}</p>
+        <p className="text-xs">({statCol.fgm.toFixed(1)}/{statCol.fga.toFixed(1)})</p>
       </div>
     )
   },
   {
-    key: "ft_pct", label: "FT%", render: (cat: StatCategory) => (
+    key: "ft_pct", label: "FT%", render: (statCol: PlayerRow) => (
       <div className="flex gap-1">
-        <p>{cat.ft_pct.toFixed(3)}</p>
-        <p className="text-xs">({cat.ftm.toFixed(1)}/{cat.fta.toFixed(1)})</p>
+        <p>{statCol.ft_pct.toFixed(3)}</p>
+        <p className="text-xs">({statCol.ftm.toFixed(1)}/{statCol.fta.toFixed(1)})</p>
       </div>
     )
   },
@@ -40,11 +41,27 @@ const statColumns: StatColumn[] = [
   { key: "tov", label: "TOV", invert: true },
 ];
 
+const datasetLabels: Record<DatasetKeys | string, string> = {
+  season_avgs: "Season averages",
+  season_totals: "Season totals",
+  last7_avgs: "Last 7 days averages",
+  last7_totals: "Last 7 days totals",
+  last14_avgs: "Last 14 days averages",
+  last14_totals: "Last 14 days totals"
+}
+
+interface SortProps {
+  sortBy: PlayerRowKeys,
+  isDesc: boolean
+}
+
 export function PlayersTable() {
-  const { players: PlayersData, category_min_max: MinMax } = usePlayersData()
-  const [statType, _setStatType] = React.useState<PlayerStatsKeys>('last14_avgs')
-  const [useWeightedPct, _setUseWeightedPct] = React.useState<boolean>(false)
+  const [dataset, setDataset] = React.useState<DatasetKeys>('last14_avgs')
+  const [sort, setSort] = React.useState<SortProps>({ sortBy: 'rank', isDesc: false })
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
+  const [useWeightedPct, setUseWeightedPct] = React.useState<boolean>(true)
+
+  const { rows: playerRows, minMax, loading: processingPlayers } = usePlayersData(dataset)
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -56,118 +73,202 @@ export function PlayersTable() {
     return () => darkQuery.removeEventListener('change', listener);
   }, []);
 
-  const isLoading = React.useMemo(() => {
-    return isDarkMode === undefined
-  }, [isDarkMode])
+  const sortedPlayerRows = React.useMemo(() => {
+    return [...playerRows].sort((a, b) => {
+      const valA = a[sort.sortBy];
+      const valB = b[sort.sortBy];
 
-  if (isLoading) {
-    return (
-      <div className="h-32 flex flex-row items-center justify-center">
-        <div className="animate-spin rounded-full border-2 border-gray-300 border-t-transparent h-12 w-12" />
-      </div>
-    )
-  }
+      // If both are numbers
+      if (typeof valA === "number" && typeof valB === "number") {
+        return sort.isDesc ? valB - valA : valA - valB;
+      }
+
+      // If both are strings
+      if (typeof valA === "string" && typeof valB === "string") {
+        return sort.isDesc
+          ? valB.localeCompare(valA)
+          : valA.localeCompare(valB);
+      }
+
+      // Fallback if types are mixed or undefined
+      return 0;
+    });
+  }, [playerRows, sort]);
+
+  const isLoading = React.useMemo(() => {
+    return isDarkMode === undefined || processingPlayers
+  }, [isDarkMode, processingPlayers])
 
   return (
-    <div className="overflow-x-auto px-8 sm:px-12 md:px-15 pb-16">
-      <div className="flex flex-row justify-end pb-1">
-        <p className="text-xs">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
+    <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl">
+      <div className="flex flex-row justify-center pb-1">
+        <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
       </div>
-      <table className="min-w-full border border-gray-200 dark:border-gray-700 ">
-        <thead className="bg-zinc-100 dark:bg-zinc-800">
-          <tr>
-            <th className="">RK</th>
-            <th className={headerClass}>Player</th>
-            <th className={headerClass}>Team</th>
-            <th className={headerClass}>GP</th>
-            {statColumns.map((col) => (
-              <th key={col.key} className={headerClass}>
-                {col.label}
-              </th>
-            ))}
-            <th className={headerClass}>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          {PlayersData.sort((a, b) => (b[statType]?.rating ?? 0) - (a[statType]?.rating ?? 0)).map((player, id) => {
-            if (id > 199) return
-
-            const stats = player[statType]
-            return (
-              <React.Fragment key={`${id}-row`}>
-                <tr key={`${player.id}-stats`}>
-                  <td className={cellClass}>{stats.rank ?? '-'}</td>
-                  <td className={`${cellClass} min-w-50`}>
-                    <div className="flex flex-row items-center gap-2">
-                      <Image
-                        src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
-                        alt={`${player.id}-headshot`}
-                        width={100} // original image width
-                        height={100} // original image height
-                        className="h-8 sm:h-10 w-auto"
-                      />
-                      <p>{player.name}</p>
-                    </div>
-                  </td>
-                  <td className={cellClass}>{player.team}</td>
-                  <td className={cellClass}>{stats.gp}</td>
-                  {statColumns.map((col) => {
-                    let value = stats[col.key] ?? 0;
-                    let min = MinMax[statType][col.key].min
-                    let max = MinMax[statType][col.key].max
-
-                    if (col.key === 'fg_pct' && useWeightedPct) {
-                      value = stats.fg_pct * stats.fga
-                      min = MinMax[statType].fg_pct.weighted_min ?? 0
-                      max = MinMax[statType].fg_pct.weighted_max ?? 0
+      <div className="px-4 py-4 rounded-md">
+        <div className="px-1 py-2 sm:px-4 sm:py-4 flex flex-col sm:flex-row justify-start gap-4 sm:gap-8">
+          <Dropdown
+            label="Data from"
+            options={Object.entries(datasetLabels).map(([value, label]) => {
+              return { label, value }
+            })}
+            onSelect={setDataset}
+            selected={datasetLabels[dataset]}
+          />
+          <label className="inline-flex items-center space-x-2">
+            <input
+              type="checkbox"
+              className="form-checkbox h-5 w-5 accent-green-500"
+              checked={useWeightedPct}
+              onChange={(e) => setUseWeightedPct(e.target.checked)} // <-- update state here
+            />
+            <span>Use weighted percentage</span>
+          </label>
+        </div>
+        {isLoading ?
+          <div className="h-32 flex flex-row items-center justify-center">
+            <div className="animate-spin rounded-full border-2 border-zinc-300 border-t-transparent h-12 w-12" />
+          </div>
+          : <div className="overflow-x-auto rounded-sm">
+            <table className="min-w-full">
+              <thead>
+                <tr className={headerRowClass}>
+                  <th
+                    className={`${headerClass} cursor-pointer`}
+                    onClick={() =>
+                      setSort((prev) => ({
+                        ...prev,
+                        sortBy: "rank",
+                        isDesc: prev.sortBy !== "rank" ? false : !prev.isDesc,
+                      }))
                     }
-                    if (col.key === 'ft_pct' && useWeightedPct) {
-                      value = stats.ft_pct * stats.fta
-                      min = MinMax[statType].ft_pct.weighted_min ?? 0
-                      max = MinMax[statType].ft_pct.weighted_max ?? 0
+                  >
+                    RK
+                    {sort.sortBy === "rank" && (
+                      <span className="ml-1 text-xs">
+                        {!sort.isDesc ? "▼" : "▲"}
+                      </span>
+                    )}
+                  </th>
+                  <th className={`sticky left-0 ${headerClass}`}>Player</th>
+                  <th className={headerClass}>Team</th>
+                  <th
+                    className={`${headerClass} cursor-pointer`}
+                    onClick={() =>
+                      setSort((prev) => ({
+                        ...prev,
+                        sortBy: "gp",
+                        isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
+                      }))
                     }
-                    const bgColor = getHeatmapColor(
-                      value,
-                      min,
-                      max,
-                      col.invert,
-                      isDarkMode,
-                    );
-
-                    return (
-                      <td
-                        key={col.key}
-                        className={`${cellClass} bg-transparent`}
-                        style={{ backgroundColor: bgColor }}
-                      >
-                        {col.render ? col.render(stats) : value.toFixed(1)}
-                      </td>
-                    );
-                  })}
-                  <td className={cellClass}>{stats.rating?.toFixed(2) ?? 0}</td>
+                  >
+                    GP
+                    {sort.sortBy === "gp" && (
+                      <span className="ml-1 text-xs">
+                        {sort.isDesc ? "▼" : "▲"}
+                      </span>
+                    )}
+                  </th>
+                  {statColumns.map((col) => (
+                    <th key={col.key} className={`${headerClass} cursor-pointer`}
+                      onClick={() =>
+                        setSort((prev) => ({
+                          ...prev,
+                          sortBy: col.key,
+                          isDesc: prev.sortBy !== col.key ? !col.invert : !prev.isDesc,
+                        }))
+                      }>
+                      {col.label}
+                      {sort.sortBy === col.key && (
+                        <span className="ml-1 text-xs">
+                          {(!col.invert ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
+                        </span>
+                      )}
+                    </th>
+                  ))}
                 </tr>
-                {(id + 1) % 15 === 0 && (
-                  <tr key={id} className="bg-zinc-100 dark:bg-zinc-800">
-                    <th className={headerClass}>Rk</th>
-                    <th className={headerClass}>Player</th>
-                    <th className={headerClass}>Team</th>
-                    <th className={headerClass}>GP</th>
-                    {statColumns.map((col) => (
-                      <th key={col.key} className={headerClass}>
-                        {col.label}
-                      </th>
-                    ))}
-                    <th className={headerClass}>Rating</th>
-                  </tr>
-                )}
-              </React.Fragment>
-            )
-          })}
-        </tbody>
-      </table>
+              </thead>
+              <tbody>
+                {sortedPlayerRows.map((player, id) => {
+                  return (
+                    <React.Fragment key={`${id}-row`}>
+                      <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
+                        <td className={cellClass}>{player.rank ?? '-'}</td>
+                        <td className={`sticky left-0 ${cellClass} min-w-50`}>
+                          <div className="flex flex-row items-center gap-1 sm:gap-2">
+                            <Image
+                              src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
+                              alt={`${player.id}-headshot`}
+                              width={100} // original image width
+                              height={100} // original image height
+                              className="h-6 sm:h-10 w-auto"
+                            />
+                            <p>{player.name}</p>
+                          </div>
+                        </td>
+                        <td className={cellClass}>{player.team}</td>
+                        <td className={cellClass}>{player.gp}</td>
+                        {statColumns.map((col) => {
+                          minMax
+                          let value = player[col.key] as number;
+                          let min = minMax[col.key].min
+                          let max = minMax[col.key].max
+
+                          if (col.key === 'fg_pct' && useWeightedPct) {
+                            value = player.fg_pct * player.fga
+                            min = minMax.fg_weighted.min
+                            max = minMax.fg_weighted.max
+                          }
+
+                          if (col.key === 'ft_pct' && useWeightedPct) {
+                            value = player.ft_pct * player.fta
+                            min = minMax.ft_weighted.min
+                            max = minMax.ft_weighted.max
+                          }
+
+                          const bgColor = getHeatmapColor(
+                            value,
+                            min,
+                            max,
+                            col.invert,
+                            isDarkMode,
+                          );
+
+                          return (
+                            <td
+                              key={col.key}
+                              className={cellClass}
+                              style={{ backgroundColor: bgColor }}
+                            >
+                              {col.render ? col.render(player) : value.toFixed(1)}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                      {(id + 1) % 15 === 0 && (
+                        <tr key={id} className={headerRowClass}>
+                          <th className={headerClass}>Rk</th>
+                          <th className={`sticky left-0 ${headerClass}`}>Player</th>
+                          <th className={headerClass}>Team</th>
+                          <th className={headerClass}>GP</th>
+                          {statColumns.map((col) => (
+                            <th key={col.key} className={headerClass}>
+                              {col.label}
+                            </th>
+                          ))}
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
     </div>
   )
 }
 
-const headerClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-left text-sm font-semibold"
-const cellClass = "border border-gray-200 dark:border-gray-700 px-2 py-1.5 sm:px-4 sm:py-2 text-sm"
+const headerClass = "border border-zinc-400 dark:border-zinc-600 px-2 py-1.5 sm:px-4 sm:py-2"
+const headerRowClass = "text-left text-sm font-semibold bg-zinc-300 dark:bg-zinc-700"
+const cellClass = "border border-zinc-400 dark:border-zinc-700 px-2 py-1 sm:px-4 sm:py-2 text-sm"
