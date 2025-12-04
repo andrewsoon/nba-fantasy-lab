@@ -56,7 +56,7 @@ interface SortProps {
 }
 
 export function PlayersTable() {
-  const [dataset, setDataset] = React.useState<DatasetKeys>('last14_avgs')
+  const [dataset, setDataset] = React.useState<DatasetKeys>('season_avgs')
   const [sort, setSort] = React.useState<SortProps>({ sortBy: 'rank', isDesc: false })
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [useWeightedPct, setUseWeightedPct] = React.useState<boolean>(true)

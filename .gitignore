@@ -45,3 +45,4 @@ __pycache__/
 # Automation scripts
 *.bat
 *.cmd
+.env*.local
