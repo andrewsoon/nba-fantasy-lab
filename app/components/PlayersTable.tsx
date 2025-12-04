@@ -133,7 +133,7 @@ export function PlayersTable() {
               <thead>
                 <tr className={headerRowClass}>
                   <th
-                    className={`${headerClass} cursor-pointer`}
+                    className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}
                     onClick={() =>
                       setSort((prev) => ({
                         ...prev,
@@ -196,7 +196,7 @@ export function PlayersTable() {
                     <React.Fragment key={`${id}-row`}>
                       <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
                         <td className={cellClass}>{player.rank ?? '-'}</td>
-                        <td className={`sticky left-0 ${cellClass} min-w-50 ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
+                        <td className={`sticky left-0 ${cellClass} min-w-40 ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
                           <div className="flex flex-row items-center gap-1 sm:gap-2">
                             <Image
                               src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
@@ -277,5 +277,5 @@ export function PlayersTable() {
 }
 
 const headerClass = "border border-2 border-zinc-500 dark:border-zinc-500 px-2 py-1.5 sm:px-4 sm:py-2"
-const headerRowClass = "text-left text-sm font-semibold bg-zinc-400 dark:bg-zinc-700"
-const cellClass = "border border-t-2 border-zinc-500 dark:border-zinc-600 px-2 py-1 sm:px-4 sm:py-2 text-sm"
+const headerRowClass = "text-left text-sm md:text-md text-zinc-100 font-semibold bg-zinc-400 dark:bg-zinc-700"
+const cellClass = "border border-t-2 border-zinc-500 dark:border-zinc-600 px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm md:text-md md:font-medium lg:text-lg"
