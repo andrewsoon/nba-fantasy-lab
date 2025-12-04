@@ -3,7 +3,7 @@
 import PlayersDataRaw from "@/data/players.json";
 import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
 import { DatasetKeys } from "@/types/player";
-import { getHeatmapColor } from "@/utils/playersTable";
+import { getHeatmapColor, weightedFG } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
 import Dropdown from "./components/Dropdown";
@@ -214,13 +214,13 @@ export function PlayersTable() {
                           let max = minMax[col.key].max
 
                           if (col.key === 'fg_pct' && useWeightedPct) {
-                            value = player.fg_pct * player.fga
+                            value = weightedFG(player.fg_pct, player.fga)
                             min = minMax.fg_weighted.min
                             max = minMax.fg_weighted.max
                           }
 
                           if (col.key === 'ft_pct' && useWeightedPct) {
-                            value = player.ft_pct * player.fta
+                            value = weightedFG(player.ft_pct, player.fta)
                             min = minMax.ft_weighted.min
                             max = minMax.ft_weighted.max
                           }

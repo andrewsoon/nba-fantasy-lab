@@ -1,5 +1,6 @@
 import PlayersData from "@/data/players.json";
 import { DatasetKeys, Player, StatCategory } from "@/types/player";
+import { weightedFG } from "@/utils/playersTable";
 import React from "react";
 
 export function usePlayersData(selectedDataSet: DatasetKeys) {
@@ -130,13 +131,13 @@ function computeMinMax(rows: PlayerRow[]) {
     };
   });
 
-  const fgWeightedValues = rows.map(r => r.fg_pct * r.fga)
+  const fgWeightedValues = rows.map(r => weightedFG(r.fg_pct, r.fga))
   result['fg_weighted'] = {
     min: Math.min(...fgWeightedValues),
     max: Math.max(...fgWeightedValues),
   }
 
-  const ftWeightedValues = rows.map(r => r.ft_pct * r.fta)
+  const ftWeightedValues = rows.map(r => weightedFG(r.ft_pct, r.fta))
   result['ft_weighted'] = {
     min: Math.min(...ftWeightedValues),
     max: Math.max(...ftWeightedValues),

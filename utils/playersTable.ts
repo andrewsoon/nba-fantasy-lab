@@ -39,3 +39,7 @@ export function getHeatmapColor(value: number, min: number, max: number, invert 
 
   return colors[tier];
 }
+
+export function weightedFG(pct: number, attmpt: number, alpha = 1.5, beta = 0.2) {
+  return Math.pow(pct, alpha) * Math.pow(attmpt, beta);
+}
