@@ -112,8 +112,8 @@ export function PlayersTable() {
       <div className="flex flex-row justify-end pb-1">
         <p className="text-xs">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toLocaleString()}</p>
       </div>
-      <div className="bg-zinc-900 px-4 py-4 rounded-md">
-        <div className="px-4 py-4 flex flex-col sm:flex-row justify-start gap-4 sm:gap-8">
+      <div className="bg-zinc-100 dark:bg-zinc-900 px-4 py-4 rounded-md">
+        <div className="px-1 py-2 sm:px-4 sm:py-4 flex flex-col sm:flex-row justify-start gap-4 sm:gap-8">
           <Dropdown
             label="Data from"
             options={Object.entries(datasetLabels).map(([value, label]) => {
@@ -144,7 +144,7 @@ export function PlayersTable() {
                     </span>
                   )}
                 </th>
-                <th className={headerClass}>Player</th>
+                <th className={`sticky left-0 ${headerClass}`}>Player</th>
                 <th className={headerClass}>Team</th>
                 <th
                   className={`${headerClass} cursor-pointer`}
@@ -205,14 +205,14 @@ export function PlayersTable() {
                   <React.Fragment key={`${id}-row`}>
                     <tr key={`${player.id}-stats`}>
                       <td className={cellClass}>{player.rank ?? '-'}</td>
-                      <td className={`${cellClass} min-w-50`}>
-                        <div className="flex flex-row items-center gap-2">
+                      <td className={`sticky left-0 ${cellClass} min-w-50`}>
+                        <div className="flex flex-row items-center gap-1 sm:gap-2">
                           <Image
                             src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
                             alt={`${player.id}-headshot`}
                             width={100} // original image width
                             height={100} // original image height
-                            className="h-8 sm:h-10 w-auto"
+                            className="h-6 sm:h-10 w-auto"
                           />
                           <p>{player.name}</p>
                         </div>
@@ -248,7 +248,7 @@ export function PlayersTable() {
                     {(id + 1) % 15 === 0 && (
                       <tr key={id}>
                         <th className={headerClass}>Rk</th>
-                        <th className={headerClass}>Player</th>
+                        <th className={`sticky left-0 ${headerClass}`}>Player</th>
                         <th className={headerClass}>Team</th>
                         <th className={headerClass}>GP</th>
                         {statColumns.map((col) => (
@@ -271,4 +271,4 @@ export function PlayersTable() {
 }
 
 const headerClass = "border border-zinc-400 dark:border-zinc-800 px-2 py-1.5 sm:px-4 sm:py-2 text-left text-sm font-semibold bg-zinc-300 dark:bg-zinc-700"
-const cellClass = "border border-zinc-400 dark:border-zinc-800 px-2 py-1.5 sm:px-4 sm:py-2 text-sm bg-zinc-100 dark:bg-zinc-900"
+const cellClass = "border border-zinc-400 dark:border-zinc-800 px-2 py-1 sm:px-4 sm:py-2 text-sm bg-zinc-100 dark:bg-zinc-900"
