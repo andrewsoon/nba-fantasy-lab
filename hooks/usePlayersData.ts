@@ -5,36 +5,47 @@ import React from "react";
 export function usePlayersData(selectedDataSet: DatasetKeys) {
   const playersRaw = PlayersData.players;
 
-  // preprocess raw data
-  const basePlayers: Player[] = playersRaw.map(p => ({
-    ...p,
-    season_totals: toStatCategory(p.season_totals, p.season_totals.gp),
-    season_avgs: toStatCategory(p.season_avgs, p.season_totals.gp),
-    last7_totals: toStatCategory(p.last7_totals, p.last7_totals.gp),
-    last7_avgs: toStatCategory(p.last7_avgs, p.last7_totals.gp),
-    last14_totals: toStatCategory(p.last14_totals, p.last14_totals.gp),
-    last14_avgs: toStatCategory(p.last14_avgs, p.last14_totals.gp),
-  }));
+  const [rows, setRows] = React.useState<PlayerRow[]>([]);
+  const [minMax, setMinMax] = React.useState<Record<string, { min: number; max: number }>>({});
+  const [loading, setLoading] = React.useState(true);
 
-  // flatten into PlayerRow
-  const {
-    rows,
-    minMax,
-  } = React.useMemo(() => {
-    const rows = basePlayers.map(p => flattenPlayer(p, selectedDataSet))
-    const minMax = computeMinMax(rows)
-    const datasetMeanStd = computeDatasetMeanStd(rows)
+  // preprocess raw data once
+  const basePlayers: Player[] = React.useMemo(() =>
+    playersRaw.map(p => ({
+      ...p,
+      season_totals: toStatCategory(p.season_totals, p.season_totals.gp),
+      season_avgs: toStatCategory(p.season_avgs, p.season_totals.gp),
+      last7_totals: toStatCategory(p.last7_totals, p.last7_totals.gp),
+      last7_avgs: toStatCategory(p.last7_avgs, p.last7_totals.gp),
+      last14_totals: toStatCategory(p.last14_totals, p.last14_totals.gp),
+      last14_avgs: toStatCategory(p.last14_avgs, p.last14_totals.gp),
+    }))
+    , [playersRaw]);
 
-    rows.forEach(row => computePlayerRating(row, datasetMeanStd))
-    assignRanks(rows)
+  // compute rows/minMax when dataset changes
+  React.useEffect(() => {
+    setLoading(true);
 
-    return {
-      rows,
-      minMax
-    }
-  }, [selectedDataSet]);
-  return { rows, minMax };
+    // schedule computation so React can render spinner
+    setTimeout(() => {
+      const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
+      const newMinMax = computeMinMax(newRows);
+      const datasetMeanStd = computeDatasetMeanStd(newRows);
+
+      newRows.forEach(row => computePlayerRating(row, datasetMeanStd));
+      assignRanks(newRows);
+      newRows.sort((a, b) => b.rating - a.rating);
+
+      setRows(newRows);
+      setMinMax(newMinMax);
+      setLoading(false);
+    }, 0);
+
+  }, [selectedDataSet, basePlayers]);
+
+  return { rows, minMax, loading };
 }
+
 
 function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCategory {
   const fg_pct = raw.fga ? raw.fgm! / raw.fga : 0;

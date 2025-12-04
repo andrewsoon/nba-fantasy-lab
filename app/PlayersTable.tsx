@@ -56,12 +56,12 @@ interface SortProps {
 }
 
 export function PlayersTable() {
-  const [statType, setStatType] = React.useState<DatasetKeys>('last14_avgs')
+  const [dataset, setDataset] = React.useState<DatasetKeys>('last14_avgs')
   const [sort, setSort] = React.useState<SortProps>({ sortBy: 'pts', isDesc: true })
   const [useWeightedPct, _setUseWeightedPct] = React.useState<boolean>(false)
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
 
-  const { rows: playerRows, minMax } = usePlayersData(statType)
+  const { rows: playerRows, minMax, loading: processingPlayers } = usePlayersData(dataset)
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -96,16 +96,8 @@ export function PlayersTable() {
   }, [playerRows, sort]);
 
   const isLoading = React.useMemo(() => {
-    return isDarkMode === undefined
-  }, [isDarkMode])
-
-  if (isLoading) {
-    return (
-      <div className="h-32 flex flex-row items-center justify-center">
-        <div className="animate-spin rounded-full border-2 border-gray-300 border-t-transparent h-12 w-12" />
-      </div>
-    )
-  }
+    return isDarkMode === undefined || processingPlayers
+  }, [isDarkMode, processingPlayers])
 
   return (
     <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6">
@@ -119,152 +111,157 @@ export function PlayersTable() {
             options={Object.entries(datasetLabels).map(([value, label]) => {
               return { label, value }
             })}
-            onSelect={setStatType}
-            selected={datasetLabels[statType]}
+            onSelect={setDataset}
+            selected={datasetLabels[dataset]}
           />
         </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full">
-            <thead>
-              <tr>
-                <th
-                  className={`${headerClass} cursor-pointer`}
-                  onClick={() =>
-                    setSort((prev) => ({
-                      ...prev,
-                      sortBy: "rank",
-                      isDesc: prev.sortBy !== "rank" ? false : !prev.isDesc,
-                    }))
-                  }
-                >
-                  RK
-                  {sort.sortBy === "rank" && (
-                    <span className="ml-1 text-xs">
-                      {!sort.isDesc ? "▼" : "▲"}
-                    </span>
-                  )}
-                </th>
-                <th className={`sticky left-0 ${headerClass}`}>Player</th>
-                <th className={headerClass}>Team</th>
-                <th
-                  className={`${headerClass} cursor-pointer`}
-                  onClick={() =>
-                    setSort((prev) => ({
-                      ...prev,
-                      sortBy: "gp",
-                      isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
-                    }))
-                  }
-                >
-                  GP
-                  {sort.sortBy === "gp" && (
-                    <span className="ml-1 text-xs">
-                      {sort.isDesc ? "▼" : "▲"}
-                    </span>
-                  )}
-                </th>
-                {statColumns.map((col) => (
-                  <th key={col.key} className={`${headerClass} cursor-pointer`}
+        {isLoading ?
+          <div className="h-32 flex flex-row items-center justify-center">
+            <div className="animate-spin rounded-full border-2 border-gray-300 border-t-transparent h-12 w-12" />
+          </div>
+          : <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead>
+                <tr>
+                  <th
+                    className={`${headerClass} cursor-pointer`}
                     onClick={() =>
                       setSort((prev) => ({
                         ...prev,
-                        sortBy: col.key,
-                        isDesc: prev.sortBy !== col.key ? !col.invert : !prev.isDesc,
+                        sortBy: "rank",
+                        isDesc: prev.sortBy !== "rank" ? false : !prev.isDesc,
                       }))
-                    }>
-                    {col.label}
-                    {sort.sortBy === col.key && (
+                    }
+                  >
+                    RK
+                    {sort.sortBy === "rank" && (
                       <span className="ml-1 text-xs">
-                        {(!col.invert ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
+                        {!sort.isDesc ? "▼" : "▲"}
                       </span>
                     )}
                   </th>
-                ))}
-                <th
-                  className={`${headerClass} cursor-pointer`}
-                  onClick={() =>
-                    setSort((prev) => ({
-                      ...prev,
-                      sortBy: "rating",
-                      isDesc: prev.sortBy !== "rating" ? true : !prev.isDesc,
-                    }))
-                  }
-                >
-                  Rating
-                  {sort.sortBy === "rating" && (
-                    <span className="ml-1 text-xs">
-                      {sort.isDesc ? "▼" : "▲"}
-                    </span>
-                  )}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {sortedPlayerRows.map((player, id) => {
-                return (
-                  <React.Fragment key={`${id}-row`}>
-                    <tr key={`${player.id}-stats`}>
-                      <td className={cellClass}>{player.rank ?? '-'}</td>
-                      <td className={`sticky left-0 ${cellClass} min-w-50`}>
-                        <div className="flex flex-row items-center gap-1 sm:gap-2">
-                          <Image
-                            src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
-                            alt={`${player.id}-headshot`}
-                            width={100} // original image width
-                            height={100} // original image height
-                            className="h-6 sm:h-10 w-auto"
-                          />
-                          <p>{player.name}</p>
-                        </div>
-                      </td>
-                      <td className={cellClass}>{player.team}</td>
-                      <td className={cellClass}>{player.gp}</td>
-                      {statColumns.map((col) => {
-                        minMax
-                        let value = player[col.key] as number;
-                        let min = minMax[col.key].min
-                        let max = minMax[col.key].max
-
-                        const bgColor = getHeatmapColor(
-                          value,
-                          min,
-                          max,
-                          col.invert,
-                          isDarkMode,
-                        );
-
-                        return (
-                          <td
-                            key={col.key}
-                            className={`${cellClass} bg-transparent`}
-                            style={{ backgroundColor: bgColor }}
-                          >
-                            {col.render ? col.render(player) : value.toFixed(1)}
-                          </td>
-                        );
-                      })}
-                      <td className={cellClass}>{player.rating.toFixed(2) ?? 0}</td>
-                    </tr>
-                    {(id + 1) % 15 === 0 && (
-                      <tr key={id}>
-                        <th className={headerClass}>Rk</th>
-                        <th className={`sticky left-0 ${headerClass}`}>Player</th>
-                        <th className={headerClass}>Team</th>
-                        <th className={headerClass}>GP</th>
-                        {statColumns.map((col) => (
-                          <th key={col.key} className={headerClass}>
-                            {col.label}
-                          </th>
-                        ))}
-                        <th className={headerClass}>Rating</th>
-                      </tr>
+                  <th className={`sticky left-0 ${headerClass}`}>Player</th>
+                  <th className={headerClass}>Team</th>
+                  <th
+                    className={`${headerClass} cursor-pointer`}
+                    onClick={() =>
+                      setSort((prev) => ({
+                        ...prev,
+                        sortBy: "gp",
+                        isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
+                      }))
+                    }
+                  >
+                    GP
+                    {sort.sortBy === "gp" && (
+                      <span className="ml-1 text-xs">
+                        {sort.isDesc ? "▼" : "▲"}
+                      </span>
                     )}
-                  </React.Fragment>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
+                  </th>
+                  {statColumns.map((col) => (
+                    <th key={col.key} className={`${headerClass} cursor-pointer`}
+                      onClick={() =>
+                        setSort((prev) => ({
+                          ...prev,
+                          sortBy: col.key,
+                          isDesc: prev.sortBy !== col.key ? !col.invert : !prev.isDesc,
+                        }))
+                      }>
+                      {col.label}
+                      {sort.sortBy === col.key && (
+                        <span className="ml-1 text-xs">
+                          {(!col.invert ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
+                        </span>
+                      )}
+                    </th>
+                  ))}
+                  <th
+                    className={`${headerClass} cursor-pointer`}
+                    onClick={() =>
+                      setSort((prev) => ({
+                        ...prev,
+                        sortBy: "rating",
+                        isDesc: prev.sortBy !== "rating" ? true : !prev.isDesc,
+                      }))
+                    }
+                  >
+                    Rating
+                    {sort.sortBy === "rating" && (
+                      <span className="ml-1 text-xs">
+                        {sort.isDesc ? "▼" : "▲"}
+                      </span>
+                    )}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedPlayerRows.map((player, id) => {
+                  return (
+                    <React.Fragment key={`${id}-row`}>
+                      <tr key={`${player.id}-stats`}>
+                        <td className={cellClass}>{player.rank ?? '-'}</td>
+                        <td className={`sticky left-0 ${cellClass} min-w-50`}>
+                          <div className="flex flex-row items-center gap-1 sm:gap-2">
+                            <Image
+                              src={`https://cdn.nba.com/headshots/nba/latest/260x190/${player.id}.png`}
+                              alt={`${player.id}-headshot`}
+                              width={100} // original image width
+                              height={100} // original image height
+                              className="h-6 sm:h-10 w-auto"
+                            />
+                            <p>{player.name}</p>
+                          </div>
+                        </td>
+                        <td className={cellClass}>{player.team}</td>
+                        <td className={cellClass}>{player.gp}</td>
+                        {statColumns.map((col) => {
+                          minMax
+                          let value = player[col.key] as number;
+                          let min = minMax[col.key].min
+                          let max = minMax[col.key].max
+
+                          const bgColor = getHeatmapColor(
+                            value,
+                            min,
+                            max,
+                            col.invert,
+                            isDarkMode,
+                          );
+
+                          return (
+                            <td
+                              key={col.key}
+                              className={`${cellClass} bg-transparent`}
+                              style={{ backgroundColor: bgColor }}
+                            >
+                              {col.render ? col.render(player) : value.toFixed(1)}
+                            </td>
+                          );
+                        })}
+                        <td className={cellClass}>{player.rating.toFixed(2) ?? 0}</td>
+                      </tr>
+                      {(id + 1) % 15 === 0 && (
+                        <tr key={id}>
+                          <th className={headerClass}>Rk</th>
+                          <th className={`sticky left-0 ${headerClass}`}>Player</th>
+                          <th className={headerClass}>Team</th>
+                          <th className={headerClass}>GP</th>
+                          {statColumns.map((col) => (
+                            <th key={col.key} className={headerClass}>
+                              {col.label}
+                            </th>
+                          ))}
+                          <th className={headerClass}>Rating</th>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        }
       </div>
     </div>
   )
