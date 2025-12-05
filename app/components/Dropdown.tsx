@@ -5,6 +5,13 @@ interface DropdownProps {
   options: DropdownOptionsProps[]
   onSelect: (option: any) => void
   selected?: string
+  dropdownClasses?: DropdownClasses
+}
+
+interface DropdownClasses {
+  label?: string
+  button?: string
+  options?: string
 }
 
 interface DropdownOptionsProps {
@@ -12,15 +19,27 @@ interface DropdownOptionsProps {
   value: any
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect, dropdownClasses }) => {
   const [openDropdown, setOpenDropdown] = React.useState(false)
   return (
     <div className="flex flex-row flex-no-wrap items-center gap-1 sm:gap-2 text-xs sm:text-md">
-      {label && <p className="whitespace-nowrap text:xs sm:text-sm">{label}:&nbsp;</p>}
+      {label && <p className={`whitespace-nowrap text:xs sm:text-sm ${dropdownClasses?.label}`}>{label}:&nbsp;</p>}
       <div className="relative inline-block">
         <button
           onClick={() => setOpenDropdown((prev) => !prev)}
-          className="inline-flex justify-center items-center w-full px-2 py-1 bg-zinc-200 dark:bg-zinc-600 rounded-sm  hover:bg-zinc-300 dark:hover:bg-zinc-500 transition-colors focus:outline-none cursor-pointer text-xs sm:text-sm"
+          className={`
+            inline-flex justify-between items-center w-full 
+            px-2 sm:px-5 py-1 sm:py-2 
+            rounded-sm 
+            bg-zinc-200 dark:bg-zinc-800 
+            hover:bg-zinc-100 dark:hover:bg-zinc-700 
+            transition-colors 
+            focus:outline-none 
+            cursor-pointer 
+            text-xs sm:text-sm 
+            ${dropdownClasses?.button} 
+            shadow-md dark:shadow-none
+            `}
         >
           {selected ?? 'Select'}
           <svg
@@ -39,12 +58,12 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect 
           </svg>
         </button>
         {openDropdown && (
-          <div className="py-1 absolute mt-2 w-42 rounded-sm shadow-lg bg-zinc-200 dark:bg-zinc-800 ring-2 ring-zinc-300 dark:ring-zinc-700 z-50">
+          <div className="py-1 absolute mt-2 w-full rounded-sm shadow-lg bg-zinc-200 dark:bg-zinc-800 ring-2 ring-zinc-300 dark:ring-zinc-700 z-50">
             {options.map((option, idx) => {
               return (
                 <button
                   key={idx}
-                  className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer"
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors cursor-pointer ${dropdownClasses?.options}`}
                   onClick={() => {
                     onSelect(option.value)
                     setOpenDropdown(false)
