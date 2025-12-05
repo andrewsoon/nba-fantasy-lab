@@ -23,13 +23,13 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect,
   const [openDropdown, setOpenDropdown] = React.useState(false)
   return (
     <div className="flex flex-row flex-no-wrap items-center gap-1 sm:gap-2 text-xs sm:text-md">
-      {label && <p className={`whitespace-nowrap text:xs sm:text-sm ${dropdownClasses?.label}`}>{label}:&nbsp;</p>}
+      {label && <p className={`whitespace-nowrap text:xs sm:text-sm ${dropdownClasses?.label}`}>{label}:</p>}
       <div className="relative inline-block">
         <button
           onClick={() => setOpenDropdown((prev) => !prev)}
           className={`
             inline-flex justify-between items-center w-full 
-            px-2 sm:px-5 py-1 sm:py-2 
+            px-2 sm:px-4 py-1 sm:py-2 
             rounded-sm 
             bg-zinc-200 dark:bg-zinc-800 
             hover:bg-zinc-100 dark:hover:bg-zinc-700 

@@ -24,7 +24,7 @@ export function PlayersHistoricStats() {
         <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
       </div>
       <div className="px-4 py-4 rounded-md">
-        <div className="px-1 pt-0 pb-2 sm:px-4 sm:pb-5 flex flex-col sm:flex-row justify-center gap-4 sm:gap-8">
+        <div className="px-1 pt-0 pb-2 sm:px-4 sm:pb-5 flex flex-col items-center justify-center">
           <Dropdown
             label="Data from"
             dropdownClasses={{

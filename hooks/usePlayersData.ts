@@ -1,9 +1,8 @@
 import PlayersData from "@/data/players.json";
-import { DatasetKeys, Player, StatCategory } from "@/types/player";
-import { weightedFG } from "@/utils/playersTable";
+import { DatasetKeys, Player, STAT_KEYS, StatCategory, StatKeys } from "@/types/player";
 import React from "react";
 
-export function usePlayersData(selectedDataSet: DatasetKeys) {
+export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>, useZscore: boolean) {
   const playersRaw = PlayersData.players;
 
   const [rows, setRows] = React.useState<PlayerRow[]>([]);
@@ -30,10 +29,14 @@ export function usePlayersData(selectedDataSet: DatasetKeys) {
     // schedule computation so React can render spinner
     setTimeout(() => {
       const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
+      if (useZscore) {
+        const datasetMeanStd = computeDatasetMeanStd(newRows);
+        newRows.forEach(row => computeZScoreRating(row, datasetMeanStd, statWeights));
+      } else {
+        attachPercentiles(newRows)
+        computePercentileRatings(newRows, statWeights)
+      }
       const newMinMax = computeMinMax(newRows);
-      const datasetMeanStd = computeDatasetMeanStd(newRows);
-
-      newRows.forEach(row => computePlayerRating(row, datasetMeanStd));
       assignRanks(newRows);
       newRows.sort((a, b) => b.rating - a.rating);
 
@@ -42,7 +45,7 @@ export function usePlayersData(selectedDataSet: DatasetKeys) {
       setLoading(false);
     }, 0);
 
-  }, [selectedDataSet, basePlayers]);
+  }, [selectedDataSet, basePlayers, useZscore, statWeights]);
 
   return { rows, minMax, loading };
 }
@@ -69,8 +72,16 @@ function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCate
     fg_pct,
     ft_pct,
     gp: totalsGP ?? raw.gp ?? 0,
-    fg_weighted: fg_pct * (raw.fga ?? 0),
-    ft_weighted: ft_pct * (raw.fta ?? 0),
+
+    pts_percentile: 0,
+    reb_percentile: 0,
+    ast_percentile: 0,
+    stl_percentile: 0,
+    blk_percentile: 0,
+    fg3m_percentile: 0,
+    fg_pct_percentile: 0,
+    ft_pct_percentile: 0,
+    tov_percentile: 0,
   };
 }
 
@@ -98,9 +109,17 @@ export interface PlayerRow {
   rating: number,
   rank: number,
 
-  fg_weighted: number;   // fg_pct * fga
-  ft_weighted: number;   // ft_pct * fta
+  pts_percentile: number,
+  reb_percentile: number,
+  ast_percentile: number,
+  stl_percentile: number,
+  blk_percentile: number,
+  fg3m_percentile: number,
+  fg_pct_percentile: number,
+  ft_pct_percentile: number,
+  tov_percentile: number,
 }
+
 export type PlayerRowKeys = keyof PlayerRow;
 
 
@@ -134,69 +153,101 @@ function computeMinMax(rows: PlayerRow[]) {
     };
   });
 
-  const fgWeightedValues = rows.map(r => weightedFG(r.fg_pct, r.fga))
-  result['fg_weighted'] = {
-    min: Math.min(...fgWeightedValues),
-    max: Math.max(...fgWeightedValues),
-  }
-
-  const ftWeightedValues = rows.map(r => weightedFG(r.ft_pct, r.fta))
-  result['ft_weighted'] = {
-    min: Math.min(...ftWeightedValues),
-    max: Math.max(...ftWeightedValues),
-  }
-
   return result;
 }
 
 type DatasetMeanStd = Record<keyof PlayerRow, { mean: number; std: number }>;
 
-export function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd> {
+function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd> {
   const datasetMeanStd: Partial<DatasetMeanStd> = {};
 
-  // Get all numeric keys from the first row
-  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
-    (k) => typeof rows[0][k] === "number" && k !== "rating" && k !== "rank"
-  );
+  for (const key of STAT_KEYS) {
+    // extract values for this stat
+    const values = rows.map(r => r[key] ?? 0);
 
-  numericKeys.forEach(k => {
-    const values = rows.map(r => r[k as keyof PlayerRow] as number);
     const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
     const std = Math.sqrt(
       values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length
     );
 
-    datasetMeanStd[k] = { mean, std };
-  });
+    datasetMeanStd[key] = { mean, std };
+  }
 
   return datasetMeanStd;
 }
 
-function computePlayerRating(row: PlayerRow, datasetMeanStd: Partial<DatasetMeanStd>) {
+function computeZScoreRating(
+  row: PlayerRow,
+  datasetMeanStd: Partial<DatasetMeanStd>,
+  statWeights: Record<StatKeys, number>
+) {
   let zScore = 0;
 
-  for (const key of Object.keys(datasetMeanStd) as (keyof StatCategory)[]) {
-    if (key === "gp") continue; // skip games played
+  for (const key of STAT_KEYS) {
+    const meanStd = datasetMeanStd[key];
+    if (!meanStd) continue;
+
+    const { mean = 0, std = 1 } = meanStd;
+    if (std === 0) continue;
 
     const val = row[key] ?? 0;
-    const { mean = 0, std = 1 } = datasetMeanStd[key] ?? {};
+    const weighted = ((val - mean) * statWeights[key]) / std;
 
-    if (std === 0) continue; // avoid division by zero
-
-    // example: weight TOV negatively
-    if (key === "tov") {
-      zScore -= ((val - mean) * 0.25) / std;
+    if (key === 'tov') {
+      zScore -= weighted;
     } else {
-      zScore += (val - mean) / std;
+      zScore += weighted;
     }
   }
 
   row.rating = zScore;
 }
 
+function attachPercentiles(
+  players: PlayerRow[]
+) {
+  STAT_KEYS.forEach((k) => {
+    const values = players.map((p) => p[k] as number);
+
+    const sorted = [...values].sort((a, b) => a - b);
+
+    players.forEach((p, i) => {
+      const v = p[k] as number;
+      const rank = sorted.filter((x) => x <= v).length - 1;
+      const pct = rank / (sorted.length - 1); // 0–1 percentile
+      p[`${k}_percentile`] = pct;
+    });
+  });;
+}
+
+function computePercentileRatings(
+  players: PlayerRow[],
+  weights: Record<string, number> = {}
+) {
+  players.forEach((p) => {
+    let totalWeight = 0;
+    let sum = 0;
+
+    STAT_KEYS.forEach((k) => {
+      const key = `${k}_percentile` as keyof PlayerRow
+      const pct = p[key] ?? 0; // treat missing percentiles as 0
+      console
+      const w = weights[k] ?? 1;
+      if (typeof pct === 'number') {
+        sum += pct * w;
+        totalWeight += w;
+      }
+    });
+
+    const rating = totalWeight > 0 ? sum / totalWeight : 0;
+    p.rating = rating
+  });
+}
+
+
 function assignRanks(rows: PlayerRow[]) {
   // Sort descending by rating
-  const sorted = [...rows].sort((a, b) => b?.rating - a?.rating);
+  const sorted = [...rows].sort((a, b) => b.rating - a.rating);
 
   let lastRating = Infinity;
   let rank = 0;
