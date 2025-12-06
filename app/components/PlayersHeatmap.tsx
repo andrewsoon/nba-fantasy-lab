@@ -140,7 +140,6 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
               return (
                 <div className="flex justify-end">
                   <Dropdown
-                    label={StatLabels[statKey]}
                     dropdownClasses={{
                       label: 'text-xs md:text-sm',
                       button: 'min-w-1 p-x-1',
@@ -157,7 +156,7 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                         }
                       }))
                     }
-                    selected={`x${heatmapControls.statWeights[statKey].toString()}`}
+                    selected={`${StatLabels[statKey]}  x${heatmapControls.statWeights[statKey].toString()}`}
                   />
                 </div>
               )
