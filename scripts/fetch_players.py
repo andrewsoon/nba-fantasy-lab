@@ -34,14 +34,6 @@ def compute_totals_and_avgs(df):
     totals['gp'] = gp
     return totals, avgs
 
-def load_cache():
-    """Load previously cached player data if available."""
-    try:
-        with open("data/players.json", "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {"players": [], "_meta": {}}
-
 # ---------------------------
 # Main script
 # ---------------------------
@@ -49,9 +41,6 @@ def fetch_players(season=season):
     start_time = time.time()
     players_list = []
     failed_players = []
-
-    cache_data = load_cache()
-    cached_players = {p["id"]: p for p in cache_data.get("players", [])}
 
     print(f"Fetching season {season} per-game stats...")
 
@@ -77,32 +66,24 @@ def fetch_players(season=season):
             season_totals = {k: (v * gp if k not in ['fg_pct','ft_pct','fg3_pct'] else v) for k,v in season_avgs.items()}
             season_totals['gp'] = gp
 
-            # Check cache
-            cached_player = cached_players.get(player_id)
-            if cached_player and cached_player.get("season_totals", {}).get("gp") == gp:
-                last7_totals = cached_player.get("last7_totals", {})
-                last7_avgs = cached_player.get("last7_avgs", {})
-                last14_totals = cached_player.get("last14_totals", {})
-                last14_avgs = cached_player.get("last14_avgs", {})
-            else:
-                try:
-                    log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
-                    log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
+            try:
+                log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
+                log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
 
-                    last7_df = log_df[log_df['GAME_DATE'] >= seven_days_ago]
-                    last7_totals, last7_avgs = compute_totals_and_avgs(last7_df)
+                last7_df = log_df[log_df['GAME_DATE'] >= seven_days_ago]
+                last7_totals, last7_avgs = compute_totals_and_avgs(last7_df)
 
-                    last14_df = log_df[log_df['GAME_DATE'] >= fourteen_days_ago]
-                    last14_totals, last14_avgs = compute_totals_and_avgs(last14_df)
-                except Exception:
-                    last7_totals = {k.lower(): 0 for k in categories}
-                    last7_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
-                    last7_avgs = last7_totals.copy()
-                    last14_totals = {k.lower(): 0 for k in categories}
-                    last14_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
-                    last14_avgs = last14_totals.copy()
+                last14_df = log_df[log_df['GAME_DATE'] >= fourteen_days_ago]
+                last14_totals, last14_avgs = compute_totals_and_avgs(last14_df)
+            except Exception:
+                last7_totals = {k.lower(): 0 for k in categories}
+                last7_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
+                last7_avgs = last7_totals.copy()
+                last14_totals = {k.lower(): 0 for k in categories}
+                last14_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
+                last14_avgs = last14_totals.copy()
 
-                time.sleep(sleep_time)
+            time.sleep(sleep_time)
 
             player = {
                 "id": player_id,
