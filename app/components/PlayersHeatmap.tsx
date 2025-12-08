@@ -138,7 +138,7 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
           <div className="flex flex-row flex-wrap gap-2">
             {statWeightKeys.map((statKey) => {
               return (
-                <div className="flex justify-end">
+                <div className="flex justify-end" key={`${statKey}-dropdown`}>
                   <Dropdown
                     dropdownClasses={{
                       label: 'text-xs md:text-sm',
