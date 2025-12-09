@@ -56,32 +56,6 @@ interface StatColumn {
   render?: (player: PlayerRow) => React.ReactNode,
 }
 
-const statColumns: StatColumn[] = [
-  {
-    key: "fg_pct", label: StatLabels.fg_pct, render: (statCol: PlayerRow) => (
-      <div className="flex gap-1">
-        <p>{statCol.fg_pct.toFixed(3)}</p>
-        <p className="text-xs">({statCol.fgm.toFixed(1)}/{statCol.fga.toFixed(1)})</p>
-      </div>
-    )
-  },
-  {
-    key: "ft_pct", label: StatLabels.ft_pct, render: (statCol: PlayerRow) => (
-      <div className="flex gap-1">
-        <p>{statCol.ft_pct.toFixed(3)}</p>
-        <p className="text-xs">({statCol.ftm.toFixed(1)}/{statCol.fta.toFixed(1)})</p>
-      </div>
-    )
-  },
-  { key: "fg3m", label: StatLabels.fg3m },
-  { key: "pts", label: StatLabels.pts },
-  { key: "reb", label: StatLabels.reb },
-  { key: "ast", label: StatLabels.ast },
-  { key: "stl", label: StatLabels.stl },
-  { key: "blk", label: StatLabels.blk },
-  { key: "tov", label: StatLabels.tov, invert: true },
-];
-
 export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [sort, setSort] = React.useState<SortProps>({ sortBy: 'rank', isDesc: false })
@@ -124,6 +98,32 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
   const isLoading = React.useMemo(() => {
     return isDarkMode === undefined || processingPlayers
   }, [isDarkMode, processingPlayers])
+
+  const statColumns: StatColumn[] = [
+    {
+      key: "fg_pct", label: StatLabels.fg_pct, render: (statCol: PlayerRow) => (
+        <div className="flex gap-1">
+          <p>{statCol.fg_pct.toFixed(3)}</p>
+          <p className="text-xs">({statCol.fgm.toFixed(1)}/{statCol.fga.toFixed(1)})</p>
+        </div>
+      )
+    },
+    {
+      key: "ft_pct", label: StatLabels.ft_pct, render: (statCol: PlayerRow) => (
+        <div className="flex gap-1">
+          <p>{statCol.ft_pct.toFixed(3)}</p>
+          <p className="text-xs">({statCol.ftm.toFixed(1)}/{statCol.fta.toFixed(1)})</p>
+        </div>
+      )
+    },
+    { key: "fg3m", label: StatLabels.fg3m },
+    { key: "pts", label: StatLabels.pts },
+    { key: "reb", label: StatLabels.reb },
+    { key: "ast", label: StatLabels.ast },
+    { key: "stl", label: StatLabels.stl },
+    { key: "blk", label: StatLabels.blk },
+    { key: "tov", label: StatLabels.tov, invert: true },
+  ];
 
   return (
     <div className="relative">
@@ -248,6 +248,9 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                       <td className={`${cellClass} border-l-0`}>{player.team}</td>
                       <td className={cellClass}>{player.gp}</td>
                       {statColumns.map((col) => {
+                        if (player.name.includes('Mikal')) {
+                          console.log('xx', player)
+                        }
                         const statKey = STAT_KEYS.find((key) => key === col.key)
                         if (!statKey || heatmapControls.statWeights[statKey] === 0) return
                         const value = player[statKey]

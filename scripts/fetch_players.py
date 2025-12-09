@@ -22,7 +22,12 @@ def compute_totals_and_avgs(df):
     totals = {k.lower(): df[k].sum() for k in categories}
     gp = len(df)
 
-    avgs = {k: (totals[k] / gp) for k in totals}
+    avgs = {}
+    for k in totals:
+        if k in ['fgm', 'fga', 'ftm', 'fta', 'fg3m', 'fg3a', 'gp']:
+            avgs[k] = totals[k]  # keep totals for these
+        else:
+            avgs[k] = totals[k] / gp  # per-game averages
 
     # Percentages
     avgs['fg_pct'] = totals['fgm'] / totals['fga'] if totals['fga'] > 0 else 0
