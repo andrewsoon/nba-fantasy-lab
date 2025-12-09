@@ -2,11 +2,10 @@ import PlayersData from "@/data/players.json";
 import { DatasetKeys, Player, STAT_KEYS, StatCategory, StatKeys } from "@/types/player";
 import React from "react";
 
-export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>, useZscore: boolean) {
+export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>) {
   const playersRaw = PlayersData.players;
 
   const [rows, setRows] = React.useState<PlayerRow[]>([]);
-  const [minMax, setMinMax] = React.useState<Record<string, { min: number; max: number }>>({});
   const [loading, setLoading] = React.useState(true);
 
   // preprocess raw data once
@@ -29,25 +28,22 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
     // schedule computation so React can render spinner
     setTimeout(() => {
       const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
-      if (useZscore) {
-        const datasetMeanStd = computeDatasetMeanStd(newRows);
-        newRows.forEach(row => computeZScoreRating(row, datasetMeanStd, statWeights));
-      } else {
-        attachPercentiles(newRows)
-        computePercentileRatings(newRows, statWeights)
-      }
-      const newMinMax = computeMinMax(newRows);
+
+      attachPercentiles(newRows)
+      computePercentileRatings(newRows, statWeights)
+
       assignRanks(newRows);
       newRows.sort((a, b) => b.rating - a.rating);
 
       setRows(newRows);
-      setMinMax(newMinMax);
       setLoading(false);
     }, 0);
 
-  }, [selectedDataSet, basePlayers, useZscore, statWeights]);
+  }, [selectedDataSet, basePlayers, statWeights]);
 
-  return { rows, minMax, loading };
+  const datasetMeanStd = computeDatasetMeanStd(rows)
+
+  return { rows, loading, datasetMeanStd };
 }
 
 
@@ -137,70 +133,55 @@ function flattenPlayer(player: Player, key: DatasetKeys): PlayerRow {
   };
 }
 
-function computeMinMax(rows: PlayerRow[]) {
-  const result: Record<string, { min: number; max: number }> = {};
-
-  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
-    (k) => typeof rows[0][k] === "number"
-  );
-
-
-  numericKeys.forEach(k => {
-    const values = rows.map(r => r[k as keyof PlayerRow] as number);
-    result[k] = {
-      min: Math.min(...values),
-      max: Math.max(...values),
-    };
-  });
-
-  return result;
-}
-
-type DatasetMeanStd = Record<keyof PlayerRow, { mean: number; std: number }>;
+type DatasetMeanStd = Record<keyof PlayerRow | 'fg_impact' | 'ft_impact', { mean: number; std: number }>;
 
 function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd> {
   const datasetMeanStd: Partial<DatasetMeanStd> = {};
 
+  // Precompute league averages
+  const totalFGA = rows.reduce((sum, r) => sum + (r.fga ?? 0), 0);
+  const totalFGM = rows.reduce((sum, r) => sum + (r.fgm ?? 0), 0);
+  const leagueFG = totalFGA > 0 ? totalFGM / totalFGA : 0;
+
+  const totalFTA = rows.reduce((sum, r) => sum + (r.fta ?? 0), 0);
+  const totalFTM = rows.reduce((sum, r) => sum + (r.ftm ?? 0), 0);
+  const leagueFT = totalFTA > 0 ? totalFTM / totalFTA : 0;
+
   for (const key of STAT_KEYS) {
     // extract values for this stat
-    const values = rows.map(r => r[key] ?? 0);
+    let values: number[] = [];
 
-    const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
-    const std = Math.sqrt(
-      values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length
-    );
+    if (key === "fg_pct") {
+      // FG impact
+      datasetMeanStd['fg_pct'] = { mean: leagueFG, std: 0 }
+      // Compute FG impact per player
+      values = rows.map(r => ((r.fg_pct ?? 0) - leagueFG) * (r.fga ?? 0));
+      const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
+      const std = Math.sqrt(values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / values.length);
 
-    datasetMeanStd[key] = { mean, std };
-  }
+      datasetMeanStd['fg_impact'] = { mean, std };
+    } else if (key === "ft_pct") {
+      // Store raw FT% mean as leagueFT
+      datasetMeanStd['ft_pct'] = { mean: leagueFT, std: 0 };
 
-  return datasetMeanStd;
-}
+      // Compute FT impact per player
+      values = rows.map(r => ((r.ft_pct ?? 0) - leagueFT) * (r.fta ?? 0));
+      const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
+      const std = Math.sqrt(values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / values.length);
 
-function computeZScoreRating(
-  row: PlayerRow,
-  datasetMeanStd: Partial<DatasetMeanStd>,
-  statWeights: Record<StatKeys, number>
-) {
-  let zScore = 0;
-
-  for (const key of STAT_KEYS) {
-    const meanStd = datasetMeanStd[key];
-    if (!meanStd) continue;
-
-    const { mean = 0, std = 1 } = meanStd;
-    if (std === 0) continue;
-
-    const val = row[key] ?? 0;
-    const weighted = ((val - mean) * statWeights[key]) / std;
-
-    if (key === 'tov') {
-      zScore -= weighted;
+      datasetMeanStd['ft_impact'] = { mean, std };
     } else {
-      zScore += weighted;
+      // normal stats
+      // Normal stats
+      values = rows.map(r => r[key] ?? 0);
+      const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
+      const std = Math.sqrt(values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length);
+
+      datasetMeanStd[key] = { mean, std };
     }
   }
 
-  row.rating = zScore;
+  return datasetMeanStd;
 }
 
 function attachPercentiles(

@@ -46,23 +46,13 @@ function getTierFromPercentile(pct: number): number {
 // ---------------------------
 export function getHeatmapColor(
   value: number,
-  min: number,
-  max: number,
   invert = false,
   isDark = false,
-  isPercentile = true
 ): string {
   let tier: number;
 
-  if (isPercentile) {
-    let pct = invert ? 1 - value : value;
-    tier = getTierFromPercentile(pct);
-  } else {
-    if (max === min) return "transparent";
-    let norm = (value - min) / (max - min);
-    if (invert) norm = 1 - norm;
-    tier = getTierFromNorm(norm);
-  }
+  let pct = invert ? 1 - value : value;
+  tier = getTierFromPercentile(pct);
 
   const colors = isDark ? colorScales.dark : colorScales.light;
   return colors[tier - 1];
@@ -79,4 +69,14 @@ export const StatLabels: Record<StatKeys, string> = {
   fg_pct: "FG%",
   ft_pct: "FT%",
   tov: "TOV"
+}
+
+export function getZscore(
+  value: number,
+  mean?: number,
+  std?: number,
+) {
+  if (!mean || !std) return 0
+  if (std === 0) return 0
+  return (value - mean) / std
 }
