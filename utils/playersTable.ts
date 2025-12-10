@@ -1,7 +1,5 @@
 import { StatKeys } from "@/types/player";
 
-const NUM_TIERS = 7;
-
 const colorScales = {
   light: [
     "#1a8e1a", // deep green
@@ -26,19 +24,15 @@ const colorScales = {
 // ---------------------------
 // Tier calculation helpers
 // ---------------------------
-function getTierFromNorm(norm: number): number {
-  // 0–1 normalized → 0–6 tier
-  return Math.min(Math.floor(norm * NUM_TIERS), NUM_TIERS - 1);
-}
 
-function getTierFromPercentile(pct: number): number {
-  if (pct >= 0.9) return 1;
-  if (pct >= 0.75) return 2;
-  if (pct >= 0.6) return 3;
-  if (pct >= 0.45) return 4;
-  if (pct >= 0.30) return 5;
-  if (pct >= 0.15) return 6;
-  return 7;
+function getTierFromZscore(z: number): number {
+  if (z >= 2.0) return 0;       // elite
+  if (z >= 1.0) return 1;       // great
+  if (z >= 0.2) return 2;       // above avg
+  if (z > -0.2) return 3;       // neutral
+  if (z > -1.0) return 4;       // below avg
+  if (z > -2.0) return 5;       // poor
+  return 6;                     // terrible
 }
 
 // ---------------------------
@@ -46,16 +40,12 @@ function getTierFromPercentile(pct: number): number {
 // ---------------------------
 export function getHeatmapColor(
   value: number,
-  invert = false,
   isDark = false,
 ): string {
-  let tier: number;
-
-  let pct = invert ? 1 - value : value;
-  tier = getTierFromPercentile(pct);
+  const tier = getTierFromZscore(value);
 
   const colors = isDark ? colorScales.dark : colorScales.light;
-  return colors[tier - 1];
+  return colors[tier];
 }
 
 

@@ -21,7 +21,7 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
     }))
     , [playersRaw]);
 
-  // compute rows/minMax when dataset changes
+  // compute rows when dataset changes
   React.useEffect(() => {
     setLoading(true);
 
@@ -29,8 +29,8 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
     setTimeout(() => {
       const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
 
-      attachPercentiles(newRows)
-      computePercentileRatings(newRows, statWeights)
+      attachZScores(newRows)
+      computeZScoreRatings(newRows, statWeights)
 
       assignRanks(newRows);
       newRows.sort((a, b) => b.rating - a.rating);
@@ -41,9 +41,7 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
 
   }, [selectedDataSet, basePlayers, statWeights]);
 
-  const datasetMeanStd = computeDatasetMeanStd(rows)
-
-  return { rows, loading, datasetMeanStd };
+  return { rows, loading };
 }
 
 
@@ -69,15 +67,15 @@ function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCate
     ft_pct,
     gp: totalsGP ?? raw.gp ?? 0,
 
-    pts_percentile: 0,
-    reb_percentile: 0,
-    ast_percentile: 0,
-    stl_percentile: 0,
-    blk_percentile: 0,
-    fg3m_percentile: 0,
-    fg_pct_percentile: 0,
-    ft_pct_percentile: 0,
-    tov_percentile: 0,
+    pts_zscore: 0,
+    reb_zscore: 0,
+    ast_zscore: 0,
+    stl_zscore: 0,
+    blk_zscore: 0,
+    fg3m_zscore: 0,
+    fg_pct_zscore: 0,
+    ft_pct_zscore: 0,
+    tov_zscore: 0,
   };
 }
 
@@ -105,15 +103,15 @@ export interface PlayerRow {
   rating: number,
   rank: number,
 
-  pts_percentile: number,
-  reb_percentile: number,
-  ast_percentile: number,
-  stl_percentile: number,
-  blk_percentile: number,
-  fg3m_percentile: number,
-  fg_pct_percentile: number,
-  ft_pct_percentile: number,
-  tov_percentile: number,
+  pts_zscore: number,
+  reb_zscore: number,
+  ast_zscore: number,
+  stl_zscore: number,
+  blk_zscore: number,
+  fg3m_zscore: number,
+  fg_pct_zscore: number,
+  ft_pct_zscore: number,
+  tov_zscore: number,
 }
 
 export type PlayerRowKeys = keyof PlayerRow;
@@ -133,75 +131,87 @@ function flattenPlayer(player: Player, key: DatasetKeys): PlayerRow {
   };
 }
 
-type DatasetMeanStd = Record<keyof PlayerRow | 'fg_impact' | 'ft_impact', { mean: number; std: number }>;
-
-function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd> {
-  const datasetMeanStd: Partial<DatasetMeanStd> = {};
-
-  // Precompute league averages
-  const totalFGA = rows.reduce((sum, r) => sum + (r.fga ?? 0), 0);
-  const totalFGM = rows.reduce((sum, r) => sum + (r.fgm ?? 0), 0);
-  const leagueFG = totalFGA > 0 ? totalFGM / totalFGA : 0;
-
-  const totalFTA = rows.reduce((sum, r) => sum + (r.fta ?? 0), 0);
-  const totalFTM = rows.reduce((sum, r) => sum + (r.ftm ?? 0), 0);
-  const leagueFT = totalFTA > 0 ? totalFTM / totalFTA : 0;
-
-  for (const key of STAT_KEYS) {
-    // extract values for this stat
-    let values: number[] = [];
-
-    if (key === "fg_pct") {
-      // FG impact
-      datasetMeanStd['fg_pct'] = { mean: leagueFG, std: 0 }
-      // Compute FG impact per player
-      values = rows.map(r => ((r.fg_pct ?? 0) - leagueFG) * (r.fga ?? 0));
-      const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
-      const std = Math.sqrt(values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / values.length);
-
-      datasetMeanStd['fg_impact'] = { mean, std };
-    } else if (key === "ft_pct") {
-      // Store raw FT% mean as leagueFT
-      datasetMeanStd['ft_pct'] = { mean: leagueFT, std: 0 };
-
-      // Compute FT impact per player
-      values = rows.map(r => ((r.ft_pct ?? 0) - leagueFT) * (r.fta ?? 0));
-      const mean = values.reduce((sum, v) => sum + v, 0) / values.length;
-      const std = Math.sqrt(values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / values.length);
-
-      datasetMeanStd['ft_impact'] = { mean, std };
-    } else {
-      // normal stats
-      // Normal stats
-      values = rows.map(r => r[key] ?? 0);
-      const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
-      const std = Math.sqrt(values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length);
-
-      datasetMeanStd[key] = { mean, std };
-    }
-  }
-
-  return datasetMeanStd;
-}
-
-function attachPercentiles(
+function attachZScores(
   players: PlayerRow[]
 ) {
-  STAT_KEYS.forEach((k) => {
-    const values = players.map((p) => p[k] as number);
+  const ZERO_INFLATED = ["stl", "blk", "tpm"];
+  const TURNOVER = "tov";
 
-    const sorted = [...values].sort((a, b) => a - b);
+  // Compute league totals needed for FG% / FT% impact
+  const totalFGA = players.reduce((s, p) => s + (p.fga ?? 0), 0);
+  const totalFGM = players.reduce((s, p) => s + (p.fgm ?? 0), 0);
+  const leagueFgPct = totalFGA === 0 ? 0 : totalFGM / totalFGA;
 
-    players.forEach((p, i) => {
-      const v = p[k] as number;
-      const rank = sorted.filter((x) => x <= v).length - 1;
-      const pct = rank / (sorted.length - 1); // 0–1 percentile
-      p[`${k}_percentile`] = pct;
+  const totalFTA = players.reduce((s, p) => s + (p.fta ?? 0), 0);
+  const totalFTM = players.reduce((s, p) => s + (p.ftm ?? 0), 0);
+  const leagueFtPct = totalFTA === 0 ? 0 : totalFTM / totalFTA;
+
+  // Build a map of { statKey: { mean, std } }
+  const stats = {} as Record<string, { mean: number; std: number }>;
+
+  // First pass: compute derived impact values and collect stat arrays
+  const statArrays: Record<string, number[]> = {};
+
+  players.forEach((p) => {
+    STAT_KEYS.forEach((k) => {
+      let value = p[k] as number;
+
+      if (k === "fg_pct") {
+        value = p.fg_pct - leagueFgPct  // FG impact
+      } else if (k === "ft_pct") {
+        value = p.ft_pct - leagueFtPct  // FT impact
+      }
+
+      // Zero-inflated categories
+      if (ZERO_INFLATED.includes(k)) {
+        // Treat 0 as lowest, but keep it numeric
+        value = value === 0 ? 0 : value;
+      }
+
+      if (!statArrays[k]) statArrays[k] = [];
+      statArrays[k].push(value);
+      // store the transformed value
+      p[`${k}_zscore`] = value;
     });
-  });;
+  });
+
+  // Second pass: compute mean & std for each stat
+  Object.keys(statArrays).forEach((k) => {
+    const arr = statArrays[k];
+    const mean = arr.reduce((s, x) => s + x, 0) / arr.length;
+    const variance =
+      arr.reduce((s, x) => s + Math.pow(x - mean, 2), 0) / arr.length;
+    const std = Math.sqrt(variance) || 1; // avoid div-by-zero
+
+    stats[k] = { mean, std };
+  });
+
+  // Third pass: compute z-scores (with caps)
+  players.forEach((p) => {
+    STAT_KEYS.forEach((k) => {
+      let v = p[`${k}_zscore`] as number;
+      const { mean, std } = stats[k];
+
+      let z = (v - mean) / std;
+
+      // Turnovers: higher is worse
+      if (k === TURNOVER) {
+        z = -z;
+      }
+
+      // Cap Z-scores for heatmap & fairness
+      const CAP = 3;
+      if (z > CAP) z = CAP;
+      if (z < -CAP) z = -CAP;
+
+      p[`${k}_zscore`] = z;
+    });
+  });
+
+  return players;
 }
 
-function computePercentileRatings(
+function computeZScoreRatings(
   players: PlayerRow[],
   weights: Record<string, number> = {}
 ) {
@@ -210,9 +220,8 @@ function computePercentileRatings(
     let sum = 0;
 
     STAT_KEYS.forEach((k) => {
-      const key = `${k}_percentile` as keyof PlayerRow
-      const pct = p[key] ?? 0; // treat missing percentiles as 0
-      console
+      const key = `${k}_zscore` as keyof PlayerRow
+      const pct = p[key] ?? 0; // treat missing ratings as 0
       const w = weights[k] ?? 1;
       if (typeof pct === 'number') {
         sum += pct * w;

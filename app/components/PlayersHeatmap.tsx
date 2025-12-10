@@ -1,11 +1,10 @@
 import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
 import { DatasetKeys, STAT_KEYS, StatKeys } from "@/types/player";
-import { getHeatmapColor, getZscore, StatLabels } from "@/utils/playersTable";
+import { getHeatmapColor, StatLabels } from "@/utils/playersTable";
 import Image from "next/image";
 import React from "react";
-import Dropdown from "./Dropdown";
-import { RadialButtonGroup } from "./RadialButton";
 import Checkbox from "./Checkbox";
+import Dropdown from "./Dropdown";
 
 interface PlayersHeatmapProps {
   dataset: DatasetKeys,
@@ -13,25 +12,17 @@ interface PlayersHeatmapProps {
 
 interface HeatmapControls {
   zscore: boolean
+  hideLowRatings: boolean
   statWeights: Record<StatKeys, number>
 }
 
-const computeOptions = [
-  {
-    label: 'Percentiles',
-    value: 'percentiles',
-  },
-  {
-    label: 'Z-score',
-    value: 'zscore'
-  }
-]
 
 const statWeightKeys: StatKeys[] = ['pts', 'reb', 'ast', 'fg_pct', 'ft_pct', 'fg3m', 'stl', 'blk', 'tov']
 const weightOptions = [4, 3, 2, 1, 0.5, 0.25, 0]
 
 const defaultHeatmapControls: HeatmapControls = {
   zscore: false,
+  hideLowRatings: true,
   statWeights: {
     pts: 1,
     reb: 1,
@@ -54,7 +45,7 @@ interface StatColumn {
   key: PlayerRowKeys,
   label: string,
   invert?: boolean,
-  render?: (player: PlayerRow, zscore?: number) => React.ReactNode,
+  render?: (player: PlayerRow) => React.ReactNode,
 }
 
 export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
@@ -62,7 +53,7 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
   const [sort, setSort] = React.useState<SortProps>({ sortBy: 'rank', isDesc: false })
   const [heatmapControls, setHeatmapControls] = React.useState<HeatmapControls>(defaultHeatmapControls)
 
-  const { rows: playerRows, loading: processingPlayers, datasetMeanStd } = usePlayersData(dataset, heatmapControls.statWeights)
+  const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, heatmapControls.statWeights)
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -74,15 +65,29 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
     return () => darkQuery.removeEventListener('change', listener);
   }, []);
 
-  const handleZscoreCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleShowZscore = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHeatmapControls((prev) => ({
       ...prev,
       zscore: e.target.checked,
     }))
   }
 
+  const handleHideLowRatings = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHeatmapControls((prev) => ({
+      ...prev,
+      hideLowRatings: e.target.checked,
+    }))
+  }
+
+  const filterPlayers = React.useMemo(() => {
+    if (heatmapControls.hideLowRatings) {
+      return playerRows.filter((player) => player.rank <= 200)
+    }
+    return playerRows
+  }, [playerRows, heatmapControls.hideLowRatings])
+
   const sortedPlayerRows = React.useMemo(() => {
-    return [...playerRows].sort((a, b) => {
+    return [...filterPlayers].sort((a, b) => {
       const valA = a[sort.sortBy];
       const valB = b[sort.sortBy];
 
@@ -101,50 +106,22 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
       // Fallback if types are mixed or undefined
       return 0;
     });
-  }, [playerRows, sort]);
+  }, [filterPlayers, sort]);
 
   const isLoading = React.useMemo(() => {
     return isDarkMode === undefined || processingPlayers
   }, [isDarkMode, processingPlayers])
 
-  const statColumns: StatColumn[] = [
-    {
-      key: "fg_pct", label: StatLabels.fg_pct, render: (statCol: PlayerRow, zscore?: number) => (
-        <div>
-          <div className="flex gap-1">
-            <p>{statCol.fg_pct.toFixed(3)}</p>
-            <p className="text-xs">({statCol.fgm.toFixed(1)}/{statCol.fga.toFixed(1)})</p>
-          </div>
-          {zscore !== undefined && <p className="text-xs">{zscore.toFixed(2)}</p>}
-        </div>
-      )
-    },
-    {
-      key: "ft_pct", label: StatLabels.ft_pct, render: (statCol: PlayerRow, zscore?: number) => (
-        <div>
-          <div className="flex gap-1">
-            <p>{statCol.ft_pct.toFixed(3)}</p>
-            <p className="text-xs">({statCol.ftm.toFixed(1)}/{statCol.fta.toFixed(1)})</p>
-          </div>
-          {zscore !== undefined && <p className="text-xs">{zscore.toFixed(2)}</p>}
-        </div>
-      )
-    },
-    { key: "fg3m", label: StatLabels.fg3m },
-    { key: "pts", label: StatLabels.pts },
-    { key: "reb", label: StatLabels.reb },
-    { key: "ast", label: StatLabels.ast },
-    { key: "stl", label: StatLabels.stl },
-    { key: "blk", label: StatLabels.blk },
-    { key: "tov", label: StatLabels.tov, invert: true },
-  ];
-
   return (
     <div className="relative">
       <div className={`${isLoading ? 'opacity-50 pointer-events-none h-200 overflow-y-hidden' : ''}`}>
-        <div className="flex flex-col lg:flex-row gap-2 sm:gap-3 md:gap-4 w-full my-4 p-2 border-1 border-zinc-200 dark:border-zinc-800 p-2 md:py-4  md:px-5">
-          <Checkbox label="Z SCORE" checked={heatmapControls.zscore} onChange={handleZscoreCheckbox} />
-          <div className="flex flex-row flex-wrap gap-2">
+        <div className="flex flex-col gap-2 sm:gap-3 w-full my-4">
+          <div className="flex flex-row items-center flex-wrap gap-2 md:gap-6 p-2 md:py-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <Checkbox label="Show top 200 players only" checked={heatmapControls.hideLowRatings} onChange={handleHideLowRatings} />
+            <Checkbox label="Show z-score" checked={heatmapControls.zscore} onChange={handleShowZscore} />
+          </div>
+          <div className="flex flex-row items-center flex-wrap gap-2 md:gap-6 p-2 md:py-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <p>Stat Weights</p>
             {statWeightKeys.map((statKey) => {
               return (
                 <div className="flex justify-end" key={`${statKey}-dropdown`}>
@@ -186,7 +163,7 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                     }))
                   }
                 >
-                  Player Rank
+                  Rank
                   {sort.sortBy === "rank" && (
                     <span className="ml-1 text-xs">
                       {!sort.isDesc ? "▼" : "▲"}
@@ -212,22 +189,21 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                     </span>
                   )}
                 </th>
-                {statColumns.map((col) => {
-                  const statKey = STAT_KEYS.find((key) => key === col.key)
-                  if (statKey && heatmapControls.statWeights[statKey] === 0) return
+                {STAT_KEYS.map((statKey) => {
+                  if (heatmapControls.statWeights[statKey] === 0) return
                   return (
-                    <th key={col.key} className={`${headerClass} cursor-pointer`}
+                    <th key={statKey} className={`${headerClass} cursor-pointer`}
                       onClick={() =>
                         setSort((prev) => ({
                           ...prev,
-                          sortBy: col.key,
-                          isDesc: prev.sortBy !== col.key ? !col.invert : !prev.isDesc,
+                          sortBy: statKey,
+                          isDesc: prev.sortBy !== statKey ? !(statKey === 'tov') : !prev.isDesc,
                         }))
                       }>
-                      {col.label}
-                      {sort.sortBy === col.key && (
+                      {StatLabels[statKey]}
+                      {sort.sortBy === statKey && (
                         <span className="ml-1 text-xs">
-                          {(!col.invert ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
+                          {(!(statKey === 'tov') ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
                         </span>
                       )}
                     </th>
@@ -256,41 +232,55 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                       </td>
                       <td className={`${cellClass} border-l-0`}>{player.team}</td>
                       <td className={cellClass}>{player.gp}</td>
-                      {statColumns.map((col) => {
-                        const statKey = STAT_KEYS.find((key) => key === col.key)
-                        if (!statKey || heatmapControls.statWeights[statKey] === 0) return
+                      {STAT_KEYS.map((statKey) => {
+                        if (heatmapControls.statWeights[statKey] === 0) return
                         const value = player[statKey]
-                        const percentileValue = player[`${statKey}_percentile`];
+                        const statZScore = player[`${statKey}_zscore`];
 
-                        let statZscore
-                        const bgColor = getHeatmapColor(percentileValue, col.invert, isDarkMode)
-                        if (heatmapControls.zscore) {
-                          if (statKey === "ft_pct") {
-                            const leagueAvg = datasetMeanStd['ft_pct']?.mean ?? 0
-                            const ftImpact = (player.ft_pct - leagueAvg) * player.fta;
-                            statZscore = getZscore(ftImpact, datasetMeanStd.ft_impact?.mean, datasetMeanStd.ft_impact?.std)
-                          } else if (statKey === "fg_pct") {
-                            const leagueAvg = datasetMeanStd['fg_pct']?.mean ?? 0;
-                            const fgImpact = (player.fg_pct - leagueAvg) * player.fga;
-                            statZscore = getZscore(fgImpact, datasetMeanStd.fg_impact?.mean, datasetMeanStd.fg_impact?.std);
-                          }
-                          else {
-                            statZscore = getZscore(value, datasetMeanStd[col.key]?.mean, datasetMeanStd[col.key]?.std)
-                          }
+                        const bgColor = getHeatmapColor(statZScore, isDarkMode)
+
+                        if (statKey === 'fg_pct') {
+                          return (
+                            <td
+                              key={statKey}
+                              className={cellClass}
+                              style={{ backgroundColor: bgColor }}
+                            >
+                              <div className="flex gap-1">
+                                <p>{player.fg_pct.toFixed(3)}</p>
+                                <p className="text-xs">({player.fgm.toFixed(1)}/{player.fga.toFixed(1)})</p>
+                              </div>
+                              {heatmapControls.zscore && <p className="text-xs">{player.fg_pct_zscore.toFixed(2)}</p>}
+                            </td>
+                          )
+                        }
+
+                        if (statKey === 'ft_pct') {
+                          return (
+                            <td
+                              key={statKey}
+                              className={cellClass}
+                              style={{ backgroundColor: bgColor }}
+                            >
+                              <div className="flex gap-1">
+                                <p>{player.ft_pct.toFixed(3)}</p>
+                                <p className="text-xs">({player.ftm.toFixed(1)}/{player.fta.toFixed(1)})</p>
+                              </div>
+                              {heatmapControls.zscore && <p className="text-xs">{player.ft_pct_zscore.toFixed(2)}</p>}
+                            </td>
+                          )
                         }
 
                         return (
                           <td
-                            key={col.key}
+                            key={statKey}
                             className={cellClass}
                             style={{ backgroundColor: bgColor }}
                           >
-                            {col.render ? col.render(player, statZscore) : (
-                              <div>
-                                <p>{value.toFixed(1)}</p>
-                                {statZscore !== undefined && <p className="text-xs">{statZscore.toFixed(2)}</p>}
-                              </div>
-                            )}
+                            <div>
+                              <p>{value.toFixed(1)}</p>
+                              {heatmapControls.zscore && <p className="text-xs">{statZScore.toFixed(2)}</p>}
+                            </div>
                           </td>
                         );
                       })}
@@ -303,12 +293,12 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                         </th>
                         <th className={`${headerClass} border-l-0`}>Team</th>
                         <th className={headerClass}>GP</th>
-                        {statColumns.map((col) => {
-                          const statKey = STAT_KEYS.find((key) => key === col.key)
+                        {STAT_KEYS.map((statKey) => {
+
                           if (statKey && heatmapControls.statWeights[statKey] === 0) return
                           return (
-                            <th key={col.key} className={headerClass}>
-                              {col.label}
+                            <th key={statKey} className={headerClass}>
+                              {StatLabels[statKey]}
                             </th>
                           )
                         })}

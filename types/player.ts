@@ -41,24 +41,24 @@ export interface StatCategory {
   rank?: number,
 
   // Percentiles
-  pts_percentile: number,
-  reb_percentile: number,
-  ast_percentile: number,
-  stl_percentile: number,
-  blk_percentile: number,
-  fg3m_percentile: number,
-  fg_pct_percentile: number,
-  ft_pct_percentile: number,
-  tov_percentile: number,
+  pts_zscore: number,
+  reb_zscore: number,
+  ast_zscore: number,
+  stl_zscore: number,
+  blk_zscore: number,
+  fg3m_zscore: number,
+  fg_pct_zscore: number,
+  ft_pct_zscore: number,
+  tov_zscore: number,
 }
 
 export const STAT_KEYS = [
-  'pts',
-  'reb',
-  'ast',
   'fg_pct',
   'ft_pct',
   'fg3m',
+  'pts',
+  'reb',
+  'ast',
   'stl',
   'blk',
   'tov'
