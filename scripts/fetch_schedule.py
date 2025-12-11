@@ -1,73 +1,68 @@
 import requests
 import pandas as pd
-import json
 from datetime import timedelta
+import json
 
-def fetch_schedule(season_year="2025"):
-    """
-    Fetch the full NBA schedule from NBA's raw JSON feed and generate weekly games per team.
-    season_year: str, e.g. "2025" for 2025-26 season
-    """
-    print(f"Fetching NBA full schedule for {season_year}-{int(season_year)+1}...")
+def fetch_weekly_opponents_with_dates(season_year="2025-26"):
+    url = "https://cdn.nba.com/static/json/staticData/scheduleLeagueV2.json"
+    r = requests.get(url)
+    r.raise_for_status()
+    data = r.json()
 
-    # Build URL for raw JSON schedule
-    url = f"https://data.nba.com/data/10s/v2015/json/mobile_teams/nba/{season_year}/league/00_full_schedule.json"
-
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-    except Exception as e:
-        print("Failed to fetch schedule:", e)
-        return
-
-    # Extract all games
     games_list = []
-    for day in data.get("lscd", []):
-        for game in day.get("mscd", {}).get("g", []):
-            games_list.append({
-                "GAME_ID": game.get("gid"),
-                "GAME_DATE": game.get("gdte"),
-                "HOME_TEAM_ABBR": game.get("h", {}).get("ta"),
-                "VISITOR_TEAM_ABBR": game.get("v", {}).get("ta"),
-                "STATUS": game.get("st")  # Scheduled / Final
-            })
 
-    games_df = pd.DataFrame(games_list)
+    # Extract regular season + Emirates NBA Cup
+    for day in data["leagueSchedule"]["gameDates"]:
+        for g in day["games"]:
+            label = (g.get("gameLabel") or "").strip()
+            subtype = (g.get("gameSubtype") or "").strip()
 
-    # --- Fix: convert to datetime and drop missing values ---
-    games_df['GAME_DATE'] = pd.to_datetime(games_df['GAME_DATE'], errors='coerce')
-    games_df = games_df.dropna(subset=['GAME_DATE'])
+            if label == "" or label == "In-Season Tournament" or subtype in ["In-Season Tournament", "NBA Cup", "Emirates NBA Cup"]:
+                games_list.append({
+                    "GAME_DATE": g["gameDateUTC"],
+                    "HOME_TEAM": g["homeTeam"]["teamTricode"],
+                    "AWAY_TEAM": g["awayTeam"]["teamTricode"],
+                })
 
-    # Align season start to first Monday
-    season_start = games_df['GAME_DATE'].min()
-    season_start = season_start - pd.Timedelta(days=season_start.weekday())
+    df = pd.DataFrame(games_list)
+    df["GAME_DATE"] = pd.to_datetime(df["GAME_DATE"], utc=True)
 
-    # Weekly aggregation per team
-    weekly_games = {}
-    for _, row in games_df.iterrows():
-        game_date = row['GAME_DATE']
+    # Align season start (first Monday on/after first game)
+    season_start = df["GAME_DATE"].min().normalize()
+    season_start = season_start + pd.Timedelta(days=(7 - season_start.weekday()) % 7)
+
+    weekly_opponents = {}
+
+    for _, row in df.iterrows():
+        game_date = row["GAME_DATE"]
         week_num = ((game_date - season_start).days // 7) + 1
 
-        if week_num not in weekly_games:
+        # Initialize week
+        if week_num not in weekly_opponents:
             week_start = season_start + pd.Timedelta(weeks=week_num-1)
             week_end = week_start + pd.Timedelta(days=6)
-            weekly_games[week_num] = {
+            weekly_opponents[week_num] = {
                 "start_date": week_start.strftime("%Y-%m-%d"),
-                "end_date": week_end.strftime("%Y-%m-%d")
+                "end_date": week_end.strftime("%Y-%m-%d"),
+                "teams": {}
             }
 
-        # Count home and away games per team
-        for team in [row['HOME_TEAM_ABBR'], row['VISITOR_TEAM_ABBR']]:
-            if team not in weekly_games[week_num]:
-                weekly_games[week_num][team] = 0
-            weekly_games[week_num][team] += 1
+        for team, opp in [(row["HOME_TEAM"], row["AWAY_TEAM"]), (row["AWAY_TEAM"], row["HOME_TEAM"])]:
+            if team not in weekly_opponents[week_num]["teams"]:
+                weekly_opponents[week_num]["teams"][team] = []
+            weekly_opponents[week_num]["teams"][team].append(opp)
 
-    # Save JSON
-    with open("data/schedule.json", "w") as f:
-        json.dump(weekly_games, f, indent=2)
+    # Save to JSON
+    with open("data/weekly_opponents.json", "w") as f:
+        json.dump(weekly_opponents, f, indent=2)
 
-    print(f"✅ Full schedule saved to 'data/schedule.json'. Total weeks: {len(weekly_games)}")
+    return weekly_opponents
+
 
 if __name__ == "__main__":
-    fetch_schedule()
+    weekly_opps = fetch_weekly_opponents_with_dates()
+    print(f"✅ Weekly opponent lists with dates saved. Weeks: {len(weekly_opps)}")
+    # Example: print Week 1 LAL opponents and week dates
+    week1 = weekly_opps.get(1, {})
+    print("Week 1 dates:", week1.get("start_date"), "to", week1.get("end_date"))
+    print("Week 1 LAL opponents:", week1.get("teams", {}).get("LAL", []))

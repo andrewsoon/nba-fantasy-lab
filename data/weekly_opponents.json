@@ -1,0 +1,3960 @@
+{
+  "0": {
+    "start_date": "2025-10-20",
+    "end_date": "2025-10-26",
+    "teams": {
+      "OKC": [
+        "HOU",
+        "IND",
+        "ATL"
+      ],
+      "HOU": [
+        "OKC",
+        "DET"
+      ],
+      "LAL": [
+        "GSW",
+        "MIN",
+        "SAC"
+      ],
+      "GSW": [
+        "LAL",
+        "DEN",
+        "POR"
+      ],
+      "NYK": [
+        "CLE",
+        "BOS",
+        "MIA"
+      ],
+      "CLE": [
+        "NYK",
+        "BKN",
+        "MIL"
+      ],
+      "DAL": [
+        "SAS",
+        "WAS",
+        "TOR"
+      ],
+      "SAS": [
+        "DAL",
+        "NOP",
+        "BKN"
+      ],
+      "CHA": [
+        "BKN",
+        "PHI",
+        "WAS"
+      ],
+      "BKN": [
+        "CHA",
+        "CLE",
+        "SAS"
+      ],
+      "ORL": [
+        "MIA",
+        "ATL",
+        "CHI"
+      ],
+      "MIA": [
+        "ORL",
+        "MEM",
+        "NYK"
+      ],
+      "ATL": [
+        "TOR",
+        "ORL",
+        "OKC"
+      ],
+      "TOR": [
+        "ATL",
+        "MIL",
+        "DAL"
+      ],
+      "BOS": [
+        "PHI",
+        "NYK",
+        "DET"
+      ],
+      "PHI": [
+        "BOS",
+        "CHA"
+      ],
+      "CHI": [
+        "DET",
+        "ORL"
+      ],
+      "DET": [
+        "CHI",
+        "HOU",
+        "BOS"
+      ],
+      "MEM": [
+        "NOP",
+        "MIA",
+        "IND"
+      ],
+      "NOP": [
+        "MEM",
+        "SAS"
+      ],
+      "MIL": [
+        "WAS",
+        "TOR",
+        "CLE"
+      ],
+      "WAS": [
+        "MIL",
+        "DAL",
+        "CHA"
+      ],
+      "UTA": [
+        "LAC",
+        "SAC"
+      ],
+      "LAC": [
+        "UTA",
+        "PHX",
+        "POR"
+      ],
+      "PHX": [
+        "SAC",
+        "LAC",
+        "DEN"
+      ],
+      "SAC": [
+        "PHX",
+        "UTA",
+        "LAL"
+      ],
+      "POR": [
+        "MIN",
+        "GSW",
+        "LAC"
+      ],
+      "MIN": [
+        "POR",
+        "LAL",
+        "IND"
+      ],
+      "IND": [
+        "OKC",
+        "MEM",
+        "MIN"
+      ],
+      "DEN": [
+        "GSW",
+        "PHX"
+      ]
+    }
+  },
+  "1": {
+    "start_date": "2025-10-27",
+    "end_date": "2025-11-02",
+    "teams": {
+      "DET": [
+        "CLE",
+        "ORL"
+      ],
+      "CLE": [
+        "DET",
+        "BOS",
+        "ATL"
+      ],
+      "MIN": [
+        "DEN",
+        "LAL",
+        "CHA"
+      ],
+      "DEN": [
+        "MIN",
+        "NOP"
+      ],
+      "PHI": [
+        "ORL",
+        "WAS",
+        "BKN"
+      ],
+      "ORL": [
+        "PHI",
+        "DET",
+        "CHA",
+        "WAS"
+      ],
+      "CHI": [
+        "ATL",
+        "SAC",
+        "NYK"
+      ],
+      "ATL": [
+        "CHI",
+        "BKN",
+        "CLE"
+      ],
+      "HOU": [
+        "BKN",
+        "TOR",
+        "BOS"
+      ],
+      "BKN": [
+        "HOU",
+        "ATL",
+        "PHI"
+      ],
+      "NOP": [
+        "BOS",
+        "DEN",
+        "OKC"
+      ],
+      "BOS": [
+        "NOP",
+        "CLE",
+        "HOU"
+      ],
+      "SAS": [
+        "TOR",
+        "MIA",
+        "PHX"
+      ],
+      "TOR": [
+        "SAS",
+        "HOU",
+        "MEM"
+      ],
+      "DAL": [
+        "OKC",
+        "IND"
+      ],
+      "OKC": [
+        "DAL",
+        "SAC",
+        "WAS",
+        "NOP"
+      ],
+      "UTA": [
+        "PHX",
+        "POR",
+        "CHA"
+      ],
+      "PHX": [
+        "UTA",
+        "MEM",
+        "SAS"
+      ],
+      "GSW": [
+        "MEM",
+        "LAC",
+        "MIL",
+        "IND"
+      ],
+      "MEM": [
+        "GSW",
+        "PHX",
+        "TOR"
+      ],
+      "LAL": [
+        "POR",
+        "MIN",
+        "MIA"
+      ],
+      "POR": [
+        "LAL",
+        "UTA"
+      ],
+      "WAS": [
+        "PHI",
+        "OKC",
+        "ORL"
+      ],
+      "MIA": [
+        "CHA",
+        "SAS",
+        "LAL"
+      ],
+      "CHA": [
+        "MIA",
+        "ORL",
+        "MIN",
+        "UTA"
+      ],
+      "MIL": [
+        "NYK",
+        "GSW",
+        "SAC"
+      ],
+      "NYK": [
+        "MIL",
+        "CHI"
+      ],
+      "SAC": [
+        "OKC",
+        "CHI",
+        "MIL"
+      ],
+      "LAC": [
+        "GSW"
+      ],
+      "IND": [
+        "DAL",
+        "GSW"
+      ]
+    }
+  },
+  "2": {
+    "start_date": "2025-11-03",
+    "end_date": "2025-11-09",
+    "teams": {
+      "BKN": [
+        "MIN",
+        "IND",
+        "NYK"
+      ],
+      "MIN": [
+        "BKN",
+        "NYK",
+        "SAC"
+      ],
+      "IND": [
+        "MIL",
+        "BKN",
+        "DEN",
+        "GSW"
+      ],
+      "MIL": [
+        "IND",
+        "TOR",
+        "HOU"
+      ],
+      "BOS": [
+        "UTA",
+        "WAS",
+        "ORL"
+      ],
+      "UTA": [
+        "BOS",
+        "DET"
+      ],
+      "NYK": [
+        "WAS",
+        "MIN",
+        "BKN"
+      ],
+      "WAS": [
+        "NYK",
+        "BOS",
+        "DAL"
+      ],
+      "HOU": [
+        "DAL",
+        "MEM",
+        "MIL"
+      ],
+      "DAL": [
+        "HOU",
+        "NOP",
+        "WAS"
+      ],
+      "MEM": [
+        "DET",
+        "HOU",
+        "OKC"
+      ],
+      "DET": [
+        "MEM",
+        "UTA",
+        "PHI"
+      ],
+      "DEN": [
+        "SAC",
+        "MIA",
+        "IND"
+      ],
+      "SAC": [
+        "DEN",
+        "GSW",
+        "MIN"
+      ],
+      "POR": [
+        "LAL",
+        "OKC",
+        "MIA"
+      ],
+      "LAL": [
+        "POR",
+        "SAS",
+        "ATL"
+      ],
+      "LAC": [
+        "MIA",
+        "OKC",
+        "PHX",
+        "PHX"
+      ],
+      "MIA": [
+        "LAC",
+        "DEN",
+        "POR"
+      ],
+      "TOR": [
+        "MIL",
+        "PHI"
+      ],
+      "ATL": [
+        "ORL",
+        "LAL"
+      ],
+      "ORL": [
+        "ATL",
+        "BOS"
+      ],
+      "CHI": [
+        "PHI",
+        "CLE"
+      ],
+      "PHI": [
+        "CHI",
+        "CLE",
+        "TOR",
+        "DET"
+      ],
+      "NOP": [
+        "CHA",
+        "DAL",
+        "SAS"
+      ],
+      "CHA": [
+        "NOP"
+      ],
+      "GSW": [
+        "PHX",
+        "SAC",
+        "IND"
+      ],
+      "PHX": [
+        "GSW",
+        "LAC",
+        "LAC"
+      ],
+      "OKC": [
+        "LAC",
+        "POR",
+        "MEM"
+      ],
+      "CLE": [
+        "PHI",
+        "CHI"
+      ],
+      "SAS": [
+        "LAL",
+        "NOP"
+      ]
+    }
+  },
+  "3": {
+    "start_date": "2025-11-10",
+    "end_date": "2025-11-16",
+    "teams": {
+      "CHA": [
+        "LAL",
+        "MIL",
+        "OKC"
+      ],
+      "LAL": [
+        "CHA",
+        "OKC",
+        "MIL"
+      ],
+      "DET": [
+        "WAS",
+        "CHI"
+      ],
+      "WAS": [
+        "DET",
+        "HOU",
+        "BKN"
+      ],
+      "ORL": [
+        "POR",
+        "NYK",
+        "HOU"
+      ],
+      "POR": [
+        "ORL",
+        "NOP",
+        "DAL"
+      ],
+      "MIA": [
+        "CLE",
+        "CLE"
+      ],
+      "CLE": [
+        "MIA",
+        "MIA",
+        "TOR",
+        "MEM"
+      ],
+      "CHI": [
+        "SAS",
+        "DET",
+        "UTA"
+      ],
+      "SAS": [
+        "CHI",
+        "GSW",
+        "SAC"
+      ],
+      "DAL": [
+        "MIL",
+        "PHX",
+        "POR"
+      ],
+      "MIL": [
+        "DAL",
+        "CHA",
+        "LAL"
+      ],
+      "PHX": [
+        "NOP",
+        "DAL",
+        "IND",
+        "ATL"
+      ],
+      "NOP": [
+        "PHX",
+        "POR",
+        "GSW"
+      ],
+      "UTA": [
+        "MIN",
+        "IND",
+        "ATL",
+        "CHI"
+      ],
+      "MIN": [
+        "UTA",
+        "DEN"
+      ],
+      "LAC": [
+        "ATL",
+        "DEN",
+        "BOS"
+      ],
+      "ATL": [
+        "LAC",
+        "SAC",
+        "UTA",
+        "PHX"
+      ],
+      "BKN": [
+        "TOR",
+        "WAS"
+      ],
+      "TOR": [
+        "BKN",
+        "CLE",
+        "IND"
+      ],
+      "NYK": [
+        "MEM",
+        "ORL"
+      ],
+      "MEM": [
+        "NYK",
+        "BOS",
+        "CLE"
+      ],
+      "PHI": [
+        "BOS"
+      ],
+      "BOS": [
+        "PHI",
+        "MEM",
+        "LAC"
+      ],
+      "OKC": [
+        "GSW",
+        "LAL",
+        "CHA"
+      ],
+      "GSW": [
+        "OKC",
+        "SAS",
+        "NOP"
+      ],
+      "IND": [
+        "UTA",
+        "PHX",
+        "TOR"
+      ],
+      "SAC": [
+        "DEN",
+        "ATL",
+        "SAS"
+      ],
+      "DEN": [
+        "SAC",
+        "LAC",
+        "MIN"
+      ],
+      "HOU": [
+        "WAS",
+        "ORL"
+      ]
+    }
+  },
+  "4": {
+    "start_date": "2025-11-17",
+    "end_date": "2025-11-23",
+    "teams": {
+      "CLE": [
+        "MIL",
+        "HOU",
+        "LAC"
+      ],
+      "MIL": [
+        "CLE",
+        "PHI",
+        "DET"
+      ],
+      "DET": [
+        "IND",
+        "ATL",
+        "MIL"
+      ],
+      "IND": [
+        "DET",
+        "CHA"
+      ],
+      "PHI": [
+        "LAC",
+        "TOR",
+        "MIL",
+        "MIA"
+      ],
+      "LAC": [
+        "PHI",
+        "ORL",
+        "CHA",
+        "CLE"
+      ],
+      "MIA": [
+        "NYK",
+        "GSW",
+        "PHI"
+      ],
+      "NYK": [
+        "MIA",
+        "DAL",
+        "ORL"
+      ],
+      "TOR": [
+        "CHA",
+        "PHI",
+        "BKN"
+      ],
+      "CHA": [
+        "TOR",
+        "IND",
+        "LAC",
+        "ATL"
+      ],
+      "MIN": [
+        "DAL",
+        "WAS"
+      ],
+      "DAL": [
+        "MIN",
+        "NYK",
+        "MEM"
+      ],
+      "NOP": [
+        "OKC",
+        "DEN",
+        "ATL"
+      ],
+      "OKC": [
+        "NOP",
+        "SAC",
+        "POR"
+      ],
+      "DEN": [
+        "CHI",
+        "NOP",
+        "SAC"
+      ],
+      "CHI": [
+        "DEN",
+        "POR",
+        "WAS"
+      ],
+      "ORL": [
+        "GSW",
+        "LAC",
+        "NYK",
+        "BOS"
+      ],
+      "GSW": [
+        "ORL",
+        "MIA"
+      ],
+      "BKN": [
+        "BOS",
+        "TOR"
+      ],
+      "BOS": [
+        "BKN",
+        "ORL"
+      ],
+      "ATL": [
+        "DET",
+        "SAS",
+        "NOP",
+        "CHA"
+      ],
+      "SAS": [
+        "MEM",
+        "ATL",
+        "PHX"
+      ],
+      "MEM": [
+        "SAS",
+        "SAC",
+        "DAL"
+      ],
+      "LAL": [
+        "UTA",
+        "UTA"
+      ],
+      "UTA": [
+        "LAL",
+        "LAL"
+      ],
+      "POR": [
+        "PHX",
+        "CHI",
+        "OKC"
+      ],
+      "PHX": [
+        "POR",
+        "SAS"
+      ],
+      "HOU": [
+        "CLE"
+      ],
+      "WAS": [
+        "MIN",
+        "CHI"
+      ],
+      "SAC": [
+        "OKC",
+        "MEM",
+        "DEN"
+      ]
+    }
+  },
+  "5": {
+    "start_date": "2025-11-24",
+    "end_date": "2025-11-30",
+    "teams": {
+      "IND": [
+        "DET",
+        "CHI"
+      ],
+      "DET": [
+        "IND",
+        "MIA"
+      ],
+      "TOR": [
+        "CLE",
+        "CHA",
+        "NYK"
+      ],
+      "CLE": [
+        "TOR",
+        "BOS"
+      ],
+      "BKN": [
+        "NYK",
+        "MIL"
+      ],
+      "NYK": [
+        "BKN",
+        "TOR"
+      ],
+      "MIA": [
+        "DAL",
+        "DET"
+      ],
+      "DAL": [
+        "MIA",
+        "LAC"
+      ],
+      "MEM": [
+        "DEN",
+        "SAC"
+      ],
+      "DEN": [
+        "MEM",
+        "PHX"
+      ],
+      "MIL": [
+        "POR",
+        "BKN"
+      ],
+      "POR": [
+        "MIL",
+        "OKC"
+      ],
+      "NOP": [
+        "CHI",
+        "GSW",
+        "LAL"
+      ],
+      "CHI": [
+        "NOP",
+        "IND"
+      ],
+      "PHX": [
+        "HOU",
+        "DEN"
+      ],
+      "HOU": [
+        "PHX",
+        "UTA"
+      ],
+      "GSW": [
+        "UTA",
+        "NOP"
+      ],
+      "UTA": [
+        "GSW",
+        "HOU"
+      ],
+      "SAC": [
+        "MIN",
+        "MEM"
+      ],
+      "MIN": [
+        "SAC",
+        "BOS",
+        "SAS"
+      ],
+      "BOS": [
+        "MIN",
+        "CLE"
+      ],
+      "CHA": [
+        "TOR"
+      ],
+      "LAC": [
+        "DAL"
+      ],
+      "PHI": [
+        "ATL"
+      ],
+      "ATL": [
+        "PHI"
+      ],
+      "OKC": [
+        "POR"
+      ],
+      "SAS": [
+        "MIN"
+      ],
+      "LAL": [
+        "NOP"
+      ]
+    }
+  },
+  "6": {
+    "start_date": "2025-12-01",
+    "end_date": "2025-12-07",
+    "teams": {
+      "DET": [
+        "ATL",
+        "MIL",
+        "POR",
+        "MIL"
+      ],
+      "ATL": [
+        "DET",
+        "LAC",
+        "DEN",
+        "WAS"
+      ],
+      "IND": [
+        "CLE",
+        "DEN",
+        "CHI"
+      ],
+      "CLE": [
+        "IND",
+        "POR",
+        "SAS",
+        "GSW"
+      ],
+      "WAS": [
+        "MIL",
+        "PHI",
+        "BOS",
+        "ATL"
+      ],
+      "MIL": [
+        "WAS",
+        "DET",
+        "PHI",
+        "DET"
+      ],
+      "BKN": [
+        "CHA",
+        "CHI",
+        "UTA",
+        "NOP"
+      ],
+      "CHA": [
+        "BKN",
+        "NYK",
+        "TOR",
+        "DEN"
+      ],
+      "MIA": [
+        "LAC",
+        "DAL",
+        "ORL",
+        "SAC"
+      ],
+      "LAC": [
+        "MIA",
+        "ATL",
+        "MEM",
+        "MIN"
+      ],
+      "ORL": [
+        "CHI",
+        "SAS",
+        "MIA",
+        "NYK"
+      ],
+      "CHI": [
+        "ORL",
+        "BKN",
+        "IND",
+        "GSW"
+      ],
+      "DEN": [
+        "DAL",
+        "IND",
+        "ATL",
+        "CHA"
+      ],
+      "DAL": [
+        "DEN",
+        "MIA",
+        "OKC",
+        "HOU"
+      ],
+      "UTA": [
+        "HOU",
+        "BKN",
+        "NYK",
+        "OKC"
+      ],
+      "HOU": [
+        "UTA",
+        "SAC",
+        "PHX",
+        "DAL"
+      ],
+      "LAL": [
+        "PHX",
+        "TOR",
+        "BOS",
+        "PHI"
+      ],
+      "PHX": [
+        "LAL",
+        "HOU"
+      ],
+      "PHI": [
+        "WAS",
+        "GSW",
+        "MIL",
+        "LAL"
+      ],
+      "TOR": [
+        "POR",
+        "LAL",
+        "CHA",
+        "BOS"
+      ],
+      "POR": [
+        "TOR",
+        "CLE",
+        "DET",
+        "MEM"
+      ],
+      "BOS": [
+        "NYK",
+        "WAS",
+        "LAL",
+        "TOR"
+      ],
+      "NYK": [
+        "BOS",
+        "CHA",
+        "UTA",
+        "ORL"
+      ],
+      "NOP": [
+        "MIN",
+        "MIN",
+        "BKN"
+      ],
+      "MIN": [
+        "NOP",
+        "NOP",
+        "LAC"
+      ],
+      "SAS": [
+        "MEM",
+        "ORL",
+        "CLE"
+      ],
+      "MEM": [
+        "SAS",
+        "LAC",
+        "POR"
+      ],
+      "GSW": [
+        "OKC",
+        "PHI",
+        "CLE",
+        "CHI"
+      ],
+      "OKC": [
+        "GSW",
+        "DAL",
+        "UTA"
+      ],
+      "SAC": [
+        "HOU",
+        "MIA"
+      ]
+    }
+  },
+  "7": {
+    "start_date": "2025-12-08",
+    "end_date": "2025-12-14",
+    "teams": {
+      "IND": [
+        "SAC",
+        "PHI",
+        "WAS"
+      ],
+      "SAC": [
+        "IND",
+        "DEN",
+        "MIN"
+      ],
+      "MIN": [
+        "PHX",
+        "GSW",
+        "SAC"
+      ],
+      "PHX": [
+        "MIN"
+      ],
+      "NOP": [
+        "SAS",
+        "POR",
+        "CHI"
+      ],
+      "SAS": [
+        "NOP"
+      ],
+      "HOU": [
+        "LAC"
+      ],
+      "LAC": [
+        "HOU"
+      ],
+      "MIL": [
+        "BOS",
+        "BKN"
+      ],
+      "BOS": [
+        "MIL"
+      ],
+      "POR": [
+        "NOP",
+        "GSW"
+      ],
+      "DEN": [
+        "SAC"
+      ],
+      "CHA": [
+        "CHI",
+        "CLE"
+      ],
+      "CHI": [
+        "CHA",
+        "NOP"
+      ],
+      "DET": [
+        "ATL"
+      ],
+      "ATL": [
+        "DET",
+        "PHI"
+      ],
+      "PHI": [
+        "IND",
+        "ATL"
+      ],
+      "WAS": [
+        "CLE",
+        "IND"
+      ],
+      "CLE": [
+        "WAS",
+        "CHA"
+      ],
+      "MEM": [
+        "UTA"
+      ],
+      "UTA": [
+        "MEM"
+      ],
+      "DAL": [
+        "BKN"
+      ],
+      "BKN": [
+        "DAL",
+        "MIL"
+      ],
+      "GSW": [
+        "MIN",
+        "POR"
+      ]
+    }
+  },
+  "8": {
+    "start_date": "2025-12-15",
+    "end_date": "2025-12-21",
+    "teams": {
+      "BOS": [
+        "DET",
+        "MIA",
+        "TOR"
+      ],
+      "DET": [
+        "BOS",
+        "DAL",
+        "CHA"
+      ],
+      "UTA": [
+        "DAL",
+        "LAL",
+        "ORL"
+      ],
+      "DAL": [
+        "UTA",
+        "DET",
+        "PHI"
+      ],
+      "DEN": [
+        "HOU",
+        "ORL",
+        "HOU"
+      ],
+      "HOU": [
+        "DEN",
+        "NOP",
+        "DEN",
+        "SAC"
+      ],
+      "LAC": [
+        "MEM",
+        "OKC",
+        "LAL"
+      ],
+      "MEM": [
+        "LAC",
+        "MIN",
+        "WAS"
+      ],
+      "MIA": [
+        "TOR",
+        "BKN",
+        "BOS",
+        "NYK"
+      ],
+      "TOR": [
+        "MIA",
+        "MIL",
+        "BOS",
+        "BKN"
+      ],
+      "CHI": [
+        "CLE",
+        "CLE",
+        "ATL"
+      ],
+      "CLE": [
+        "CHI",
+        "CHI"
+      ],
+      "MIN": [
+        "MEM",
+        "OKC",
+        "MIL"
+      ],
+      "OKC": [
+        "LAC",
+        "MIN"
+      ],
+      "SAS": [
+        "WAS",
+        "ATL",
+        "WAS"
+      ],
+      "WAS": [
+        "SAS",
+        "MEM",
+        "SAS"
+      ],
+      "CHA": [
+        "ATL",
+        "DET"
+      ],
+      "ATL": [
+        "CHA",
+        "SAS",
+        "CHI"
+      ],
+      "IND": [
+        "NYK",
+        "NOP"
+      ],
+      "NYK": [
+        "IND",
+        "PHI",
+        "MIA"
+      ],
+      "BKN": [
+        "MIA",
+        "TOR"
+      ],
+      "MIL": [
+        "TOR",
+        "MIN"
+      ],
+      "NOP": [
+        "HOU",
+        "IND"
+      ],
+      "ORL": [
+        "DEN",
+        "UTA"
+      ],
+      "PHX": [
+        "GSW",
+        "GSW"
+      ],
+      "GSW": [
+        "PHX",
+        "PHX"
+      ],
+      "LAL": [
+        "UTA",
+        "LAC"
+      ],
+      "POR": [
+        "SAC",
+        "SAC"
+      ],
+      "SAC": [
+        "POR",
+        "POR",
+        "HOU"
+      ],
+      "PHI": [
+        "NYK",
+        "DAL"
+      ]
+    }
+  },
+  "9": {
+    "start_date": "2025-12-22",
+    "end_date": "2025-12-28",
+    "teams": {
+      "CLE": [
+        "CHA",
+        "NOP",
+        "NYK",
+        "HOU"
+      ],
+      "CHA": [
+        "CLE",
+        "WAS",
+        "ORL"
+      ],
+      "BOS": [
+        "IND",
+        "IND",
+        "POR"
+      ],
+      "IND": [
+        "BOS",
+        "MIL",
+        "BOS",
+        "MIA"
+      ],
+      "NOP": [
+        "DAL",
+        "CLE",
+        "PHX",
+        "PHX"
+      ],
+      "DAL": [
+        "NOP",
+        "DEN",
+        "GSW",
+        "SAC"
+      ],
+      "DEN": [
+        "UTA",
+        "DAL",
+        "MIN",
+        "ORL"
+      ],
+      "UTA": [
+        "DEN",
+        "MEM",
+        "DET",
+        "SAS"
+      ],
+      "OKC": [
+        "MEM",
+        "SAS",
+        "SAS",
+        "PHI"
+      ],
+      "MEM": [
+        "OKC",
+        "UTA",
+        "MIL",
+        "WAS"
+      ],
+      "GSW": [
+        "ORL",
+        "DAL",
+        "TOR"
+      ],
+      "ORL": [
+        "GSW",
+        "POR",
+        "CHA",
+        "DEN"
+      ],
+      "POR": [
+        "DET",
+        "ORL",
+        "LAC",
+        "BOS"
+      ],
+      "DET": [
+        "POR",
+        "SAC",
+        "UTA",
+        "LAC"
+      ],
+      "WAS": [
+        "CHA",
+        "TOR",
+        "MEM"
+      ],
+      "PHI": [
+        "BKN",
+        "CHI",
+        "OKC"
+      ],
+      "BKN": [
+        "PHI",
+        "MIN"
+      ],
+      "ATL": [
+        "CHI",
+        "MIA",
+        "NYK"
+      ],
+      "CHI": [
+        "ATL",
+        "PHI",
+        "MIL"
+      ],
+      "MIL": [
+        "IND",
+        "MEM",
+        "CHI"
+      ],
+      "MIA": [
+        "TOR",
+        "ATL",
+        "IND"
+      ],
+      "TOR": [
+        "MIA",
+        "WAS",
+        "GSW"
+      ],
+      "MIN": [
+        "NYK",
+        "DEN",
+        "BKN"
+      ],
+      "NYK": [
+        "MIN",
+        "CLE",
+        "ATL"
+      ],
+      "SAS": [
+        "OKC",
+        "OKC",
+        "UTA"
+      ],
+      "PHX": [
+        "LAL",
+        "NOP",
+        "NOP"
+      ],
+      "LAL": [
+        "PHX",
+        "HOU",
+        "SAC"
+      ],
+      "SAC": [
+        "DET",
+        "DAL",
+        "LAL"
+      ],
+      "LAC": [
+        "HOU",
+        "POR",
+        "DET"
+      ],
+      "HOU": [
+        "LAC",
+        "LAL",
+        "CLE"
+      ]
+    }
+  },
+  "10": {
+    "start_date": "2025-12-29",
+    "end_date": "2026-01-04",
+    "teams": {
+      "CHA": [
+        "MIL",
+        "GSW",
+        "MIL",
+        "CHI"
+      ],
+      "MIL": [
+        "CHA",
+        "WAS",
+        "CHA",
+        "SAC"
+      ],
+      "WAS": [
+        "PHX",
+        "MIL",
+        "BKN",
+        "MIN"
+      ],
+      "PHX": [
+        "WAS",
+        "CLE",
+        "SAC",
+        "OKC"
+      ],
+      "BKN": [
+        "GSW",
+        "HOU",
+        "WAS",
+        "DEN"
+      ],
+      "GSW": [
+        "BKN",
+        "CHA",
+        "OKC",
+        "UTA"
+      ],
+      "MIA": [
+        "DEN",
+        "DET",
+        "MIN",
+        "NOP"
+      ],
+      "DEN": [
+        "MIA",
+        "TOR",
+        "CLE",
+        "BKN"
+      ],
+      "TOR": [
+        "ORL",
+        "DEN",
+        "ATL"
+      ],
+      "ORL": [
+        "TOR",
+        "IND",
+        "CHI",
+        "IND"
+      ],
+      "CHI": [
+        "MIN",
+        "NOP",
+        "ORL",
+        "CHA"
+      ],
+      "MIN": [
+        "CHI",
+        "ATL",
+        "MIA",
+        "WAS"
+      ],
+      "HOU": [
+        "IND",
+        "BKN",
+        "DAL"
+      ],
+      "IND": [
+        "HOU",
+        "ORL",
+        "SAS",
+        "ORL"
+      ],
+      "NOP": [
+        "NYK",
+        "CHI",
+        "POR",
+        "MIA"
+      ],
+      "NYK": [
+        "NOP",
+        "SAS",
+        "ATL",
+        "PHI"
+      ],
+      "OKC": [
+        "ATL",
+        "POR",
+        "GSW",
+        "PHX"
+      ],
+      "ATL": [
+        "OKC",
+        "MIN",
+        "NYK",
+        "TOR"
+      ],
+      "SAS": [
+        "CLE",
+        "NYK",
+        "IND",
+        "POR"
+      ],
+      "CLE": [
+        "SAS",
+        "PHX",
+        "DEN",
+        "DET"
+      ],
+      "POR": [
+        "DAL",
+        "OKC",
+        "NOP",
+        "SAS"
+      ],
+      "DAL": [
+        "POR",
+        "PHI",
+        "HOU"
+      ],
+      "MEM": [
+        "PHI",
+        "LAL",
+        "LAL"
+      ],
+      "PHI": [
+        "MEM",
+        "DAL",
+        "NYK"
+      ],
+      "UTA": [
+        "BOS",
+        "LAC",
+        "GSW"
+      ],
+      "BOS": [
+        "UTA",
+        "SAC",
+        "LAC"
+      ],
+      "LAL": [
+        "DET",
+        "MEM",
+        "MEM"
+      ],
+      "DET": [
+        "LAL",
+        "MIA",
+        "CLE"
+      ],
+      "LAC": [
+        "SAC",
+        "UTA",
+        "BOS"
+      ],
+      "SAC": [
+        "LAC",
+        "BOS",
+        "PHX",
+        "MIL"
+      ]
+    }
+  },
+  "11": {
+    "start_date": "2026-01-05",
+    "end_date": "2026-01-11",
+    "teams": {
+      "DET": [
+        "NYK",
+        "CHI",
+        "LAC"
+      ],
+      "NYK": [
+        "DET",
+        "LAC",
+        "PHX",
+        "POR"
+      ],
+      "BOS": [
+        "CHI",
+        "DEN",
+        "TOR",
+        "SAS"
+      ],
+      "CHI": [
+        "BOS",
+        "DET",
+        "MIA",
+        "DAL"
+      ],
+      "TOR": [
+        "ATL",
+        "CHA",
+        "BOS",
+        "PHI"
+      ],
+      "ATL": [
+        "TOR",
+        "NOP",
+        "DEN",
+        "GSW"
+      ],
+      "HOU": [
+        "PHX",
+        "POR",
+        "POR",
+        "SAC"
+      ],
+      "PHX": [
+        "HOU",
+        "MEM",
+        "NYK",
+        "WAS"
+      ],
+      "OKC": [
+        "CHA",
+        "UTA",
+        "MEM",
+        "MIA"
+      ],
+      "CHA": [
+        "OKC",
+        "TOR",
+        "IND",
+        "UTA"
+      ],
+      "PHI": [
+        "DEN",
+        "WAS",
+        "ORL",
+        "TOR"
+      ],
+      "DEN": [
+        "PHI",
+        "BOS",
+        "ATL",
+        "MIL"
+      ],
+      "LAC": [
+        "GSW",
+        "NYK",
+        "BKN",
+        "DET"
+      ],
+      "GSW": [
+        "LAC",
+        "MIL",
+        "SAC",
+        "ATL"
+      ],
+      "POR": [
+        "UTA",
+        "HOU",
+        "HOU",
+        "NYK"
+      ],
+      "UTA": [
+        "POR",
+        "OKC",
+        "DAL",
+        "CHA"
+      ],
+      "IND": [
+        "CLE",
+        "CHA",
+        "MIA"
+      ],
+      "CLE": [
+        "IND",
+        "MIN",
+        "MIN"
+      ],
+      "WAS": [
+        "ORL",
+        "PHI",
+        "NOP",
+        "PHX"
+      ],
+      "ORL": [
+        "WAS",
+        "BKN",
+        "PHI",
+        "NOP"
+      ],
+      "MEM": [
+        "SAS",
+        "PHX",
+        "OKC",
+        "BKN"
+      ],
+      "SAS": [
+        "MEM",
+        "LAL",
+        "BOS",
+        "MIN"
+      ],
+      "MIN": [
+        "MIA",
+        "CLE",
+        "CLE",
+        "SAS"
+      ],
+      "MIA": [
+        "MIN",
+        "CHI",
+        "IND",
+        "OKC"
+      ],
+      "NOP": [
+        "LAL",
+        "ATL",
+        "WAS",
+        "ORL"
+      ],
+      "LAL": [
+        "NOP",
+        "SAS",
+        "MIL"
+      ],
+      "SAC": [
+        "DAL",
+        "GSW",
+        "HOU"
+      ],
+      "DAL": [
+        "SAC",
+        "UTA",
+        "CHI"
+      ],
+      "BKN": [
+        "ORL",
+        "LAC",
+        "MEM"
+      ],
+      "MIL": [
+        "GSW",
+        "LAL",
+        "DEN"
+      ]
+    }
+  },
+  "12": {
+    "start_date": "2026-01-12",
+    "end_date": "2026-01-18",
+    "teams": {
+      "CLE": [
+        "UTA",
+        "PHI",
+        "PHI"
+      ],
+      "UTA": [
+        "CLE",
+        "CHI",
+        "DAL",
+        "DAL"
+      ],
+      "IND": [
+        "BOS",
+        "TOR",
+        "NOP",
+        "DET"
+      ],
+      "BOS": [
+        "IND",
+        "MIA",
+        "ATL"
+      ],
+      "TOR": [
+        "PHI",
+        "IND",
+        "LAC",
+        "LAL"
+      ],
+      "PHI": [
+        "TOR",
+        "CLE",
+        "CLE"
+      ],
+      "DAL": [
+        "BKN",
+        "DEN",
+        "UTA",
+        "UTA"
+      ],
+      "BKN": [
+        "DAL",
+        "NOP",
+        "CHI",
+        "CHI"
+      ],
+      "SAC": [
+        "LAL",
+        "NYK",
+        "WAS",
+        "POR"
+      ],
+      "LAL": [
+        "SAC",
+        "ATL",
+        "CHA",
+        "POR",
+        "TOR"
+      ],
+      "LAC": [
+        "CHA",
+        "WAS",
+        "TOR"
+      ],
+      "CHA": [
+        "LAC",
+        "LAL",
+        "GSW",
+        "DEN"
+      ],
+      "MIA": [
+        "PHX",
+        "BOS",
+        "OKC"
+      ],
+      "PHX": [
+        "MIA",
+        "DET",
+        "NYK"
+      ],
+      "HOU": [
+        "CHI",
+        "OKC",
+        "MIN",
+        "NOP"
+      ],
+      "CHI": [
+        "HOU",
+        "UTA",
+        "BKN",
+        "BKN"
+      ],
+      "MIL": [
+        "MIN",
+        "SAS"
+      ],
+      "MIN": [
+        "MIL",
+        "HOU",
+        "SAS"
+      ],
+      "NOP": [
+        "DEN",
+        "BKN",
+        "IND",
+        "HOU"
+      ],
+      "DEN": [
+        "NOP",
+        "DAL",
+        "WAS",
+        "CHA"
+      ],
+      "OKC": [
+        "SAS",
+        "HOU",
+        "MIA"
+      ],
+      "SAS": [
+        "OKC",
+        "MIL",
+        "MIN"
+      ],
+      "ATL": [
+        "LAL",
+        "POR",
+        "BOS"
+      ],
+      "GSW": [
+        "POR",
+        "NYK",
+        "CHA"
+      ],
+      "POR": [
+        "GSW",
+        "ATL",
+        "LAL",
+        "SAC"
+      ],
+      "NYK": [
+        "SAC",
+        "GSW",
+        "PHX"
+      ],
+      "WAS": [
+        "LAC",
+        "SAC",
+        "DEN"
+      ],
+      "ORL": [
+        "MEM",
+        "MEM"
+      ],
+      "MEM": [
+        "ORL",
+        "ORL"
+      ],
+      "DET": [
+        "PHX",
+        "IND"
+      ]
+    }
+  },
+  "13": {
+    "start_date": "2026-01-19",
+    "end_date": "2026-01-25",
+    "teams": {
+      "ATL": [
+        "MIL",
+        "MEM",
+        "PHX"
+      ],
+      "MIL": [
+        "ATL",
+        "OKC",
+        "DEN",
+        "DAL"
+      ],
+      "CLE": [
+        "OKC",
+        "CHA",
+        "SAC",
+        "ORL"
+      ],
+      "OKC": [
+        "CLE",
+        "MIL",
+        "IND",
+        "TOR"
+      ],
+      "NYK": [
+        "DAL",
+        "BKN",
+        "PHI"
+      ],
+      "DAL": [
+        "NYK",
+        "GSW",
+        "LAL",
+        "MIL"
+      ],
+      "DET": [
+        "BOS",
+        "NOP",
+        "HOU",
+        "SAC"
+      ],
+      "BOS": [
+        "DET",
+        "IND",
+        "BKN",
+        "CHI"
+      ],
+      "WAS": [
+        "LAC",
+        "DEN",
+        "CHA"
+      ],
+      "LAC": [
+        "WAS",
+        "CHI",
+        "LAL",
+        "BKN"
+      ],
+      "PHI": [
+        "IND",
+        "PHX",
+        "HOU",
+        "NYK"
+      ],
+      "IND": [
+        "PHI",
+        "BOS",
+        "OKC"
+      ],
+      "BKN": [
+        "PHX",
+        "NYK",
+        "BOS",
+        "LAC"
+      ],
+      "PHX": [
+        "BKN",
+        "PHI",
+        "ATL",
+        "MIA"
+      ],
+      "SAS": [
+        "UTA",
+        "HOU",
+        "UTA",
+        "NOP"
+      ],
+      "UTA": [
+        "SAS",
+        "MIN",
+        "SAS",
+        "MIA"
+      ],
+      "GSW": [
+        "MIA",
+        "TOR",
+        "DAL",
+        "MIN"
+      ],
+      "MIA": [
+        "GSW",
+        "SAC",
+        "POR",
+        "UTA",
+        "PHX"
+      ],
+      "CHI": [
+        "LAC",
+        "MIN",
+        "BOS"
+      ],
+      "HOU": [
+        "SAS",
+        "PHI",
+        "DET"
+      ],
+      "MIN": [
+        "UTA",
+        "CHI",
+        "GSW"
+      ],
+      "DEN": [
+        "LAL",
+        "WAS",
+        "MIL",
+        "MEM"
+      ],
+      "LAL": [
+        "DEN",
+        "LAC",
+        "DAL"
+      ],
+      "TOR": [
+        "GSW",
+        "SAC",
+        "POR",
+        "OKC"
+      ],
+      "SAC": [
+        "MIA",
+        "TOR",
+        "CLE",
+        "DET"
+      ],
+      "CHA": [
+        "CLE",
+        "ORL",
+        "WAS"
+      ],
+      "MEM": [
+        "ATL",
+        "NOP",
+        "DEN"
+      ],
+      "NOP": [
+        "DET",
+        "MEM",
+        "SAS"
+      ],
+      "ORL": [
+        "CHA",
+        "CLE"
+      ],
+      "POR": [
+        "MIA",
+        "TOR"
+      ]
+    }
+  },
+  "14": {
+    "start_date": "2026-01-26",
+    "end_date": "2026-02-01",
+    "teams": {
+      "CHA": [
+        "PHI",
+        "MEM",
+        "DAL",
+        "SAS"
+      ],
+      "PHI": [
+        "CHA",
+        "MIL",
+        "SAC",
+        "NOP"
+      ],
+      "CLE": [
+        "ORL",
+        "LAL",
+        "PHX",
+        "POR"
+      ],
+      "ORL": [
+        "CLE",
+        "MIA",
+        "TOR",
+        "SAS"
+      ],
+      "ATL": [
+        "IND",
+        "BOS",
+        "HOU",
+        "IND"
+      ],
+      "IND": [
+        "ATL",
+        "CHI",
+        "ATL"
+      ],
+      "BOS": [
+        "POR",
+        "ATL",
+        "SAC",
+        "MIL"
+      ],
+      "POR": [
+        "BOS",
+        "WAS",
+        "NYK",
+        "CLE"
+      ],
+      "CHI": [
+        "LAL",
+        "IND",
+        "MIA",
+        "MIA"
+      ],
+      "LAL": [
+        "CHI",
+        "CLE",
+        "WAS",
+        "NYK"
+      ],
+      "HOU": [
+        "MEM",
+        "SAS",
+        "ATL",
+        "DAL"
+      ],
+      "MEM": [
+        "HOU",
+        "CHA",
+        "NOP",
+        "MIN"
+      ],
+      "MIN": [
+        "GSW",
+        "DAL",
+        "OKC",
+        "MEM"
+      ],
+      "GSW": [
+        "MIN",
+        "UTA",
+        "DET"
+      ],
+      "WAS": [
+        "POR",
+        "MIL",
+        "LAL",
+        "SAC"
+      ],
+      "NYK": [
+        "SAC",
+        "TOR",
+        "POR",
+        "LAL"
+      ],
+      "SAC": [
+        "NYK",
+        "PHI",
+        "BOS",
+        "WAS"
+      ],
+      "MIL": [
+        "PHI",
+        "WAS",
+        "BOS"
+      ],
+      "OKC": [
+        "NOP",
+        "MIN",
+        "DEN"
+      ],
+      "NOP": [
+        "OKC",
+        "MEM",
+        "PHI"
+      ],
+      "DEN": [
+        "DET",
+        "BKN",
+        "LAC",
+        "OKC"
+      ],
+      "DET": [
+        "DEN",
+        "PHX",
+        "GSW",
+        "BKN"
+      ],
+      "PHX": [
+        "BKN",
+        "DET",
+        "CLE",
+        "LAC"
+      ],
+      "BKN": [
+        "PHX",
+        "DEN",
+        "UTA",
+        "DET"
+      ],
+      "UTA": [
+        "LAC",
+        "GSW",
+        "BKN",
+        "TOR"
+      ],
+      "LAC": [
+        "UTA",
+        "DEN",
+        "PHX"
+      ],
+      "MIA": [
+        "ORL",
+        "CHI",
+        "CHI"
+      ],
+      "TOR": [
+        "NYK",
+        "ORL",
+        "UTA"
+      ],
+      "DAL": [
+        "MIN",
+        "CHA",
+        "HOU"
+      ],
+      "SAS": [
+        "HOU",
+        "CHA",
+        "ORL"
+      ]
+    }
+  },
+  "15": {
+    "start_date": "2026-02-02",
+    "end_date": "2026-02-08",
+    "teams": {
+      "CHA": [
+        "NOP",
+        "HOU",
+        "ATL"
+      ],
+      "NOP": [
+        "CHA",
+        "MIL",
+        "MIN"
+      ],
+      "IND": [
+        "HOU",
+        "UTA",
+        "MIL",
+        "TOR"
+      ],
+      "HOU": [
+        "IND",
+        "BOS",
+        "CHA",
+        "OKC"
+      ],
+      "MEM": [
+        "MIN",
+        "SAC",
+        "POR",
+        "POR"
+      ],
+      "MIN": [
+        "MEM",
+        "TOR",
+        "NOP",
+        "LAC"
+      ],
+      "LAC": [
+        "PHI",
+        "CLE",
+        "SAC",
+        "MIN"
+      ],
+      "PHI": [
+        "LAC",
+        "GSW",
+        "LAL",
+        "PHX"
+      ],
+      "DET": [
+        "DEN",
+        "WAS",
+        "NYK"
+      ],
+      "DEN": [
+        "DET",
+        "NYK",
+        "CHI"
+      ],
+      "UTA": [
+        "IND",
+        "ATL",
+        "ORL"
+      ],
+      "WAS": [
+        "NYK",
+        "DET",
+        "BKN",
+        "MIA"
+      ],
+      "NYK": [
+        "WAS",
+        "DEN",
+        "DET",
+        "BOS"
+      ],
+      "BKN": [
+        "LAL",
+        "ORL",
+        "WAS"
+      ],
+      "LAL": [
+        "BKN",
+        "PHI",
+        "GSW"
+      ],
+      "MIA": [
+        "ATL",
+        "BOS",
+        "WAS"
+      ],
+      "ATL": [
+        "MIA",
+        "UTA",
+        "CHA"
+      ],
+      "DAL": [
+        "BOS",
+        "SAS",
+        "SAS"
+      ],
+      "BOS": [
+        "DAL",
+        "HOU",
+        "MIA",
+        "NYK"
+      ],
+      "MIL": [
+        "CHI",
+        "NOP",
+        "IND"
+      ],
+      "CHI": [
+        "MIL",
+        "TOR",
+        "DEN"
+      ],
+      "OKC": [
+        "ORL",
+        "SAS",
+        "HOU"
+      ],
+      "ORL": [
+        "OKC",
+        "BKN",
+        "UTA"
+      ],
+      "GSW": [
+        "PHI",
+        "PHX",
+        "LAL"
+      ],
+      "POR": [
+        "PHX",
+        "MEM",
+        "MEM"
+      ],
+      "PHX": [
+        "POR",
+        "GSW",
+        "PHI"
+      ],
+      "TOR": [
+        "MIN",
+        "CHI",
+        "IND"
+      ],
+      "SAS": [
+        "OKC",
+        "DAL",
+        "DAL"
+      ],
+      "SAC": [
+        "MEM",
+        "LAC",
+        "CLE"
+      ],
+      "CLE": [
+        "LAC",
+        "SAC"
+      ]
+    }
+  },
+  "16": {
+    "start_date": "2026-02-09",
+    "end_date": "2026-02-15",
+    "teams": {
+      "CHA": [
+        "DET",
+        "ATL"
+      ],
+      "DET": [
+        "CHA",
+        "TOR"
+      ],
+      "BKN": [
+        "CHI",
+        "IND"
+      ],
+      "CHI": [
+        "BKN",
+        "BOS"
+      ],
+      "MIA": [
+        "UTA",
+        "NOP"
+      ],
+      "UTA": [
+        "MIA",
+        "SAC",
+        "POR"
+      ],
+      "ORL": [
+        "MIL",
+        "MIL"
+      ],
+      "MIL": [
+        "ORL",
+        "ORL",
+        "OKC"
+      ],
+      "MIN": [
+        "ATL",
+        "POR"
+      ],
+      "ATL": [
+        "MIN",
+        "CHA"
+      ],
+      "NOP": [
+        "SAC",
+        "MIA"
+      ],
+      "SAC": [
+        "NOP",
+        "UTA"
+      ],
+      "DEN": [
+        "CLE",
+        "MEM"
+      ],
+      "CLE": [
+        "DEN",
+        "WAS"
+      ],
+      "GSW": [
+        "MEM",
+        "SAS"
+      ],
+      "MEM": [
+        "GSW",
+        "DEN"
+      ],
+      "LAL": [
+        "OKC",
+        "SAS",
+        "DAL"
+      ],
+      "OKC": [
+        "LAL",
+        "PHX",
+        "MIL"
+      ],
+      "POR": [
+        "PHI",
+        "MIN",
+        "UTA"
+      ],
+      "PHI": [
+        "POR",
+        "NYK"
+      ],
+      "NYK": [
+        "IND",
+        "PHI"
+      ],
+      "IND": [
+        "NYK",
+        "BKN"
+      ],
+      "HOU": [
+        "LAC",
+        "LAC"
+      ],
+      "LAC": [
+        "HOU",
+        "HOU"
+      ],
+      "PHX": [
+        "DAL",
+        "OKC"
+      ],
+      "DAL": [
+        "PHX",
+        "LAL"
+      ],
+      "SAS": [
+        "LAL",
+        "GSW"
+      ],
+      "WAS": [
+        "CLE"
+      ],
+      "BOS": [
+        "CHI"
+      ],
+      "TOR": [
+        "DET"
+      ]
+    }
+  },
+  "17": {
+    "start_date": "2026-02-16",
+    "end_date": "2026-02-22",
+    "teams": {
+      "CHA": [
+        "HOU",
+        "CLE",
+        "WAS"
+      ],
+      "HOU": [
+        "CHA",
+        "NYK"
+      ],
+      "CLE": [
+        "BKN",
+        "CHA",
+        "OKC"
+      ],
+      "BKN": [
+        "CLE",
+        "OKC",
+        "ATL"
+      ],
+      "PHI": [
+        "ATL",
+        "NOP",
+        "MIN"
+      ],
+      "ATL": [
+        "PHI",
+        "MIA",
+        "BKN"
+      ],
+      "WAS": [
+        "IND",
+        "IND",
+        "CHA"
+      ],
+      "IND": [
+        "WAS",
+        "WAS",
+        "DAL"
+      ],
+      "NYK": [
+        "DET",
+        "HOU",
+        "CHI"
+      ],
+      "DET": [
+        "NYK",
+        "CHI"
+      ],
+      "CHI": [
+        "TOR",
+        "DET",
+        "NYK"
+      ],
+      "TOR": [
+        "CHI",
+        "MIL"
+      ],
+      "SAS": [
+        "PHX",
+        "SAC"
+      ],
+      "PHX": [
+        "SAS",
+        "ORL",
+        "POR"
+      ],
+      "GSW": [
+        "BOS",
+        "DEN"
+      ],
+      "BOS": [
+        "GSW",
+        "LAL"
+      ],
+      "SAC": [
+        "ORL",
+        "SAS"
+      ],
+      "ORL": [
+        "SAC",
+        "PHX",
+        "LAC"
+      ],
+      "LAC": [
+        "DEN",
+        "LAL",
+        "ORL"
+      ],
+      "DEN": [
+        "LAC",
+        "POR",
+        "GSW"
+      ],
+      "MEM": [
+        "UTA",
+        "MIA"
+      ],
+      "UTA": [
+        "MEM"
+      ],
+      "MIA": [
+        "ATL",
+        "MEM"
+      ],
+      "MIN": [
+        "DAL",
+        "PHI"
+      ],
+      "DAL": [
+        "MIN",
+        "IND"
+      ],
+      "NOP": [
+        "MIL",
+        "PHI"
+      ],
+      "MIL": [
+        "NOP",
+        "TOR"
+      ],
+      "OKC": [
+        "BKN",
+        "CLE"
+      ],
+      "LAL": [
+        "LAC",
+        "BOS"
+      ],
+      "POR": [
+        "DEN",
+        "PHX"
+      ]
+    }
+  },
+  "18": {
+    "start_date": "2026-02-23",
+    "end_date": "2026-03-01",
+    "teams": {
+      "DET": [
+        "SAS",
+        "OKC",
+        "CLE",
+        "ORL"
+      ],
+      "SAS": [
+        "DET",
+        "TOR",
+        "BKN",
+        "NYK"
+      ],
+      "MEM": [
+        "SAC",
+        "GSW",
+        "DAL",
+        "IND"
+      ],
+      "SAC": [
+        "MEM",
+        "HOU",
+        "DAL",
+        "LAL"
+      ],
+      "HOU": [
+        "UTA",
+        "SAC",
+        "ORL",
+        "MIA"
+      ],
+      "UTA": [
+        "HOU",
+        "NOP",
+        "NOP"
+      ],
+      "IND": [
+        "PHI",
+        "CHA",
+        "MEM"
+      ],
+      "PHI": [
+        "IND",
+        "MIA",
+        "BOS"
+      ],
+      "ATL": [
+        "WAS",
+        "WAS",
+        "POR"
+      ],
+      "WAS": [
+        "ATL",
+        "ATL",
+        "TOR"
+      ],
+      "BKN": [
+        "DAL",
+        "SAS",
+        "BOS",
+        "CLE"
+      ],
+      "DAL": [
+        "BKN",
+        "SAC",
+        "MEM",
+        "OKC"
+      ],
+      "TOR": [
+        "OKC",
+        "SAS",
+        "WAS"
+      ],
+      "OKC": [
+        "TOR",
+        "DET",
+        "DEN",
+        "DAL"
+      ],
+      "CLE": [
+        "NYK",
+        "MIL",
+        "DET",
+        "BKN"
+      ],
+      "NYK": [
+        "CLE",
+        "MIL",
+        "SAS"
+      ],
+      "CHI": [
+        "CHA",
+        "POR",
+        "MIL"
+      ],
+      "CHA": [
+        "CHI",
+        "IND",
+        "POR"
+      ],
+      "MIL": [
+        "MIA",
+        "CLE",
+        "NYK",
+        "CHI"
+      ],
+      "MIA": [
+        "MIL",
+        "PHI",
+        "HOU"
+      ],
+      "NOP": [
+        "GSW",
+        "UTA",
+        "UTA",
+        "LAC"
+      ],
+      "GSW": [
+        "NOP",
+        "MEM",
+        "LAL"
+      ],
+      "PHX": [
+        "BOS",
+        "LAL"
+      ],
+      "BOS": [
+        "PHX",
+        "DEN",
+        "BKN",
+        "PHI"
+      ],
+      "LAL": [
+        "ORL",
+        "PHX",
+        "GSW",
+        "SAC"
+      ],
+      "ORL": [
+        "LAL",
+        "HOU",
+        "DET"
+      ],
+      "POR": [
+        "MIN",
+        "CHI",
+        "CHA",
+        "ATL"
+      ],
+      "MIN": [
+        "POR",
+        "LAC",
+        "DEN"
+      ],
+      "DEN": [
+        "BOS",
+        "OKC",
+        "MIN"
+      ],
+      "LAC": [
+        "MIN",
+        "NOP"
+      ]
+    }
+  },
+  "19": {
+    "start_date": "2026-03-02",
+    "end_date": "2026-03-08",
+    "teams": {
+      "WAS": [
+        "HOU",
+        "ORL",
+        "UTA",
+        "NOP"
+      ],
+      "HOU": [
+        "WAS",
+        "GSW",
+        "POR",
+        "SAS"
+      ],
+      "MIL": [
+        "BOS",
+        "ATL",
+        "UTA",
+        "ORL"
+      ],
+      "BOS": [
+        "MIL",
+        "CHA",
+        "DAL",
+        "CLE"
+      ],
+      "UTA": [
+        "DEN",
+        "PHI",
+        "WAS",
+        "MIL"
+      ],
+      "DEN": [
+        "UTA",
+        "LAL",
+        "NYK"
+      ],
+      "GSW": [
+        "LAC",
+        "HOU",
+        "OKC"
+      ],
+      "LAC": [
+        "GSW",
+        "IND",
+        "SAS",
+        "MEM"
+      ],
+      "CHA": [
+        "DAL",
+        "BOS",
+        "MIA",
+        "PHX"
+      ],
+      "DAL": [
+        "CHA",
+        "ORL",
+        "BOS",
+        "TOR"
+      ],
+      "CLE": [
+        "DET",
+        "BOS"
+      ],
+      "DET": [
+        "CLE",
+        "SAS",
+        "BKN",
+        "MIA"
+      ],
+      "ORL": [
+        "WAS",
+        "DAL",
+        "MIN",
+        "MIL"
+      ],
+      "MIA": [
+        "BKN",
+        "BKN",
+        "CHA",
+        "DET"
+      ],
+      "BKN": [
+        "MIA",
+        "MIA",
+        "DET"
+      ],
+      "TOR": [
+        "NYK",
+        "MIN",
+        "DAL"
+      ],
+      "NYK": [
+        "TOR",
+        "OKC",
+        "DEN",
+        "LAL"
+      ],
+      "PHI": [
+        "SAS",
+        "UTA",
+        "ATL"
+      ],
+      "SAS": [
+        "PHI",
+        "DET",
+        "LAC",
+        "HOU"
+      ],
+      "CHI": [
+        "OKC",
+        "PHX",
+        "SAC"
+      ],
+      "OKC": [
+        "CHI",
+        "NYK",
+        "GSW"
+      ],
+      "MIN": [
+        "MEM",
+        "TOR",
+        "ORL"
+      ],
+      "MEM": [
+        "MIN",
+        "POR",
+        "LAC"
+      ],
+      "LAL": [
+        "NOP",
+        "DEN",
+        "IND",
+        "NYK"
+      ],
+      "NOP": [
+        "LAL",
+        "SAC",
+        "PHX",
+        "WAS"
+      ],
+      "SAC": [
+        "PHX",
+        "NOP",
+        "CHI"
+      ],
+      "PHX": [
+        "SAC",
+        "CHI",
+        "NOP",
+        "CHA"
+      ],
+      "POR": [
+        "MEM",
+        "HOU",
+        "IND"
+      ],
+      "ATL": [
+        "MIL",
+        "PHI"
+      ],
+      "IND": [
+        "LAC",
+        "LAL",
+        "POR"
+      ]
+    }
+  },
+  "20": {
+    "start_date": "2026-03-09",
+    "end_date": "2026-03-15",
+    "teams": {
+      "CLE": [
+        "PHI",
+        "ORL",
+        "DAL",
+        "DAL"
+      ],
+      "PHI": [
+        "CLE",
+        "MEM",
+        "DET",
+        "BKN",
+        "POR"
+      ],
+      "BKN": [
+        "MEM",
+        "DET",
+        "ATL",
+        "PHI"
+      ],
+      "MEM": [
+        "BKN",
+        "PHI",
+        "DET"
+      ],
+      "OKC": [
+        "DEN",
+        "BOS",
+        "MIN"
+      ],
+      "DEN": [
+        "OKC",
+        "HOU",
+        "SAS",
+        "LAL"
+      ],
+      "UTA": [
+        "GSW",
+        "NYK",
+        "POR",
+        "SAC"
+      ],
+      "GSW": [
+        "UTA",
+        "CHI",
+        "MIN",
+        "NYK"
+      ],
+      "LAC": [
+        "NYK",
+        "MIN",
+        "CHI",
+        "SAC"
+      ],
+      "NYK": [
+        "LAC",
+        "UTA",
+        "IND",
+        "GSW"
+      ],
+      "DET": [
+        "BKN",
+        "PHI",
+        "MEM",
+        "TOR"
+      ],
+      "MIA": [
+        "WAS",
+        "MIL",
+        "ORL"
+      ],
+      "WAS": [
+        "MIA",
+        "ORL",
+        "BOS"
+      ],
+      "ATL": [
+        "DAL",
+        "BKN",
+        "MIL"
+      ],
+      "DAL": [
+        "ATL",
+        "CLE",
+        "CLE"
+      ],
+      "HOU": [
+        "TOR",
+        "DEN",
+        "NOP"
+      ],
+      "TOR": [
+        "HOU",
+        "NOP",
+        "PHX",
+        "DET"
+      ],
+      "MIL": [
+        "PHX",
+        "MIA",
+        "ATL",
+        "IND"
+      ],
+      "PHX": [
+        "MIL",
+        "IND",
+        "TOR"
+      ],
+      "SAS": [
+        "BOS",
+        "DEN",
+        "CHA"
+      ],
+      "BOS": [
+        "SAS",
+        "OKC",
+        "WAS"
+      ],
+      "CHI": [
+        "GSW",
+        "LAL",
+        "LAC"
+      ],
+      "POR": [
+        "CHA",
+        "UTA",
+        "PHI"
+      ],
+      "CHA": [
+        "POR",
+        "SAC",
+        "SAS"
+      ],
+      "SAC": [
+        "IND",
+        "CHA",
+        "LAC",
+        "UTA"
+      ],
+      "IND": [
+        "SAC",
+        "PHX",
+        "NYK",
+        "MIL"
+      ],
+      "LAL": [
+        "MIN",
+        "CHI",
+        "DEN"
+      ],
+      "MIN": [
+        "LAL",
+        "LAC",
+        "GSW",
+        "OKC"
+      ],
+      "ORL": [
+        "CLE",
+        "WAS",
+        "MIA"
+      ],
+      "NOP": [
+        "TOR",
+        "HOU"
+      ]
+    }
+  },
+  "21": {
+    "start_date": "2026-03-16",
+    "end_date": "2026-03-22",
+    "teams": {
+      "ATL": [
+        "ORL",
+        "DAL",
+        "HOU",
+        "GSW"
+      ],
+      "ORL": [
+        "ATL",
+        "OKC",
+        "CHA",
+        "LAL"
+      ],
+      "WAS": [
+        "GSW",
+        "DET",
+        "DET",
+        "OKC",
+        "NYK"
+      ],
+      "GSW": [
+        "WAS",
+        "BOS",
+        "DET",
+        "ATL"
+      ],
+      "BKN": [
+        "POR",
+        "OKC",
+        "NYK",
+        "SAC"
+      ],
+      "POR": [
+        "BKN",
+        "IND",
+        "MIN",
+        "DEN"
+      ],
+      "BOS": [
+        "PHX",
+        "GSW",
+        "MEM",
+        "MIN"
+      ],
+      "PHX": [
+        "BOS",
+        "MIN",
+        "SAS",
+        "MIL",
+        "TOR"
+      ],
+      "CHI": [
+        "MEM",
+        "TOR",
+        "CLE"
+      ],
+      "MEM": [
+        "CHI",
+        "NYK",
+        "BOS",
+        "CHA"
+      ],
+      "NOP": [
+        "DAL",
+        "LAC",
+        "LAC",
+        "CLE"
+      ],
+      "DAL": [
+        "NOP",
+        "ATL",
+        "LAC"
+      ],
+      "HOU": [
+        "LAL",
+        "LAL",
+        "ATL",
+        "MIA"
+      ],
+      "LAL": [
+        "HOU",
+        "HOU",
+        "MIA",
+        "ORL"
+      ],
+      "LAC": [
+        "SAS",
+        "NOP",
+        "NOP",
+        "DAL"
+      ],
+      "SAS": [
+        "LAC",
+        "SAC",
+        "PHX",
+        "IND"
+      ],
+      "CHA": [
+        "MIA",
+        "ORL",
+        "MEM"
+      ],
+      "MIA": [
+        "CHA",
+        "LAL",
+        "HOU"
+      ],
+      "OKC": [
+        "ORL",
+        "BKN",
+        "WAS"
+      ],
+      "DET": [
+        "WAS",
+        "WAS",
+        "GSW"
+      ],
+      "NYK": [
+        "IND",
+        "MEM",
+        "BKN",
+        "WAS"
+      ],
+      "IND": [
+        "NYK",
+        "POR",
+        "SAS"
+      ],
+      "MIL": [
+        "CLE",
+        "UTA",
+        "PHX"
+      ],
+      "CLE": [
+        "MIL",
+        "CHI",
+        "NOP"
+      ],
+      "MIN": [
+        "PHX",
+        "UTA",
+        "POR",
+        "BOS"
+      ],
+      "DEN": [
+        "PHI",
+        "TOR",
+        "POR"
+      ],
+      "PHI": [
+        "DEN",
+        "SAC",
+        "UTA"
+      ],
+      "SAC": [
+        "SAS",
+        "PHI",
+        "BKN"
+      ],
+      "TOR": [
+        "CHI",
+        "DEN",
+        "PHX"
+      ],
+      "UTA": [
+        "MIN",
+        "MIL",
+        "PHI"
+      ]
+    }
+  },
+  "22": {
+    "start_date": "2026-03-23",
+    "end_date": "2026-03-29",
+    "teams": {
+      "ATL": [
+        "MEM",
+        "DET",
+        "BOS",
+        "SAC"
+      ],
+      "MEM": [
+        "ATL",
+        "SAS",
+        "HOU",
+        "CHI"
+      ],
+      "DET": [
+        "LAL",
+        "ATL",
+        "NOP",
+        "MIN"
+      ],
+      "LAL": [
+        "DET",
+        "IND",
+        "BKN"
+      ],
+      "ORL": [
+        "IND",
+        "CLE",
+        "SAC",
+        "TOR"
+      ],
+      "IND": [
+        "ORL",
+        "LAL",
+        "LAC",
+        "MIA"
+      ],
+      "PHI": [
+        "OKC",
+        "CHI",
+        "CHA"
+      ],
+      "OKC": [
+        "PHI",
+        "BOS",
+        "CHI",
+        "NYK"
+      ],
+      "MIA": [
+        "SAS",
+        "CLE",
+        "CLE",
+        "IND"
+      ],
+      "SAS": [
+        "MIA",
+        "MEM",
+        "MIL"
+      ],
+      "CHI": [
+        "HOU",
+        "PHI",
+        "OKC",
+        "MEM"
+      ],
+      "HOU": [
+        "CHI",
+        "MIN",
+        "MEM",
+        "NOP"
+      ],
+      "UTA": [
+        "TOR",
+        "WAS",
+        "DEN",
+        "PHX"
+      ],
+      "TOR": [
+        "UTA",
+        "LAC",
+        "NOP",
+        "ORL"
+      ],
+      "DAL": [
+        "GSW",
+        "DEN",
+        "POR"
+      ],
+      "GSW": [
+        "DAL",
+        "BKN",
+        "WAS",
+        "DEN"
+      ],
+      "POR": [
+        "BKN",
+        "MIL",
+        "DAL",
+        "WAS"
+      ],
+      "BKN": [
+        "POR",
+        "GSW",
+        "LAL",
+        "SAC"
+      ],
+      "LAC": [
+        "MIL",
+        "TOR",
+        "IND",
+        "MIL"
+      ],
+      "MIL": [
+        "LAC",
+        "POR",
+        "SAS",
+        "LAC"
+      ],
+      "CHA": [
+        "SAC",
+        "NYK",
+        "PHI",
+        "BOS"
+      ],
+      "SAC": [
+        "CHA",
+        "ORL",
+        "ATL",
+        "BKN"
+      ],
+      "NYK": [
+        "NOP",
+        "CHA",
+        "OKC"
+      ],
+      "NOP": [
+        "NYK",
+        "DET",
+        "TOR",
+        "HOU"
+      ],
+      "CLE": [
+        "ORL",
+        "MIA",
+        "MIA"
+      ],
+      "PHX": [
+        "DEN",
+        "UTA"
+      ],
+      "DEN": [
+        "PHX",
+        "DAL",
+        "UTA",
+        "GSW"
+      ],
+      "BOS": [
+        "OKC",
+        "ATL",
+        "CHA"
+      ],
+      "WAS": [
+        "UTA",
+        "GSW",
+        "POR"
+      ],
+      "MIN": [
+        "HOU",
+        "DET"
+      ]
+    }
+  },
+  "23": {
+    "start_date": "2026-03-30",
+    "end_date": "2026-04-05",
+    "teams": {
+      "MIA": [
+        "PHI",
+        "BOS",
+        "WAS"
+      ],
+      "PHI": [
+        "MIA",
+        "WAS",
+        "MIN",
+        "DET"
+      ],
+      "ATL": [
+        "BOS",
+        "ORL",
+        "BKN"
+      ],
+      "BOS": [
+        "ATL",
+        "MIA",
+        "MIL",
+        "TOR"
+      ],
+      "MEM": [
+        "PHX",
+        "DAL",
+        "TOR",
+        "MIL"
+      ],
+      "PHX": [
+        "MEM",
+        "ORL",
+        "CHA",
+        "CHI"
+      ],
+      "SAS": [
+        "CHI",
+        "GSW",
+        "LAC",
+        "DEN"
+      ],
+      "CHI": [
+        "SAS",
+        "IND",
+        "NYK",
+        "PHX"
+      ],
+      "DAL": [
+        "MIN",
+        "MEM",
+        "ORL",
+        "LAL"
+      ],
+      "MIN": [
+        "DAL",
+        "DET",
+        "PHI",
+        "CHA"
+      ],
+      "UTA": [
+        "CLE",
+        "DEN",
+        "HOU",
+        "OKC"
+      ],
+      "CLE": [
+        "UTA",
+        "LAL",
+        "GSW",
+        "IND"
+      ],
+      "OKC": [
+        "DET",
+        "LAL",
+        "UTA"
+      ],
+      "DET": [
+        "OKC",
+        "TOR",
+        "MIN",
+        "PHI"
+      ],
+      "LAL": [
+        "WAS",
+        "CLE",
+        "OKC",
+        "DAL"
+      ],
+      "WAS": [
+        "LAL",
+        "PHI",
+        "MIA",
+        "BKN"
+      ],
+      "ORL": [
+        "PHX",
+        "ATL",
+        "DAL",
+        "NOP"
+      ],
+      "BKN": [
+        "CHA",
+        "ATL",
+        "WAS"
+      ],
+      "CHA": [
+        "BKN",
+        "PHX",
+        "IND",
+        "MIN"
+      ],
+      "TOR": [
+        "DET",
+        "SAC",
+        "MEM",
+        "BOS"
+      ],
+      "HOU": [
+        "NYK",
+        "MIL",
+        "UTA",
+        "GSW"
+      ],
+      "NYK": [
+        "HOU",
+        "CHI"
+      ],
+      "LAC": [
+        "POR",
+        "SAS",
+        "SAC"
+      ],
+      "POR": [
+        "LAC",
+        "NOP"
+      ],
+      "SAC": [
+        "TOR",
+        "NOP",
+        "LAC"
+      ],
+      "IND": [
+        "CHI",
+        "CHA",
+        "CLE"
+      ],
+      "MIL": [
+        "HOU",
+        "BOS",
+        "MEM"
+      ],
+      "DEN": [
+        "UTA",
+        "SAS"
+      ],
+      "GSW": [
+        "SAS",
+        "CLE",
+        "HOU"
+      ],
+      "NOP": [
+        "POR",
+        "SAC",
+        "ORL"
+      ]
+    }
+  },
+  "24": {
+    "start_date": "2026-04-06",
+    "end_date": "2026-04-12",
+    "teams": {
+      "ATL": [
+        "NYK",
+        "CLE",
+        "CLE",
+        "MIA"
+      ],
+      "NYK": [
+        "ATL",
+        "BOS",
+        "TOR",
+        "CHA"
+      ],
+      "ORL": [
+        "DET",
+        "MIN",
+        "CHI",
+        "BOS"
+      ],
+      "DET": [
+        "ORL",
+        "MIL",
+        "CHA",
+        "IND"
+      ],
+      "MEM": [
+        "CLE",
+        "DEN",
+        "UTA",
+        "HOU"
+      ],
+      "CLE": [
+        "MEM",
+        "ATL",
+        "ATL",
+        "WAS"
+      ],
+      "SAS": [
+        "PHI",
+        "POR",
+        "DAL",
+        "DEN"
+      ],
+      "PHI": [
+        "SAS",
+        "HOU",
+        "IND",
+        "MIL"
+      ],
+      "DEN": [
+        "POR",
+        "MEM",
+        "OKC",
+        "SAS"
+      ],
+      "POR": [
+        "DEN",
+        "SAS",
+        "LAC",
+        "SAC"
+      ],
+      "WAS": [
+        "CHI",
+        "CHI",
+        "MIA",
+        "CLE"
+      ],
+      "CHI": [
+        "WAS",
+        "WAS",
+        "ORL",
+        "DAL"
+      ],
+      "BOS": [
+        "CHA",
+        "NYK",
+        "NOP",
+        "ORL"
+      ],
+      "CHA": [
+        "BOS",
+        "DET",
+        "NYK"
+      ],
+      "BKN": [
+        "MIL",
+        "IND",
+        "MIL",
+        "TOR"
+      ],
+      "MIL": [
+        "BKN",
+        "DET",
+        "BKN",
+        "PHI"
+      ],
+      "TOR": [
+        "MIA",
+        "MIA",
+        "NYK",
+        "BKN"
+      ],
+      "MIA": [
+        "TOR",
+        "TOR",
+        "WAS",
+        "ATL"
+      ],
+      "IND": [
+        "MIN",
+        "BKN",
+        "PHI",
+        "DET"
+      ],
+      "MIN": [
+        "IND",
+        "ORL",
+        "HOU",
+        "NOP"
+      ],
+      "NOP": [
+        "UTA",
+        "BOS",
+        "MIN"
+      ],
+      "UTA": [
+        "NOP",
+        "MEM",
+        "LAL"
+      ],
+      "GSW": [
+        "SAC",
+        "LAL",
+        "SAC",
+        "LAC"
+      ],
+      "SAC": [
+        "GSW",
+        "GSW",
+        "POR"
+      ],
+      "LAL": [
+        "OKC",
+        "GSW",
+        "PHX",
+        "UTA"
+      ],
+      "OKC": [
+        "LAL",
+        "LAC",
+        "DEN",
+        "PHX"
+      ],
+      "LAC": [
+        "DAL",
+        "OKC",
+        "POR",
+        "GSW"
+      ],
+      "DAL": [
+        "LAC",
+        "PHX",
+        "SAS",
+        "CHI"
+      ],
+      "PHX": [
+        "HOU",
+        "DAL",
+        "LAL",
+        "OKC"
+      ],
+      "HOU": [
+        "PHX",
+        "PHI",
+        "MIN",
+        "MEM"
+      ]
+    }
+  }
+}
