@@ -5,10 +5,10 @@ interface RadialOption {
   value: string;
 }
 
-interface RadialButtonProps {
+interface RadialButtonProps<T = unknown> {
   options: RadialOption[];
   selected: string;
-  onChange: (value: any) => void;
+  onChange: (value: T) => void;
 }
 
 export const RadialButtonGroup: React.FC<RadialButtonProps> = ({

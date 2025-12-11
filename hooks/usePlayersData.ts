@@ -189,7 +189,7 @@ function attachZScores(
   // Third pass: compute z-scores (with caps)
   players.forEach((p) => {
     STAT_KEYS.forEach((k) => {
-      let v = p[`${k}_zscore`] as number;
+      const v = p[`${k}_zscore`];
       const { mean, std } = stats[k];
 
       let z = (v - mean) / std;

@@ -1,4 +1,4 @@
-import { PlayerRow, PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
+import { PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
 import { DatasetKeys, STAT_KEYS, StatKeys } from "@/types/player";
 import { getHeatmapColor, StatLabels } from "@/utils/playersTable";
 import Image from "next/image";
@@ -39,13 +39,6 @@ const defaultHeatmapControls: HeatmapControls = {
 interface SortProps {
   sortBy: PlayerRowKeys,
   isDesc: boolean
-}
-
-interface StatColumn {
-  key: PlayerRowKeys,
-  label: string,
-  invert?: boolean,
-  render?: (player: PlayerRow) => React.ReactNode,
 }
 
 export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
