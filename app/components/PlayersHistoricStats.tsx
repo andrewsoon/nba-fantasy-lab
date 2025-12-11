@@ -34,7 +34,7 @@ export function PlayersHistoricStats() {
             options={Object.entries(datasetLabels).map(([value, label]) => {
               return { label, value }
             })}
-            onSelect={setDataset}
+            onSelect={value => setDataset(value as DatasetKeys)}
             selected={datasetLabels[dataset]}
           />
         </div>

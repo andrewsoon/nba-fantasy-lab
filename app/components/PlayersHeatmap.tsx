@@ -131,7 +131,7 @@ export default function PlayersHeatmap({ dataset }: PlayersHeatmapProps) {
                         ...prev,
                         statWeights: {
                           ...prev.statWeights,
-                          [statKey]: value
+                          [statKey]: value as number
                         }
                       }))
                     }
