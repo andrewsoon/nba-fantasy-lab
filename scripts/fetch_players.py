@@ -1,6 +1,6 @@
 import json
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import pandas as pd
 from nba_api.stats.endpoints import LeagueDashPlayerStats, PlayerGameLog
 
@@ -53,7 +53,8 @@ def fetch_players(season=season):
         print("Failed to fetch LeagueDashPlayerStats:", e)
         return
 
-    today = datetime.now()
+    # Get today in UTC at 00:00:00
+    today = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
     seven_days_ago = today - timedelta(days=7)
     fourteen_days_ago = today - timedelta(days=14)
 
@@ -64,7 +65,7 @@ def fetch_players(season=season):
         try:
             # Fetch full season gamelogs (source of truth)
             log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
-            log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
+            log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE']).dt.tz_localize('UTC')
 
             # --- Season totals and averages (NEW) ---
             season_totals, season_avgs = compute_totals_and_avgs(log_df)
