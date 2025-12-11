@@ -1,4 +1,4 @@
-import { PlayersTable } from "./components/PlayersTable";
+import { PlayersHistoricStats } from "./components/PlayersHistoricStats";
 import ScrollToTopButton from "./components/ScrollToTopButton";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
           </p>
         </div>
       </div>
-      <PlayersTable />
+      <PlayersHistoricStats />
       <ScrollToTopButton />
     </div>
   );

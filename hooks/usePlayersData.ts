@@ -1,13 +1,11 @@
 import PlayersData from "@/data/players.json";
-import { DatasetKeys, Player, StatCategory } from "@/types/player";
-import { weightedFG } from "@/utils/playersTable";
+import { DatasetKeys, Player, STAT_KEYS, StatCategory, StatKeys } from "@/types/player";
 import React from "react";
 
-export function usePlayersData(selectedDataSet: DatasetKeys) {
+export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>) {
   const playersRaw = PlayersData.players;
 
   const [rows, setRows] = React.useState<PlayerRow[]>([]);
-  const [minMax, setMinMax] = React.useState<Record<string, { min: number; max: number }>>({});
   const [loading, setLoading] = React.useState(true);
 
   // preprocess raw data once
@@ -23,28 +21,27 @@ export function usePlayersData(selectedDataSet: DatasetKeys) {
     }))
     , [playersRaw]);
 
-  // compute rows/minMax when dataset changes
+  // compute rows when dataset changes
   React.useEffect(() => {
     setLoading(true);
 
     // schedule computation so React can render spinner
     setTimeout(() => {
       const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
-      const newMinMax = computeMinMax(newRows);
-      const datasetMeanStd = computeDatasetMeanStd(newRows);
 
-      newRows.forEach(row => computePlayerRating(row, datasetMeanStd));
+      attachZScores(newRows)
+      computeZScoreRatings(newRows, statWeights)
+
       assignRanks(newRows);
       newRows.sort((a, b) => b.rating - a.rating);
 
       setRows(newRows);
-      setMinMax(newMinMax);
       setLoading(false);
     }, 0);
 
-  }, [selectedDataSet, basePlayers]);
+  }, [selectedDataSet, basePlayers, statWeights]);
 
-  return { rows, minMax, loading };
+  return { rows, loading };
 }
 
 
@@ -69,8 +66,16 @@ function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCate
     fg_pct,
     ft_pct,
     gp: totalsGP ?? raw.gp ?? 0,
-    fg_weighted: fg_pct * (raw.fga ?? 0),
-    ft_weighted: ft_pct * (raw.fta ?? 0),
+
+    pts_zscore: 0,
+    reb_zscore: 0,
+    ast_zscore: 0,
+    stl_zscore: 0,
+    blk_zscore: 0,
+    fg3m_zscore: 0,
+    fg_pct_zscore: 0,
+    ft_pct_zscore: 0,
+    tov_zscore: 0,
   };
 }
 
@@ -98,9 +103,17 @@ export interface PlayerRow {
   rating: number,
   rank: number,
 
-  fg_weighted: number;   // fg_pct * fga
-  ft_weighted: number;   // ft_pct * fta
+  pts_zscore: number,
+  reb_zscore: number,
+  ast_zscore: number,
+  stl_zscore: number,
+  blk_zscore: number,
+  fg3m_zscore: number,
+  fg_pct_zscore: number,
+  ft_pct_zscore: number,
+  tov_zscore: number,
 }
+
 export type PlayerRowKeys = keyof PlayerRow;
 
 
@@ -118,85 +131,113 @@ function flattenPlayer(player: Player, key: DatasetKeys): PlayerRow {
   };
 }
 
-function computeMinMax(rows: PlayerRow[]) {
-  const result: Record<string, { min: number; max: number }> = {};
+function attachZScores(
+  players: PlayerRow[]
+) {
+  const ZERO_INFLATED = ["stl", "blk", "tpm"];
+  const TURNOVER = "tov";
 
-  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
-    (k) => typeof rows[0][k] === "number"
-  );
+  // Compute league totals needed for FG% / FT% impact
+  const totalFGA = players.reduce((s, p) => s + (p.fga ?? 0), 0);
+  const totalFGM = players.reduce((s, p) => s + (p.fgm ?? 0), 0);
+  const leagueFgPct = totalFGA === 0 ? 0 : totalFGM / totalFGA;
 
+  const totalFTA = players.reduce((s, p) => s + (p.fta ?? 0), 0);
+  const totalFTM = players.reduce((s, p) => s + (p.ftm ?? 0), 0);
+  const leagueFtPct = totalFTA === 0 ? 0 : totalFTM / totalFTA;
 
-  numericKeys.forEach(k => {
-    const values = rows.map(r => r[k as keyof PlayerRow] as number);
-    result[k] = {
-      min: Math.min(...values),
-      max: Math.max(...values),
-    };
+  // Build a map of { statKey: { mean, std } }
+  const stats = {} as Record<string, { mean: number; std: number }>;
+
+  // First pass: compute derived impact values and collect stat arrays
+  const statArrays: Record<string, number[]> = {};
+
+  players.forEach((p) => {
+    STAT_KEYS.forEach((k) => {
+      let value = p[k] as number;
+
+      if (k === "fg_pct") {
+        value = p.fg_pct - leagueFgPct  // FG impact
+      } else if (k === "ft_pct") {
+        value = p.ft_pct - leagueFtPct  // FT impact
+      }
+
+      // Zero-inflated categories
+      if (ZERO_INFLATED.includes(k)) {
+        // Treat 0 as lowest, but keep it numeric
+        value = value === 0 ? 0 : value;
+      }
+
+      if (!statArrays[k]) statArrays[k] = [];
+      statArrays[k].push(value);
+      // store the transformed value
+      p[`${k}_zscore`] = value;
+    });
   });
 
-  const fgWeightedValues = rows.map(r => weightedFG(r.fg_pct, r.fga))
-  result['fg_weighted'] = {
-    min: Math.min(...fgWeightedValues),
-    max: Math.max(...fgWeightedValues),
-  }
+  // Second pass: compute mean & std for each stat
+  Object.keys(statArrays).forEach((k) => {
+    const arr = statArrays[k];
+    const mean = arr.reduce((s, x) => s + x, 0) / arr.length;
+    const variance =
+      arr.reduce((s, x) => s + Math.pow(x - mean, 2), 0) / arr.length;
+    const std = Math.sqrt(variance) || 1; // avoid div-by-zero
 
-  const ftWeightedValues = rows.map(r => weightedFG(r.ft_pct, r.fta))
-  result['ft_weighted'] = {
-    min: Math.min(...ftWeightedValues),
-    max: Math.max(...ftWeightedValues),
-  }
-
-  return result;
-}
-
-type DatasetMeanStd = Record<keyof PlayerRow, { mean: number; std: number }>;
-
-export function computeDatasetMeanStd(rows: PlayerRow[]): Partial<DatasetMeanStd> {
-  const datasetMeanStd: Partial<DatasetMeanStd> = {};
-
-  // Get all numeric keys from the first row
-  const numericKeys = (Object.keys(rows[0]) as Array<keyof PlayerRow>).filter(
-    (k) => typeof rows[0][k] === "number" && k !== "rating" && k !== "rank"
-  );
-
-  numericKeys.forEach(k => {
-    const values = rows.map(r => r[k as keyof PlayerRow] as number);
-    const mean = values.reduce((sum, val) => sum + val, 0) / values.length;
-    const std = Math.sqrt(
-      values.reduce((sum, val) => sum + (val - mean) ** 2, 0) / values.length
-    );
-
-    datasetMeanStd[k] = { mean, std };
+    stats[k] = { mean, std };
   });
 
-  return datasetMeanStd;
+  // Third pass: compute z-scores (with caps)
+  players.forEach((p) => {
+    STAT_KEYS.forEach((k) => {
+      const v = p[`${k}_zscore`];
+      const { mean, std } = stats[k];
+
+      let z = (v - mean) / std;
+
+      // Turnovers: higher is worse
+      if (k === TURNOVER) {
+        z = -z;
+      }
+
+      // Cap Z-scores for heatmap & fairness
+      const CAP = 3;
+      if (z > CAP) z = CAP;
+      if (z < -CAP) z = -CAP;
+
+      p[`${k}_zscore`] = z;
+    });
+  });
+
+  return players;
 }
 
-function computePlayerRating(row: PlayerRow, datasetMeanStd: Partial<DatasetMeanStd>) {
-  let zScore = 0;
+function computeZScoreRatings(
+  players: PlayerRow[],
+  weights: Record<string, number> = {}
+) {
+  players.forEach((p) => {
+    let totalWeight = 0;
+    let sum = 0;
 
-  for (const key of Object.keys(datasetMeanStd) as (keyof StatCategory)[]) {
-    if (key === "gp") continue; // skip games played
+    STAT_KEYS.forEach((k) => {
+      const key = `${k}_zscore` as keyof PlayerRow
+      const pct = p[key] ?? 0; // treat missing ratings as 0
+      const w = weights[k] ?? 1;
+      if (typeof pct === 'number') {
+        sum += pct * w;
+        totalWeight += w;
+      }
+    });
 
-    const val = row[key] ?? 0;
-    const { mean = 0, std = 1 } = datasetMeanStd[key] ?? {};
-
-    if (std === 0) continue; // avoid division by zero
-
-    // example: weight TOV negatively
-    if (key === "tov") {
-      zScore -= ((val - mean) * 0.25) / std;
-    } else {
-      zScore += (val - mean) / std;
-    }
-  }
-
-  row.rating = zScore;
+    const rating = totalWeight > 0 ? sum / totalWeight : 0;
+    p.rating = rating
+  });
 }
+
 
 function assignRanks(rows: PlayerRow[]) {
   // Sort descending by rating
-  const sorted = [...rows].sort((a, b) => b?.rating - a?.rating);
+  const sorted = [...rows].sort((a, b) => b.rating - a.rating);
 
   let lastRating = Infinity;
   let rank = 0;

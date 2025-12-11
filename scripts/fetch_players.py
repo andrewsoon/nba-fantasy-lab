@@ -14,24 +14,26 @@ categories = ['MIN','PTS','REB','AST','STL','BLK','TOV','FGM','FGA','FTM','FTA',
 # ---------------------------
 # Helper functions
 # ---------------------------
-def safe_get(d, key, default=0):
-    return d.get(key, default) if d else default
-
 def compute_totals_and_avgs(df):
     """Compute totals and averages from a player game log DataFrame with lowercase keys."""
     if df.empty:
         return {k.lower(): 0 for k in categories}, {k.lower(): 0 for k in categories}
-    
-    totals = {k.lower(): v for k, v in df[categories].sum().to_dict().items()}
+
+    totals = {k.lower(): df[k].sum() for k in categories}
     gp = len(df)
-    avgs = {k: (v / gp if v is not None else 0) for k, v in totals.items()}
-    
+
+    avgs = {}
+    for k in totals:
+        avgs[k] = totals[k] / gp  # per-game averages for all stats
+
     # Percentages
     avgs['fg_pct'] = totals['fgm'] / totals['fga'] if totals['fga'] > 0 else 0
     avgs['ft_pct'] = totals['ftm'] / totals['fta'] if totals['fta'] > 0 else 0
     avgs['fg3_pct'] = totals['fg3m'] / totals['fg3a'] if totals['fg3a'] > 0 else 0
-    
+
     totals['gp'] = gp
+    avgs['gp'] = gp
+
     return totals, avgs
 
 # ---------------------------
@@ -42,7 +44,7 @@ def fetch_players(season=season):
     players_list = []
     failed_players = []
 
-    print(f"Fetching season {season} per-game stats...")
+    print(f"Fetching season {season} list of players...")
 
     try:
         season_df = LeagueDashPlayerStats(season=season, per_mode_detailed="PerGame").get_data_frames()[0]
@@ -58,30 +60,22 @@ def fetch_players(season=season):
     for idx, row in season_df.iterrows():
         player_id = row.get("PLAYER_ID")
         player_name = row.get("PLAYER_NAME")
-        gp = row.get("GP", 0)
 
         try:
-            # Season averages and totals with lowercase keys + fallback to 0
-            season_avgs = {k.lower(): row.get(k, 0) for k in ['MIN','PTS','REB','AST','STL','BLK','TOV','FGM','FGA','FTM','FTA','FG3M','FG3A','FG_PCT','FT_PCT','FG3_PCT']}
-            season_totals = {k: (v * gp if k not in ['fg_pct','ft_pct','fg3_pct'] else v) for k,v in season_avgs.items()}
-            season_totals['gp'] = gp
+            # Fetch full season gamelogs (source of truth)
+            log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
+            log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
 
-            try:
-                log_df = PlayerGameLog(player_id=player_id, season=season, season_type_all_star="Regular Season").get_data_frames()[0]
-                log_df['GAME_DATE'] = pd.to_datetime(log_df['GAME_DATE'])
+            # --- Season totals and averages (NEW) ---
+            season_totals, season_avgs = compute_totals_and_avgs(log_df)
 
-                last7_df = log_df[log_df['GAME_DATE'] >= seven_days_ago]
-                last7_totals, last7_avgs = compute_totals_and_avgs(last7_df)
+            # --- Last 7 days ---
+            last7_df = log_df[log_df['GAME_DATE'] >= seven_days_ago]
+            last7_totals, last7_avgs = compute_totals_and_avgs(last7_df)
 
-                last14_df = log_df[log_df['GAME_DATE'] >= fourteen_days_ago]
-                last14_totals, last14_avgs = compute_totals_and_avgs(last14_df)
-            except Exception:
-                last7_totals = {k.lower(): 0 for k in categories}
-                last7_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
-                last7_avgs = last7_totals.copy()
-                last14_totals = {k.lower(): 0 for k in categories}
-                last14_totals.update({'fg_pct': 0, 'ft_pct': 0, 'fg3_pct': 0, 'gp': 0})
-                last14_avgs = last14_totals.copy()
+            # --- Last 14 days ---
+            last14_df = log_df[log_df['GAME_DATE'] >= fourteen_days_ago]
+            last14_totals, last14_avgs = compute_totals_and_avgs(last14_df)
 
             time.sleep(sleep_time)
 
@@ -90,8 +84,12 @@ def fetch_players(season=season):
                 "name": player_name,
                 "team_id": row.get("TEAM_ID", 0),
                 "team": row.get("TEAM_ABBREVIATION", ""),
+
+                # UPDATED SEASON VALUES (NO MORE ROUNDED DATA)
                 "season_totals": season_totals,
                 "season_avgs": season_avgs,
+
+                # EXISTING STRUCTURE
                 "last7_totals": last7_totals,
                 "last7_avgs": last7_avgs,
                 "last14_totals": last14_totals,
@@ -99,15 +97,11 @@ def fetch_players(season=season):
             }
 
             players_list.append(player)
-            print(f"✅ Added {player_name}")
+            print(f"✅ {player_name} loaded")
 
         except Exception as e:
-            failed_players.append({"name": player_name, "reason": str(e) or "fail_to_fetch"})
-            print(f"❌ Failed for {player_name}: {e}")
-
-    for timeframe in ["season", "last7", "last14"]:
-        totals_key = f"{timeframe}_totals"
-        avgs_key = f"{timeframe}_avgs"
+            failed_players.append({"name": player_name, "reason": str(e)})
+            print(f"❌ Failed {player_name}: {e}")
 
     # Save JSON
     result = {
@@ -123,7 +117,7 @@ def fetch_players(season=season):
     }
 
     with open("data/players.json", "w") as f:
-        json.dump(result, f, indent=2)
+        json.dump(result, f, indent=2, default=int)  # converts all non-serializable numbers to int
 
     print(f"\n✅ Finished! {len(players_list)}/{len(season_df)} players loaded successfully.")
     print(f"⏱ Script completed in {time.time() - start_time:.2f} seconds.")
