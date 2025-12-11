@@ -22,7 +22,7 @@ interface DropdownOptionsProps<T = unknown> {
 const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect, dropdownClasses }) => {
   const [openDropdown, setOpenDropdown] = React.useState(false)
   return (
-    <div className="flex flex-row flex-no-wrap items-center gap-1 sm:gap-2 text-xs sm:text-md">
+    <div className="flex flex-row flex-no-wrap items-center gap-1 sm:gap-2 text-xs sm:text-base">
       {label && <p className={`whitespace-nowrap text:xs sm:text-sm ${dropdownClasses?.label}`}>{label}:</p>}
       <div className="relative inline-block">
         <button
@@ -76,8 +76,6 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect,
           </div>
         )}
       </div>
-
-
     </div >
   )
 
