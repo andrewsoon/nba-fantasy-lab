@@ -1,45 +1,72 @@
-const NUM_TIERS = 7;
+import { StatKeys } from "@/types/player";
 
-// norm: normalized score 0–1
-function getTier(norm: number): number {
-  // apply a power curve to stretch higher scores
-  return Math.min(Math.floor(norm * NUM_TIERS), NUM_TIERS - 1);
+const colorScales = {
+  light: [
+    "#1a8e1a", // deep green
+    "#66c266", // medium green
+    "#b8e3b8", // pale green
+    "transparent", // neutral
+    "#f4a582", // light salmon
+    "#d6604d", // soft red
+    "#b2182b", // deep red
+  ],
+  dark: [
+    "#00bb00", // strong positive
+    "#008800",
+    "#004400", // slightly positive
+    "transparent", // neutral
+    "#444400", // neutral-ish
+    "#880000",
+    "#bb0000", // strong negative
+  ],
+};
+
+// ---------------------------
+// Tier calculation helpers
+// ---------------------------
+
+function getTierFromZscore(z: number): number {
+  if (z >= 2.0) return 0;       // elite
+  if (z >= 1.0) return 1;       // great
+  if (z >= 0.2) return 2;       // above avg
+  if (z > -0.2) return 3;       // neutral
+  if (z > -1.0) return 4;       // below avg
+  if (z > -2.0) return 5;       // poor
+  return 6;                     // terrible
 }
 
-export function getHeatmapColor(value: number, min: number, max: number, invert = false, isDark = false) {
-  if (max === min) return "transparent"; // fallback for no range
-  let norm = (value - min) / (max - min);
-  if (invert) norm = 1 - norm; // for TOV, lower is better
+// ---------------------------
+// Main function
+// ---------------------------
+export function getHeatmapColor(
+  value: number,
+  isDark = false,
+): string {
+  const tier = getTierFromZscore(value);
 
-  // Map to 0–6 (7 levels)
-  const tier = getTier(norm);
-
-  // Predefined scale (deep → faint → neutral → faint → deep)
-  const light_colors = [
-    "#b2182b", // deep red
-    "#d6604d", // soft red
-    "#f4a582", // light salmon
-    "transparent", // neutral light
-    "#b8e3b8", // pale green
-    "#66c266", // medium green
-    "#1a8e1a", // deep green
-  ];
-
-  const dark_colors = [
-    "#bb0000", // lowest (strong negative)
-    "#880000",
-    "#444400", // slightly negative / neutral-ish
-    "transparent", // true neutral
-    "#004400", // slightly positive
-    "#008800",
-    "#00bb00"  // highest (strong positive)
-  ]
-
-  const colors = isDark ? dark_colors : light_colors
-
+  const colors = isDark ? colorScales.dark : colorScales.light;
   return colors[tier];
 }
 
-export function weightedFG(pct: number, attmpt: number, alpha = 1.5, beta = 0.2) {
-  return Math.pow(pct, alpha) * Math.pow(attmpt, beta);
+
+export const StatLabels: Record<StatKeys, string> = {
+  pts: "PTS",
+  ast: "AST",
+  reb: "REB",
+  stl: "STL",
+  blk: "BLK",
+  fg3m: "3PM",
+  fg_pct: "FG%",
+  ft_pct: "FT%",
+  tov: "TOV"
+}
+
+export function getZscore(
+  value: number,
+  mean?: number,
+  std?: number,
+) {
+  if (!mean || !std) return 0
+  if (std === 0) return 0
+  return (value - mean) / std
 }

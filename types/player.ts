@@ -36,9 +36,33 @@ export interface StatCategory {
   fg_pct: number,
   ft_pct: number,
   gp: number,
+
   rating?: number,
   rank?: number,
 
-  fg_weighted: number;   // fg_pct * fga
-  ft_weighted: number;   // ft_pct * fta
+  // Percentiles
+  pts_zscore: number,
+  reb_zscore: number,
+  ast_zscore: number,
+  stl_zscore: number,
+  blk_zscore: number,
+  fg3m_zscore: number,
+  fg_pct_zscore: number,
+  ft_pct_zscore: number,
+  tov_zscore: number,
 }
+
+export const STAT_KEYS = [
+  'fg_pct',
+  'ft_pct',
+  'fg3m',
+  'pts',
+  'reb',
+  'ast',
+  'stl',
+  'blk',
+  'tov'
+] as const;
+
+export type StatKeys = typeof STAT_KEYS[number]
+
