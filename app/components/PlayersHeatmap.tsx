@@ -42,7 +42,7 @@ const defaultStatWeightControls: StatWeightControls = {
   }
 }
 
-const watchlistStorageKey = "nba_fantasy_teams"
+const watchlistStorageKey = "nba_fantasy_watchlist"
 
 interface StoredWatchlistStruct {
   players: number[]
