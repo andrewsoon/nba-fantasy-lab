@@ -6,7 +6,7 @@ interface ToastContainerProps {
 
 export const ToastContainer: React.FC<ToastContainerProps> = ({ toasts }) => {
   return (
-    <div className="fixed bottom-30 right-4 flex flex-col gap-2 z-50">
+    <div className="fixed bottom-25 right-4 flex flex-col gap-2 z-50">
       {toasts.map(toast => (
         <div
           key={toast.id}

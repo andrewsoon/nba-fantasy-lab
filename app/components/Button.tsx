@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseClasses = `
-    ${size === "normal" ? "px-4 py-2 font-medium" : "px-2 py-1 font-base"}  transition-colors duration-150
+    ${size === "normal" ? "px-2 py-1 text-sm md:px-4 md:py-2 md:text-base" : "px-2 py-1 text-xs md:text-base"}  transition-colors duration-150
     cursor-pointer
   `;
 

@@ -1,19 +1,16 @@
 "use client"
 
 import PlayersDataRaw from "@/data/players.json";
-import { PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
+import { usePlayersData } from "@/hooks/usePlayersData";
 import { useToast } from "@/hooks/useToast";
 import { DatasetKeys, StatKeys } from "@/types/player";
 import { StatLabels } from "@/utils/playersTable";
-// import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
-import Modal from "./Modal";
 import PlayerTable from "./PlayerTable";
 import { ToastContainer } from "./ToastContainer";
 import Toggle from "./Toggle";
-import { Tooltip } from "./Tooltip";
 
 const datasetLabels: Record<DatasetKeys | string, string> = {
   season_avgs: "Season averages",
@@ -45,39 +42,35 @@ const defaultStatWeightControls: StatWeightControls = {
   }
 }
 
-const teamsLocalStorageKey = "nba_fantasy_teams"
+const watchlistStorageKey = "nba_fantasy_teams"
 
-interface StoredTeamStruct {
-  teamName: string,
+interface StoredWatchlistStruct {
   players: number[]
 }
 
-export interface PlayerSortProps {
-  sortBy: PlayerRowKeys,
-  isDesc: boolean
-}
 
 export default function PlayersHeatmap() {
   // const router = useRouter()
   const [dataset, setDataset] = React.useState<DatasetKeys>('season_avgs')
-  const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
   const [statWeightControls, setStatWeightControls] = React.useState<StatWeightControls>(defaultStatWeightControls)
   const [search, setSearch] = React.useState<string | undefined>(undefined)
   const [hideLowRatings, setHideLowRatings] = React.useState<boolean>(true)
   const [showZscore, setShowZscore] = React.useState<boolean>(false)
-  const [teamBuilderMode, setTeamBuilderMode] = React.useState<boolean>(false)
-  const [selectedPlayers, setSelectedPlayers] = React.useState<number[]>([])
-  const [openSaveTeam, setOpenSaveTeam] = React.useState<boolean>(false)
-  const [teamName, setTeamName] = React.useState("")
-  const [storedTeams, setStoredTeams] = React.useState<StoredTeamStruct[]>([])
+  const [showWatchlist, setShowWatchlist] = React.useState<boolean>(false)
+  const [editWatchlist, setEditWatchlist] = React.useState<boolean>(false)
+  const [selectedPlayers, setSelectedPlayers] = React.useState<number[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(watchlistStorageKey) || "{}") as StoredWatchlistStruct;
+      return saved.players ?? [];
+    } catch {
+      return [];
+    }
+  });
 
   const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights)
   const { toasts, showToast } = useToast()
 
-  const handleFetchStoredTeam = () => {
-    const existing = JSON.parse(localStorage.getItem(teamsLocalStorageKey) || "[]") as StoredTeamStruct[]
-    setStoredTeams(existing)
-  }
 
   const handleSelectPlayers = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
     setSelectedPlayers((prev) =>
@@ -89,50 +82,15 @@ export default function PlayersHeatmap() {
     setSearch(e.target.value)
   }
 
-  const handleSetTeamName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTeamName(e.target.value)
-  }
-
-  const handleLoadTeam = (team: StoredTeamStruct) => {
-    setTeamName(team.teamName)
-    setSelectedPlayers(team.players)
-  }
-
   const handleClearPlayers = () => {
-    if (teamName) {
-      const removedTeam = storedTeams.filter(
-        (t) => t.teamName !== teamName
-      );
-
-      localStorage.setItem(teamsLocalStorageKey, JSON.stringify(removedTeam))
-      setSelectedPlayers([])
-      handleFetchStoredTeam()
-    }
+    setSelectedPlayers([])
+    localStorage.removeItem(watchlistStorageKey)
   }
 
   const handleSavePlayers = () => {
-    // Remove any old version of this team
-    const withoutDuplicate = storedTeams.filter(
-      (t) => t.teamName !== teamName
-    );
-
-    // Add new team
-    const updated = [
-      ...withoutDuplicate,
-      { teamName, players: selectedPlayers }
-    ];
-
-    localStorage.setItem(teamsLocalStorageKey, JSON.stringify(updated))
-
-    setTeamName("")
-    setOpenSaveTeam(false)
-    handleFetchStoredTeam()
+    localStorage.setItem(watchlistStorageKey, JSON.stringify({ players: selectedPlayers }))
     showToast("Team saved successfully!")
   }
-
-  React.useEffect(() => {
-    handleFetchStoredTeam()
-  }, [])
 
   const filterPlayers = React.useMemo(() => {
     let playerArr = [...playerRows]
@@ -145,28 +103,6 @@ export default function PlayersHeatmap() {
 
     return playerArr
   }, [playerRows, search, hideLowRatings])
-
-  const sortedPlayerRows = React.useMemo(() => {
-    return [...filterPlayers].sort((a, b) => {
-      const valA = a[sort.sortBy];
-      const valB = b[sort.sortBy];
-
-      // If both are numbers
-      if (typeof valA === "number" && typeof valB === "number") {
-        return sort.isDesc ? valB - valA : valA - valB;
-      }
-
-      // If both are strings
-      if (typeof valA === "string" && typeof valB === "string") {
-        return sort.isDesc
-          ? valB.localeCompare(valA)
-          : valA.localeCompare(valB);
-      }
-
-      // Fallback if types are mixed or undefined
-      return 0;
-    });
-  }, [filterPlayers, sort]);
 
   const isLoading = React.useMemo(() => {
     return processingPlayers
@@ -229,7 +165,7 @@ export default function PlayersHeatmap() {
                   <div className="flex flex-row items-center flex-wrap gap-3 md:gap-6">
                     <Toggle label="Show top 200 players only" enabled={hideLowRatings} onChange={setHideLowRatings} />
                     <Toggle label="Show z-score" onChange={setShowZscore} enabled={showZscore} />
-                    <Toggle label="Team Builder Mode" onChange={setTeamBuilderMode} enabled={teamBuilderMode} />
+                    <Toggle label="Show watchlist" onChange={setShowWatchlist} enabled={showWatchlist} />
                   </div>
 
                 </div>
@@ -262,75 +198,45 @@ export default function PlayersHeatmap() {
                   })}
                 </div>
               </div>
-              {teamBuilderMode && (
-                <div className="py-2 px-4 md:py-12 md:px-12 md:my-14 bg-zinc-300 dark:bg-zinc-800 transition-discrete">
+              {showWatchlist && (
+                <div className="p-4 mb-4 md:py-12 md:px-12 md:my-14 bg-zinc-300 dark:bg-zinc-800 transition-discrete">
                   <div className="flex flex-col items-start justify-start">
-                    <p className="text-sm md:text-xl font-semibold">Team Builder Mode</p>
+                    <p className="text-sm md:text-xl font-semibold">Watchlist</p>
                     <ol className="list-decimal pl-5 text-xs md:text-lg space-y-1 text-zinc-800 dark:text-zinc-300">
-                      <li>Select your players &ndash; pick up to 13 players from the heatmap to build a full roster, or just a few to simulate trades.</li>
-                      <li>Save your picks &ndash; lock in your selection for easy reference later.</li>
-                      {/* <li>
-                        Analyze & compare &ndash; check weekly projected stats using the&nbsp;
-                        <button className="hover:text-zinc-800 dark:hover:text-zinc-300 underline cursor-pointer" onClick={() => router.push('/compare')}>
-                          Compare Teams
-                        </button>&nbsp;tool to see how lineups or trade scenarios stack up.
-                      </li> */}
+                      <li>Add players to your watchlist &ndash; track as many players as you want from the heatmap.</li>
+                      <li>Save your watchlist &ndash; keep your selections for quick access anytime.</li>
                     </ol>
                   </div>
                   <div className="flex flex-row justify-between gap-3 md:gap-6 my-4">
-                    {storedTeams.length !== 0 && (
-                      <div className="flex flex-row justify-end gap-1 items-center font-semibold">
-                        Load saved teams:
-                        <div className="flex flex-row flex-wrap justify-start gap-2 items-center">
-                          {storedTeams.map((t) => {
-                            return (
-                              <Tooltip
-                                key={`${t.teamName}-tooltip`}
-                                message={
-                                  <div className="p-2">
-                                    {sortedPlayerRows.filter((p) => t.players.includes(p.id)).map((p) => <p key={`${p.id}-tooltip`}>{p.name}</p>)}
-                                  </div>
-                                }>
-                                <Button
-                                  variant="outlined"
-                                  size="xs"
-                                  onClick={() => handleLoadTeam(t)}>{t.teamName}</Button>
-                              </Tooltip>
-                            )
-                          })}
+                    <div className="flex flex-row flex-wrap w-full justify-end gap-3">
+                      <Toggle label="Edit watchlist" onChange={() => setEditWatchlist(prev => !prev)} enabled={editWatchlist} />
+                      {selectedPlayers.length !== 0 && editWatchlist && (
+                        <div className="flex flex-row justify-end gap-3">
+                          <Button variant="outlined" onClick={handleSavePlayers}>✅ Save</Button>
+                          <Button variant="outlined" onClick={handleClearPlayers}>❌ Clear</Button>
                         </div>
-                      </div>
-                    )}
-                    <div className="flex flex-row justify-end gap-3">
-                      <Button variant="outlined" onClick={() => setOpenSaveTeam(true)}>✅ Save</Button>
-                      <Button variant="outlined" onClick={handleClearPlayers}>❌ Clear</Button>
+                      )}
                     </div>
                   </div>
                   <PlayerTable
-                    players={sortedPlayerRows.filter((p) => selectedPlayers.includes(p.id))}
+                    players={playerRows.filter((p) => selectedPlayers.includes(p.id))}
                     showZscore={showZscore}
-                    teamBuilderMode={teamBuilderMode}
+                    selectingPlayers={editWatchlist}
                     statWeights={statWeightControls.statWeights}
 
                     selectedPlayers={selectedPlayers}
                     onSelect={handleSelectPlayers}
-
-                    sort={sort}
-                    setSort={setSort}
                   />
                 </div>
               )}
               <PlayerTable
-                players={sortedPlayerRows}
+                players={filterPlayers}
                 showZscore={showZscore}
-                teamBuilderMode={teamBuilderMode}
+                selectingPlayers={editWatchlist}
                 statWeights={statWeightControls.statWeights}
 
                 selectedPlayers={selectedPlayers}
                 onSelect={handleSelectPlayers}
-
-                sort={sort}
-                setSort={setSort}
               />
             </div>
             {
@@ -341,45 +247,17 @@ export default function PlayersHeatmap() {
               )
             }
 
-            {teamBuilderMode && (
+            {editWatchlist && (
               <div className="
-                fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2
+                fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2
                 bg-zinc-300 dark:bg-zinc-600 text-white
                 px-4 py-2 rounded-full shadow-lg
                 text-sm font-medium
                 z-50
               ">
-                Selected Players: {selectedPlayers.length} / 13
+                Selected Players: {selectedPlayers.length}
               </div>
             )}
-            <Modal
-              open={openSaveTeam}
-              onClose={() => {
-                setTeamName("")
-                setOpenSaveTeam(false)
-              }}
-              title="Save Selected Players"
-              onSubmit={handleSavePlayers}
-              submitDisabled={teamName === ''}
-            >
-              <div className="flex flex-row items-center gap-3 p-2 md:p-4">
-                Save players as:
-                <input
-                  type="text"
-                  className="
-                w-60 px-4 py-2
-                rounded-lg border border-zinc-300 dark:border-zinc-600
-                bg-white dark:bg-zinc-800
-                text-zinc-800 dark:text-zinc-200
-                placeholder:text-zinc-400 dark:placeholder:text-zinc-500
-                focus:outline-none focus:ring-2 focus:ring-amber-500
-                transition-all duration-150
-              "
-                  placeholder={teamName}
-                  onChange={handleSetTeamName}
-                />
-              </div>
-            </Modal>
             <ToastContainer toasts={toasts} />
           </div>
         </div>

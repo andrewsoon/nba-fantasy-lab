@@ -1,26 +1,28 @@
-import { PlayerRow } from "@/hooks/usePlayersData"
-import { PlayerSortProps } from "./PlayersHeatmap"
-import React from "react"
-import Checkbox from "./Checkbox"
-import Image from "next/image"
+import { PlayerRow, PlayerRowKeys } from "@/hooks/usePlayersData"
 import { STAT_KEYS, StatKeys } from "@/types/player"
 import { getHeatmapColor, StatLabels } from "@/utils/playersTable"
+import Image from "next/image"
+import React from "react"
+import Checkbox from "./Checkbox"
 
 interface PlayerTableProps {
   players: PlayerRow[]
   showZscore: boolean
-  teamBuilderMode: boolean
+  selectingPlayers: boolean
   statWeights: Record<StatKeys, number>
 
   selectedPlayers: number[]
   onSelect: (e: React.ChangeEvent<HTMLInputElement>, value: number) => void
-
-  sort: PlayerSortProps
-  setSort: React.Dispatch<React.SetStateAction<PlayerSortProps>>
 }
 
-const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, teamBuilderMode, selectedPlayers, onSelect, sort, setSort, statWeights }) => {
+interface PlayerSortProps {
+  sortBy: PlayerRowKeys,
+  isDesc: boolean
+}
+
+const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectingPlayers, selectedPlayers, onSelect, statWeights }) => {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
+  const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -32,12 +34,35 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, teamBuil
     return () => darkQuery.removeEventListener('change', listener);
   }, []);
 
+
+  const sortedPlayerRows = React.useMemo(() => {
+    return [...players].sort((a, b) => {
+      const valA = a[sort.sortBy];
+      const valB = b[sort.sortBy];
+
+      // If both are numbers
+      if (typeof valA === "number" && typeof valB === "number") {
+        return sort.isDesc ? valB - valA : valA - valB;
+      }
+
+      // If both are strings
+      if (typeof valA === "string" && typeof valB === "string") {
+        return sort.isDesc
+          ? valB.localeCompare(valA)
+          : valA.localeCompare(valB);
+      }
+
+      // Fallback if types are mixed or undefined
+      return 0;
+    });
+  }, [players, sort]);
+
   return (
     <div className="overflow-x-auto rounded-sm">
       <table className="min-w-full">
         <thead>
           <tr className={headerRowClass}>
-            {teamBuilderMode && <th className={headerClass}></th>}
+            {selectingPlayers && <th className={headerClass}></th>}
             <th
               className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0 cursor-pointer`}
               onClick={() =>
@@ -97,13 +122,13 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, teamBuil
           </tr>
         </thead>
         <tbody>
-          {players.map((player, id) => {
+          {sortedPlayerRows.map((player, id) => {
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
-                  {teamBuilderMode &&
+                  {selectingPlayers &&
                     <td className={cellClass}>
-                      <Checkbox label="" checked={selectedPlayers.includes(player.id)} onChange={(e) => onSelect(e, player.id)} disabled={selectedPlayers.length === 13 && !selectedPlayers.includes(player.id)} />
+                      <Checkbox label="" checked={selectedPlayers.includes(player.id)} onChange={(e) => onSelect(e, player.id)} />
                     </td>
                   }
                   <td className={`sticky left-0 ${cellClass} ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
@@ -181,9 +206,9 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, teamBuil
                 </tr>
                 {(id + 1) % 15 === 0 && (
                   <tr key={id} className={headerRowClass}>
-                    {teamBuilderMode && <th className={headerClass}></th>}
+                    {selectingPlayers && <th className={headerClass}></th>}
                     <th className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}>
-                      Player
+                      Rank
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                     </th>
                     <th className={`${headerClass} border-l-0`}>Team</th>
