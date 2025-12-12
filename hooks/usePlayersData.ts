@@ -156,12 +156,6 @@ function attachZScores(
     STAT_KEYS.forEach((k) => {
       let value = p[k] as number;
 
-      if (k === "fg_pct") {
-        value = p.fg_pct - leagueFgPct  // FG impact
-      } else if (k === "ft_pct") {
-        value = p.ft_pct - leagueFtPct  // FT impact
-      }
-
       // Zero-inflated categories
       if (ZERO_INFLATED.includes(k)) {
         // Treat 0 as lowest, but keep it numeric
@@ -178,7 +172,15 @@ function attachZScores(
   // Second pass: compute mean & std for each stat
   Object.keys(statArrays).forEach((k) => {
     const arr = statArrays[k];
-    const mean = arr.reduce((s, x) => s + x, 0) / arr.length;
+    let mean
+    if (k === "fg_pct") {
+      mean = leagueFgPct  // FG impact
+    } else if (k === "ft_pct") {
+      mean = leagueFtPct  // FT impact
+    } else {
+      mean = arr.reduce((s, x) => s + x, 0) / arr.length;
+    }
+
     const variance =
       arr.reduce((s, x) => s + Math.pow(x - mean, 2), 0) / arr.length;
     const std = Math.sqrt(variance) || 1; // avoid div-by-zero

@@ -1,6 +1,8 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "./components/Navbar";
+import ScrollToTopButton from "./components/ScrollToTopButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -64,7 +66,9 @@ export default function RootLayout({
       >
         <div className="flex justify-center font-sans">
           <main className="flex flex-col w-full min-h-screen max-w-400">
+            <Navbar />
             {children}
+            <ScrollToTopButton />
             <Analytics />
           </main>
         </div>

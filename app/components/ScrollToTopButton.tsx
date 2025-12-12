@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Button from "./Button";
 
 export default function ScrollToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,12 +27,13 @@ export default function ScrollToTopButton() {
   return (
     <>
       {isVisible && (
-        <button
+        <Button
+          variant="solid"
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-amber-600 text-white rounded-full shadow-lg hover:bg-amber-400 transition-colors cursor-pointer"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12"
         >
           ↑
-        </button>
+        </Button>
       )}
     </>
   );

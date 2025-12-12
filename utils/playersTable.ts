@@ -35,14 +35,42 @@ function getTierFromZscore(z: number): number {
   return 6;                     // terrible
 }
 
+function getFgPctTier(pct: number): number {
+  if (pct >= 0.7) return 0;       // elite
+  if (pct >= 0.63) return 1;       // great
+  if (pct >= 0.5) return 2;       // above avg
+  if (pct >= 0.45) return 3;       // neutral
+  if (pct >= 0.40) return 4;       // below avg
+  if (pct >= 0.3) return 5;       // poor
+  return 6;                     // terrible
+}
+
+function getFtPctTier(pct: number): number {
+  if (pct >= 0.92) return 0;       // elite
+  if (pct >= 0.88) return 1;       // great
+  if (pct >= 0.84) return 2;       // above avg
+  if (pct >= 0.78) return 3;       // neutral
+  if (pct >= 0.74) return 4;       // below avg
+  if (pct >= 0.70) return 5;       // poor
+  return 6;                     // terrible
+}
+
 // ---------------------------
 // Main function
 // ---------------------------
 export function getHeatmapColor(
   value: number,
   isDark = false,
+  stat: StatKeys,
 ): string {
-  const tier = getTierFromZscore(value);
+  let tier
+  if (stat === 'fg_pct') {
+    tier = getFgPctTier(value)
+  } else if (stat === 'ft_pct') {
+    tier = getFtPctTier(value)
+  } else {
+    tier = getTierFromZscore(value);
+  }
 
   const colors = isDark ? colorScales.dark : colorScales.light;
   return colors[tier];
