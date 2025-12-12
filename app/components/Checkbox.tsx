@@ -26,7 +26,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange, disabled 
           border-zinc-300 dark:border-zinc-600
           bg-white dark:bg-zinc-800
           checked:bg-amber-600 
-          checked:border-zinc-900
+          
           dark:checked:border-zinc-600
           transition-colors duration-150
           cursor-pointer

@@ -212,11 +212,12 @@ export default function PlayersHeatmap() {
                     <input
                       type="text"
                       className="
-                        w-60 px-4 py-2
+                        w-60 px-2 py-1 sm:px-4 sm:py-2
                         rounded-lg border border-zinc-300 dark:border-zinc-600
                         bg-white dark:bg-zinc-800
                         text-zinc-800 dark:text-zinc-200
                         placeholder:text-zinc-400 dark:placeholder:text-zinc-500
+                        placeholder:text-xs placeholder:sm:text-sm placeholder:md:text-base
                         focus:outline-none focus:ring-2 focus:ring-amber-500
                         transition-all duration-150
                       "
@@ -232,8 +233,8 @@ export default function PlayersHeatmap() {
                   </div>
 
                 </div>
-                <div className="flex flex-row items-center justify-center flex-wrap gap-3 md:gap-6 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
-                  <p>Stat Weights</p>
+                <div className="flex flex-row items-center justify-center flex-wrap gap-2 sm:gap-3 md:gap-6 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+                  <p className="text-xs sm:text-sm md:text-base">Stat Weights</p>
                   {statWeightKeys.map((statKey) => {
                     return (
                       <div className="flex justify-end" key={`${statKey}-dropdown`}>
@@ -264,8 +265,8 @@ export default function PlayersHeatmap() {
               {teamBuilderMode && (
                 <div className="py-2 px-4 md:py-12 md:px-12 md:my-14 bg-zinc-300 dark:bg-zinc-800 transition-discrete">
                   <div className="flex flex-col items-start justify-start">
-                    <p className="text-lg md:text-xl font-semibold">Team Builder Mode</p>
-                    <ol className="list-decimal pl-5 text-base md:text-lg space-y-1 text-zinc-800 dark:text-zinc-300">
+                    <p className="text-sm md:text-xl font-semibold">Team Builder Mode</p>
+                    <ol className="list-decimal pl-5 text-xs md:text-lg space-y-1 text-zinc-800 dark:text-zinc-300">
                       <li>Select your players &ndash; pick up to 13 players from the heatmap to build a full roster, or just a few to simulate trades.</li>
                       <li>Save your picks &ndash; lock in your selection for easy reference later.</li>
                       {/* <li>

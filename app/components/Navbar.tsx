@@ -28,6 +28,6 @@ const Navbar: React.FC = () => {
   )
 }
 
-const navlinkStyle = "text-lg font-semibold hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer"
+// const navlinkStyle = "text-lg font-semibold hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer"
 
 export default Navbar

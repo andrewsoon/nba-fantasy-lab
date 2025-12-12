@@ -28,7 +28,7 @@ const Toggle: React.FC<ToggleProps> = ({ label, enabled, onChange }) => {
         `}
         />
       </button>
-      <p>{label}</p>
+      <p className="text-xs sm:text-sm md:text-base">{label}</p>
     </div>
   );
 }
