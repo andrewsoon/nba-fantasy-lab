@@ -13,6 +13,7 @@ import Modal from "./Modal";
 import PlayerTable from "./PlayerTable";
 import { ToastContainer } from "./ToastContainer";
 import Toggle from "./Toggle";
+import { Tooltip } from "./Tooltip";
 
 const datasetLabels: Record<DatasetKeys | string, string> = {
   season_avgs: "Season averages",
@@ -23,14 +24,14 @@ const datasetLabels: Record<DatasetKeys | string, string> = {
   last14_totals: "Last 14 days totals"
 }
 
-interface HeatmapControls {
+interface StatWeightControls {
   statWeights: Record<StatKeys, number>
 }
 
 const statWeightKeys: StatKeys[] = ['pts', 'reb', 'ast', 'fg_pct', 'ft_pct', 'fg3m', 'stl', 'blk', 'tov']
 const weightOptions = [4, 3, 2, 1, 0.5, 0.25, 0]
 
-const defaultHeatmapControls: HeatmapControls = {
+const defaultStatWeightControls: StatWeightControls = {
   statWeights: {
     pts: 1,
     reb: 1,
@@ -60,7 +61,7 @@ export default function PlayersHeatmap() {
   const router = useRouter()
   const [dataset, setDataset] = React.useState<DatasetKeys>('season_avgs')
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
-  const [heatmapControls, setHeatmapControls] = React.useState<HeatmapControls>(defaultHeatmapControls)
+  const [statWeightControls, setStatWeightControls] = React.useState<StatWeightControls>(defaultStatWeightControls)
   const [search, setSearch] = React.useState<string | undefined>(undefined)
   const [hideLowRatings, setHideLowRatings] = React.useState<boolean>(true)
   const [showZscore, setShowZscore] = React.useState<boolean>(false)
@@ -68,9 +69,15 @@ export default function PlayersHeatmap() {
   const [selectedPlayers, setSelectedPlayers] = React.useState<number[]>([])
   const [openSaveTeam, setOpenSaveTeam] = React.useState<boolean>(false)
   const [teamName, setTeamName] = React.useState("")
+  const [storedTeams, setStoredTeams] = React.useState<StoredTeamStruct[]>([])
 
-  const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, heatmapControls.statWeights)
+  const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights)
   const { toasts, showToast } = useToast()
+
+  const handleFetchStoredTeam = () => {
+    const existing = JSON.parse(localStorage.getItem(teamsLocalStorageKey) || "[]") as StoredTeamStruct[]
+    setStoredTeams(existing)
+  }
 
   const handleSelectPlayers = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
     setSelectedPlayers((prev) =>
@@ -86,11 +93,26 @@ export default function PlayersHeatmap() {
     setTeamName(e.target.value)
   }
 
-  const handleSavePlayers = () => {
-    const existing = JSON.parse(localStorage.getItem(teamsLocalStorageKey) || "[]") as StoredTeamStruct[]
+  const handleLoadTeam = (team: StoredTeamStruct) => {
+    setTeamName(team.teamName)
+    setSelectedPlayers(team.players)
+  }
 
+  const handleClearPlayers = () => {
+    if (teamName) {
+      const removedTeam = storedTeams.filter(
+        (t) => t.teamName !== teamName
+      );
+
+      localStorage.setItem(teamsLocalStorageKey, JSON.stringify(removedTeam))
+      setSelectedPlayers([])
+      handleFetchStoredTeam()
+    }
+  }
+
+  const handleSavePlayers = () => {
     // Remove any old version of this team
-    const withoutDuplicate = existing.filter(
+    const withoutDuplicate = storedTeams.filter(
       (t) => t.teamName !== teamName
     );
 
@@ -104,8 +126,13 @@ export default function PlayersHeatmap() {
 
     setTeamName("")
     setOpenSaveTeam(false)
+    handleFetchStoredTeam()
     showToast("Team saved successfully!")
   }
+
+  React.useEffect(() => {
+    handleFetchStoredTeam()
+  }, [])
 
   const filterPlayers = React.useMemo(() => {
     let playerArr = [...playerRows]
@@ -181,7 +208,7 @@ export default function PlayersHeatmap() {
             <div className={`${isLoading ? 'opacity-50 pointer-events-none h-200 overflow-y-hidden' : ''}`}>
               <div className="flex flex-col gap-2 sm:gap-3 w-full my-4">
                 <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-6 p-4 md:py-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
-                  <div className="flex flex-row items-center gap-6 md:gap-12">
+                  <div className="flex flex-row items-center gap-2">
                     <input
                       type="text"
                       className="
@@ -219,7 +246,7 @@ export default function PlayersHeatmap() {
                             return { label: `x${option.toString()}`, value: option }
                           })}
                           onSelect={value =>
-                            setHeatmapControls(prev => ({
+                            setStatWeightControls(prev => ({
                               ...prev,
                               statWeights: {
                                 ...prev.statWeights,
@@ -227,7 +254,7 @@ export default function PlayersHeatmap() {
                               }
                             }))
                           }
-                          selected={`${StatLabels[statKey]}  x${heatmapControls.statWeights[statKey].toString()}`}
+                          selected={`${StatLabels[statKey]}  x${statWeightControls.statWeights[statKey].toString()}`}
                         />
                       </div>
                     )
@@ -249,15 +276,40 @@ export default function PlayersHeatmap() {
                       </li>
                     </ol>
                   </div>
-                  <div className="flex flex-row justify-end gap-3 md:gap-6 my-4">
-                    <Button variant="outlined" onClick={() => setOpenSaveTeam(true)}>✅ Save</Button>
-                    <Button variant="outlined" onClick={() => setSelectedPlayers([])}>❌ Clear</Button>
+                  <div className="flex flex-row justify-between gap-3 md:gap-6 my-4">
+                    {storedTeams.length !== 0 && (
+                      <div className="flex flex-row justify-end gap-1 items-center font-semibold">
+                        Load saved teams:
+                        <div className="flex flex-row flex-wrap justify-start gap-2 items-center">
+                          {storedTeams.map((t) => {
+                            return (
+                              <Tooltip
+                                key={`${t.teamName}-tooltip`}
+                                message={
+                                  <div className="p-2">
+                                    {sortedPlayerRows.filter((p) => t.players.includes(p.id)).map((p) => <p key={`${p.id}-tooltip`}>{p.name}</p>)}
+                                  </div>
+                                }>
+                                <Button
+                                  variant="outlined"
+                                  size="xs"
+                                  onClick={() => handleLoadTeam(t)}>{t.teamName}</Button>
+                              </Tooltip>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex flex-row justify-end gap-3">
+                      <Button variant="outlined" onClick={() => setOpenSaveTeam(true)}>✅ Save</Button>
+                      <Button variant="outlined" onClick={handleClearPlayers}>❌ Clear</Button>
+                    </div>
                   </div>
                   <PlayerTable
                     players={sortedPlayerRows.filter((p) => selectedPlayers.includes(p.id))}
                     showZscore={showZscore}
                     teamBuilderMode={teamBuilderMode}
-                    statWeights={heatmapControls.statWeights}
+                    statWeights={statWeightControls.statWeights}
 
                     selectedPlayers={selectedPlayers}
                     onSelect={handleSelectPlayers}
@@ -271,7 +323,7 @@ export default function PlayersHeatmap() {
                 players={sortedPlayerRows}
                 showZscore={showZscore}
                 teamBuilderMode={teamBuilderMode}
-                statWeights={heatmapControls.statWeights}
+                statWeights={statWeightControls.statWeights}
 
                 selectedPlayers={selectedPlayers}
                 onSelect={handleSelectPlayers}

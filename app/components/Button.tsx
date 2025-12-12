@@ -4,16 +4,18 @@ import React, { ButtonHTMLAttributes } from "react";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   variant?: "solid" | "outlined"; // solid = colored, outlined = no background
+  size?: "xs" | "normal"
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
   variant = "solid",
   className = "",
+  size = "normal",
   ...props
 }) => {
   const baseClasses = `
-    px-4 py-2 font-medium transition-colors duration-150
+    ${size === "normal" ? "px-4 py-2 font-medium" : "px-2 py-1 font-base"}  transition-colors duration-150
     cursor-pointer
   `;
 
