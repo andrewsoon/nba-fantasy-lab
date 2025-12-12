@@ -210,12 +210,6 @@ export default function PlayersHeatmap() {
                   <div className="flex flex-row justify-between gap-3 md:gap-6 my-4">
                     <div className="flex flex-row flex-wrap w-full justify-end gap-3">
                       <Toggle label="Edit watchlist" onChange={() => setEditWatchlist(prev => !prev)} enabled={editWatchlist} />
-                      {selectedPlayers.length !== 0 && editWatchlist && (
-                        <div className="flex flex-row justify-end gap-3">
-                          <Button variant="outlined" onClick={handleSavePlayers}>✅ Save</Button>
-                          <Button variant="outlined" onClick={handleClearPlayers}>❌ Clear</Button>
-                        </div>
-                      )}
                     </div>
                   </div>
                   <PlayerTable
@@ -249,13 +243,24 @@ export default function PlayersHeatmap() {
 
             {editWatchlist && (
               <div className="
-                fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2
-                bg-zinc-300 dark:bg-zinc-600 text-white
-                px-4 py-2 rounded-full shadow-lg
-                text-sm font-medium
+                fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 
+                bg-zinc-300 dark:bg-zinc-600
                 z-50
+                flex flex-row flex-wrap justify-center items-center gap-2
+                rounded-full shadow-lg
+                px-4 py-2
               ">
-                Selected Players: {selectedPlayers.length}
+                <div className="
+                  text-white 
+                  rounded-full
+                  text-sm font-medium
+                ">
+                  Selected Players: {selectedPlayers.length}
+                </div>
+                <div className="flex flex-row justify-end gap-3">
+                  <button className="px-2 py-1 cursor-pointer border-1 border-zinc-700 dark:border-zinc-200 rounded-full text-sm hover:border-zinc-200 hover:dark:border-zinc-100 hover:bg-zinc-300 dark:hover:bg-zinc-500" onClick={handleSavePlayers}>✅ Save</button>
+                  <button className="px-2 py-1 cursor-pointer border-1 border-zinc-700 dark:border-zinc-200 rounded-full text-sm hover:border-zinc-200 hover:dark:border-zinc-100 hover:bg-zinc-300 dark:hover:bg-zinc-500" onClick={handleClearPlayers}>❌ Clear</button>
+                </div>
               </div>
             )}
             <ToastContainer toasts={toasts} />
