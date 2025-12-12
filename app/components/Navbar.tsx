@@ -16,14 +16,14 @@ const Navbar: React.FC = () => {
         />
 
       </button>
-      <div className="flex flex-row gap-6">
+      {/* <div className="flex flex-row gap-6">
         <button className={navlinkStyle} onClick={() => router.push('/')}>
           Player Stats
         </button>
         <button className={navlinkStyle} onClick={() => router.push('/compare')}>
           Compare Teams
         </button>
-      </div>
+      </div> */}
     </div >
   )
 }

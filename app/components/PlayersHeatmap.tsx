@@ -5,7 +5,7 @@ import { PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
 import { useToast } from "@/hooks/useToast";
 import { DatasetKeys, StatKeys } from "@/types/player";
 import { StatLabels } from "@/utils/playersTable";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "./Button";
 import Dropdown from "./Dropdown";
@@ -58,7 +58,7 @@ export interface PlayerSortProps {
 }
 
 export default function PlayersHeatmap() {
-  const router = useRouter()
+  // const router = useRouter()
   const [dataset, setDataset] = React.useState<DatasetKeys>('season_avgs')
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
   const [statWeightControls, setStatWeightControls] = React.useState<StatWeightControls>(defaultStatWeightControls)
@@ -268,12 +268,12 @@ export default function PlayersHeatmap() {
                     <ol className="list-decimal pl-5 text-base md:text-lg space-y-1 text-zinc-800 dark:text-zinc-300">
                       <li>Select your players &ndash; pick up to 13 players from the heatmap to build a full roster, or just a few to simulate trades.</li>
                       <li>Save your picks &ndash; lock in your selection for easy reference later.</li>
-                      <li>
+                      {/* <li>
                         Analyze & compare &ndash; check weekly projected stats using the&nbsp;
                         <button className="hover:text-zinc-800 dark:hover:text-zinc-300 underline cursor-pointer" onClick={() => router.push('/compare')}>
                           Compare Teams
                         </button>&nbsp;tool to see how lineups or trade scenarios stack up.
-                      </li>
+                      </li> */}
                     </ol>
                   </div>
                   <div className="flex flex-row justify-between gap-3 md:gap-6 my-4">
