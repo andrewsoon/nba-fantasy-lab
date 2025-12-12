@@ -2,19 +2,17 @@
 
 import PlayersDataRaw from "@/data/players.json";
 import { PlayerRowKeys, usePlayersData } from "@/hooks/usePlayersData";
-import { DatasetKeys, STAT_KEYS, StatKeys } from "@/types/player";
-import { getHeatmapColor, StatLabels } from "@/utils/playersTable";
-import Image from "next/image";
+import { useToast } from "@/hooks/useToast";
+import { DatasetKeys, StatKeys } from "@/types/player";
+import { StatLabels } from "@/utils/playersTable";
 import { useRouter } from "next/navigation";
 import React from "react";
 import Button from "./Button";
-import Checkbox from "./Checkbox";
 import Dropdown from "./Dropdown";
 import Modal from "./Modal";
-import Toggle from "./Toggle";
 import PlayerTable from "./PlayerTable";
-import { useToast } from "@/hooks/useToast";
 import { ToastContainer } from "./ToastContainer";
+import Toggle from "./Toggle";
 
 const datasetLabels: Record<DatasetKeys | string, string> = {
   season_avgs: "Season averages",
@@ -47,6 +45,11 @@ const defaultHeatmapControls: HeatmapControls = {
 }
 
 const teamsLocalStorageKey = "nba_fantasy_teams"
+
+interface StoredTeamStruct {
+  teamName: string,
+  players: number[]
+}
 
 export interface PlayerSortProps {
   sortBy: PlayerRowKeys,
@@ -84,11 +87,11 @@ export default function PlayersHeatmap() {
   }
 
   const handleSavePlayers = () => {
-    const existing = JSON.parse(localStorage.getItem(teamsLocalStorageKey) || "[]");
+    const existing = JSON.parse(localStorage.getItem(teamsLocalStorageKey) || "[]") as StoredTeamStruct[]
 
     // Remove any old version of this team
     const withoutDuplicate = existing.filter(
-      (t: any) => t.teamName !== teamName
+      (t) => t.teamName !== teamName
     );
 
     // Add new team
