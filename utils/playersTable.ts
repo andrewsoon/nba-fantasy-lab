@@ -55,22 +55,45 @@ function getFtPctTier(pct: number): number {
   return 6;                     // terrible
 }
 
+function getStlTier(stl: number): number {
+  if (stl >= 2) return 0;      // elite
+  if (stl >= 1.5) return 1;    // great
+  if (stl >= 1) return 2;      // above avg
+  if (stl >= 0.7) return 3;    // neutral
+  if (stl >= 0.5) return 4;    // below avg
+  if (stl >= 0.3) return 5;    // poor
+  return 6;                     // terrible
+}
+
+// Blocks per game
+function getBlkTier(blk: number): number {
+  if (blk >= 2) return 0;      // elite
+  if (blk >= 1.5) return 1;    // great
+  if (blk >= 1) return 2;      // above avg
+  if (blk >= 0.5) return 3;    // neutral
+  if (blk >= 0.3) return 4;    // below avg
+  if (blk >= 0.2) return 5;    // poor
+  return 6;                     // terrible
+}
+
+const tierFns: Partial<Record<StatKeys, (val: number) => number>> = {
+  fg_pct: getFgPctTier,
+  ft_pct: getFtPctTier,
+  stl: getStlTier,
+  blk: getBlkTier,
+};
+
+
 // ---------------------------
 // Main function
 // ---------------------------
+
 export function getHeatmapColor(
   value: number,
   isDark = false,
   stat: StatKeys,
 ): string {
-  let tier
-  if (stat === 'fg_pct') {
-    tier = getFgPctTier(value)
-  } else if (stat === 'ft_pct') {
-    tier = getFtPctTier(value)
-  } else {
-    tier = getTierFromZscore(value);
-  }
+  const tier = tierFns[stat] ? tierFns[stat](value) : getTierFromZscore(value)
 
   const colors = isDark ? colorScales.dark : colorScales.light;
   return colors[tier];

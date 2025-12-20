@@ -123,12 +123,13 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
         </thead>
         <tbody>
           {sortedPlayerRows.map((player, id) => {
+            const isSelected = selectedPlayers.includes(player.id)
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
                   {selectingPlayers &&
                     <td className={cellClass}>
-                      <Checkbox label="" checked={selectedPlayers.includes(player.id)} onChange={(e) => onSelect(e, player.id)} />
+                      <Checkbox label="" checked={isSelected} onChange={(e) => onSelect(e, player.id)} />
                     </td>
                   }
                   <td className={`sticky left-0 ${cellClass} ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
@@ -141,7 +142,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                         height={100} // original image height
                         className="hidden md:block h-6 sm:h-10 w-auto"
                       />
-                      <p className="overflow-hidden overflow-ellipsis max-w-20 sm:max-w-none">{player.name}</p>
+                      <p className="overflow-hidden overflow-ellipsis max-w-20 sm:max-w-none">{player.name}&nbsp;{isSelected && '✅'}</p>
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                     </div>
                   </td>

@@ -6,7 +6,6 @@ import { useToast } from "@/hooks/useToast";
 import { DatasetKeys, StatKeys } from "@/types/player";
 import { StatLabels } from "@/utils/playersTable";
 import React from "react";
-import Button from "./Button";
 import Dropdown from "./Dropdown";
 import PlayerTable from "./PlayerTable";
 import { ToastContainer } from "./ToastContainer";
@@ -84,12 +83,12 @@ export default function PlayersHeatmap() {
 
   const handleClearPlayers = () => {
     setSelectedPlayers([])
-    localStorage.removeItem(watchlistStorageKey)
   }
 
   const handleSavePlayers = () => {
     localStorage.setItem(watchlistStorageKey, JSON.stringify({ players: selectedPlayers }))
     showToast("Team saved successfully!")
+    setEditWatchlist(false)
   }
 
   const filterPlayers = React.useMemo(() => {
@@ -160,7 +159,6 @@ export default function PlayersHeatmap() {
                       placeholder="Search..."
                       onChange={handleSearch}
                     />
-                    {search && <button className="font-semibold hover:text-zinc-800 dark:hover:text-zinc-300 cursor-pointer" onClick={() => setSearch(undefined)}>Clear</button>}
                   </div>
                   <div className="flex flex-row items-center flex-wrap gap-3 md:gap-6">
                     <Toggle label="Show top 200 players only" enabled={hideLowRatings} onChange={setHideLowRatings} />
