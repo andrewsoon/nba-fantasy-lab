@@ -2,7 +2,7 @@ import PlayersData from "@/data/players.json";
 import { DatasetKeys, Player, STAT_KEYS, StatCategory, StatKeys } from "@/types/player";
 import React from "react";
 
-export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>) {
+export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record<StatKeys, number>, gamesPlayed: number, minsPlayed: number) {
   const playersRaw = PlayersData.players;
 
   const [rows, setRows] = React.useState<PlayerRow[]>([]);
@@ -28,18 +28,19 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
     // schedule computation so React can render spinner
     setTimeout(() => {
       const newRows = basePlayers.map(p => flattenPlayer(p, selectedDataSet));
+      const filteredRows = newRows.filter((row) => row.gp >= gamesPlayed && row.min >= minsPlayed)
 
-      attachZScores(newRows)
-      computeZScoreRatings(newRows, statWeights)
+      attachZScores(filteredRows)
+      computeZScoreRatings(filteredRows, statWeights)
 
-      assignRanks(newRows);
-      newRows.sort((a, b) => b.rating - a.rating);
+      assignRanks(filteredRows);
+      filteredRows.sort((a, b) => b.rating - a.rating);
 
-      setRows(newRows);
+      setRows(filteredRows);
       setLoading(false);
     }, 0);
 
-  }, [selectedDataSet, basePlayers, statWeights]);
+  }, [selectedDataSet, basePlayers, statWeights, gamesPlayed, minsPlayed]);
 
   return { rows, loading };
 }

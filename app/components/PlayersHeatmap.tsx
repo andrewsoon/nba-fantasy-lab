@@ -41,17 +41,20 @@ const defaultStatWeightControls: StatWeightControls = {
   }
 }
 
+const minsPlayedOptions = [0, 5, 10, 15, 20, 25, 30]
+const gamesPlayedOptions = [1, 3, 5, 10, 20, 30]
+
 const watchlistStorageKey = "nba_fantasy_watchlist"
 
 interface StoredWatchlistStruct {
   players: number[]
 }
 
-
 export default function PlayersHeatmap() {
-  // const router = useRouter()
   const [dataset, setDataset] = React.useState<DatasetKeys>('season_avgs')
   const [statWeightControls, setStatWeightControls] = React.useState<StatWeightControls>(defaultStatWeightControls)
+  const [minsPlayed, setMinsPlayed] = React.useState<number>(10)
+  const [gamesPlayed, setGamesPlayed] = React.useState<number>(2)
   const [search, setSearch] = React.useState<string | undefined>(undefined)
   const [hideLowRatings, setHideLowRatings] = React.useState<boolean>(true)
   const [showZscore, setShowZscore] = React.useState<boolean>(false)
@@ -67,9 +70,8 @@ export default function PlayersHeatmap() {
     }
   });
 
-  const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights)
+  const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights, gamesPlayed, minsPlayed)
   const { toasts, showToast } = useToast()
-
 
   const handleSelectPlayers = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
     setSelectedPlayers((prev) =>
@@ -168,6 +170,40 @@ export default function PlayersHeatmap() {
 
                 </div>
                 <div className="flex flex-row items-center justify-center flex-wrap gap-2 sm:gap-3 md:gap-6 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+                  <div className="flex flex-row items-center gap-1 sm:gap-2 md:gap-3">
+                    <p className="text-xs sm:text-sm md:text-base">Mins</p>
+                    <Dropdown
+                      dropdownClasses={{
+                        label: 'text-xs md:text-sm',
+                        button: 'min-w-1 p-x-1',
+                      }}
+                      options={minsPlayedOptions.map((option) => {
+                        return { label: `> ${option.toString()}`, value: option }
+                      })}
+                      onSelect={value =>
+                        setMinsPlayed(value as number)
+                      }
+                      selected={`> ${minsPlayed.toString()}`}
+                    />
+                  </div>
+                  <div className="flex flex-row items-center  gap-1 sm:gap-2 md:gap-3">
+                    <p className="text-xs sm:text-sm md:text-base">GP</p>
+                    <Dropdown
+                      dropdownClasses={{
+                        label: 'text-xs md:text-sm',
+                        button: 'min-w-1 p-x-1',
+                      }}
+                      options={gamesPlayedOptions.map((option) => {
+                        return { label: option.toString(), value: option }
+                      })}
+                      onSelect={value =>
+                        setGamesPlayed(value as number)
+                      }
+                      selected={gamesPlayed.toString()}
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-row items-center justify-center flex-wrap gap-2 sm:gap-3 md:gap-6 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
                   <p className="text-xs sm:text-sm md:text-base">Stat Weights</p>
                   {statWeightKeys.map((statKey) => {
                     return (
@@ -204,6 +240,9 @@ export default function PlayersHeatmap() {
                       <li>Add players to your watchlist &ndash; track as many players as you want from the heatmap.</li>
                       <li>Save your watchlist &ndash; keep your selections for quick access anytime.</li>
                     </ol>
+                    <p className="italic text-xs md:text-base space-y-1 text-zinc-700 dark:text-zinc-400">
+                      *Players who played less than {minsPlayed}mins and {gamesPlayed} game(s) are hidden.
+                    </p>
                   </div>
                   <div className="flex flex-row justify-between gap-3 md:gap-6 my-4">
                     <div className="flex flex-row flex-wrap w-full justify-end gap-3">

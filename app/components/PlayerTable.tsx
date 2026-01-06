@@ -4,6 +4,7 @@ import { getHeatmapColor, StatLabels } from "@/utils/playersTable"
 import Image from "next/image"
 import React from "react"
 import Checkbox from "./Checkbox"
+import { usePlayersPositions } from "@/hooks/usePlayersPositions"
 
 interface PlayerTableProps {
   players: PlayerRow[]
@@ -23,6 +24,7 @@ interface PlayerSortProps {
 const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectingPlayers, selectedPlayers, onSelect, statWeights }) => {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
+  const playerPositions = usePlayersPositions()
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -82,6 +84,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
               <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
             </th>
             <th className={`${headerClass} border-l-0`}>Team</th>
+            <th className={`${headerClass} border-l-0`}>Pos</th>
             <th
               className={`${headerClass} cursor-pointer`}
               onClick={() =>
@@ -94,6 +97,23 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
             >
               GP
               {sort.sortBy === "gp" && (
+                <span className="ml-1 text-xs">
+                  {sort.isDesc ? "▼" : "▲"}
+                </span>
+              )}
+            </th>
+            <th
+              className={`${headerClass} cursor-pointer`}
+              onClick={() =>
+                setSort((prev) => ({
+                  ...prev,
+                  sortBy: "gp",
+                  isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
+                }))
+              }
+            >
+              MIN
+              {sort.sortBy === "min" && (
                 <span className="ml-1 text-xs">
                   {sort.isDesc ? "▼" : "▲"}
                 </span>
@@ -147,7 +167,9 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                     </div>
                   </td>
                   <td className={`${cellClass} border-l-0`}>{player.team}</td>
+                  <td className={`${cellClass} border-l-0`}>{playerPositions[player.id] ?? ''}</td>
                   <td className={cellClass}>{player.gp}</td>
+                  <td className={cellClass}>{player.min.toFixed(1)}</td>
                   {STAT_KEYS.map((statKey) => {
                     if (statWeights[statKey] === 0) return
                     const value = player[statKey]
