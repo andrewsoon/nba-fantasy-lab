@@ -235,7 +235,9 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                     </th>
                     <th className={`${headerClass} border-l-0`}>Team</th>
+                    <th className={headerClass}>Pos</th>
                     <th className={headerClass}>GP</th>
+                    <th className={headerClass}>MIN</th>
                     {STAT_KEYS.map((statKey) => {
 
                       if (statKey && statWeights[statKey] === 0) return
