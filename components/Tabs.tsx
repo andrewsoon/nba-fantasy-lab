@@ -32,7 +32,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultIndex = 0, labelEndComp
                 role="tab"
                 onClick={() => setActiveIndex(index)}
                 className={`
-                px-4 py-2 text-sm font-medium transition-colors duration-150
+                p-2 sm:p-4 text-xs sm:text-sm md:text-base font-medium transition-colors duration-150
                 text-zinc-600 hover:text-zinc-900
                 dark:text-zinc-400 dark:hover:text-zinc-100
                 ${isActive ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-800 dark:text-zinc-100" : ""}

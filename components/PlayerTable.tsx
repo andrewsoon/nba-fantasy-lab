@@ -57,7 +57,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
   }, [players, sort]);
 
   return (
-    <div className="overflow-x-auto relative rounded-sm">
+    <div className="overflow-auto relative rounded-sm">
       <table className="min-w-full">
         <thead>
           <tr className={headerRowClass}>
