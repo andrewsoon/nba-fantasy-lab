@@ -1,4 +1,5 @@
 import PlayersData from "@/data/players.json";
+import PositionsData from "@/data/player_positions.json"
 import { DatasetKeys, Player, STAT_KEYS, StatCategory, StatKeys } from "@/types/player";
 import React from "react";
 
@@ -8,10 +9,17 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
   const [rows, setRows] = React.useState<PlayerRow[]>([]);
   const [loading, setLoading] = React.useState(true);
 
+  const rawPostionsArray: RawPlayersPosition[] = PositionsData
+  const positions: Record<number, string> = React.useMemo(() => rawPostionsArray.reduce((map, player) => {
+    map[player.player_id] = getPositions(player.position)
+    return map
+  }, {} as Record<number, string>), [rawPostionsArray])
+
   // preprocess raw data once
   const basePlayers: Player[] = React.useMemo(() =>
     playersRaw.map(p => ({
       ...p,
+      position: positions[p.id] ?? '',
       season_totals: toStatCategory(p.season_totals, p.season_totals.gp),
       season_avgs: toStatCategory(p.season_avgs, p.season_totals.gp),
       last7_totals: toStatCategory(p.last7_totals, p.last7_totals.gp),
@@ -19,7 +27,7 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
       last14_totals: toStatCategory(p.last14_totals, p.last14_totals.gp),
       last14_avgs: toStatCategory(p.last14_avgs, p.last14_totals.gp),
     }))
-    , [playersRaw]);
+    , [playersRaw, positions]);
 
   // compute rows when dataset changes
   React.useEffect(() => {
@@ -83,6 +91,7 @@ function toStatCategory(raw: Partial<StatCategory>, totalsGP?: number): StatCate
 export interface PlayerRow {
   id: number,
   name: string,
+  position: string,
   team_id: number,
   team: string,
   min: number,
@@ -124,6 +133,7 @@ function flattenPlayer(player: Player, key: DatasetKeys): PlayerRow {
   return {
     id: player.id,
     name: player.name,
+    position: player.position,
     team: player.team,
     team_id: player.team_id,
     ...selectedDataSet,
@@ -253,4 +263,13 @@ function assignRanks(rows: PlayerRow[]) {
     }
     player.rank = rank;
   });
+}
+
+interface RawPlayersPosition {
+  player_id: number
+  position: string
+}
+
+function getPositions(posString: string) {
+  return posString.split('-').map(p => p.trim()[0].toUpperCase()).join(', ')
 }
