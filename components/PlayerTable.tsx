@@ -10,7 +10,7 @@ interface PlayerTableProps {
   showZscore: boolean
   statWeights: Record<StatKeys, number>
 
-  selectedPlayers: number[]
+  watchlist: number[]
   onSelect: (e: React.ChangeEvent<HTMLInputElement>, value: number) => void
 }
 
@@ -19,7 +19,7 @@ interface PlayerSortProps {
   isDesc: boolean
 }
 
-const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectedPlayers, onSelect, statWeights }) => {
+const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlist, onSelect, statWeights }) => {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
 
@@ -140,7 +140,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selected
         </thead>
         <tbody>
           {sortedPlayerRows.map((player, id) => {
-            const isSelected = selectedPlayers.includes(player.id)
+            const isSelected = watchlist.includes(player.id)
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>

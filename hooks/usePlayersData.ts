@@ -19,7 +19,7 @@ export function usePlayersData(selectedDataSet: DatasetKeys, statWeights: Record
   const basePlayers: Player[] = React.useMemo(() =>
     playersRaw.map(p => ({
       ...p,
-      position: positions[p.id],
+      position: positions[p.id] ?? '',
       season_totals: toStatCategory(p.season_totals, p.season_totals.gp),
       season_avgs: toStatCategory(p.season_avgs, p.season_totals.gp),
       last7_totals: toStatCategory(p.last7_totals, p.last7_totals.gp),

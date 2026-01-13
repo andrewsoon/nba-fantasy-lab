@@ -1,8 +1,8 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from "./components/Navbar";
-import ScrollToTopButton from "./components/ScrollToTopButton";
+import Navbar from "../components/Navbar";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 import "./globals.css";
 
 const geistSans = Geist({

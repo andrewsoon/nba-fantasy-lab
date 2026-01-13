@@ -1,12 +1,12 @@
 "use client"
+import { Tabs } from "@/components/Tabs";
 import PlayersDataRaw from "@/data/players.json";
 import { usePlayersData } from "@/hooks/usePlayersData";
 import { DatasetKeys, StatKeys } from "@/types/player";
 import { StatLabels } from "@/utils/playersTable";
 import React from "react";
-import Dropdown from "./Dropdown";
-import PlayerTable from "./PlayerTable";
-import Toggle from "./Toggle";
+import Dropdown from "../../components/Dropdown";
+import PlayerTable from "../../components/PlayerTable";
 
 const datasetLabels: Record<DatasetKeys | string, string> = {
   last7_avgs: "Last 7 days averages",
@@ -56,7 +56,7 @@ export default function PlayersHeatmap() {
   const [pos, setPos] = React.useState<string>('All')
   const [search, setSearch] = React.useState<string | undefined>(undefined)
   const [showZscore, setShowZscore] = React.useState<boolean>(false)
-  const [selectedPlayers, setSelectedPlayers] = React.useState<number[]>(() => {
+  const [watchlist, setWatchlist] = React.useState<number[]>(() => {
     if (typeof window === "undefined") return [];
     try {
       const saved = JSON.parse(localStorage.getItem(watchlistStorageKey) || "{}") as StoredWatchlistStruct;
@@ -68,8 +68,8 @@ export default function PlayersHeatmap() {
 
   const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights, gamesPlayed, minsPlayed)
 
-  const handleSelectPlayers = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
-    setSelectedPlayers((prev) => {
+  const handleSelectPlayers = React.useCallback((e: React.ChangeEvent<HTMLInputElement>, value: number) => {
+    setWatchlist((prev) => {
       let updatedArr = []
       if (e.target.checked) {
         updatedArr = [...prev, value]
@@ -79,13 +79,13 @@ export default function PlayersHeatmap() {
       localStorage.setItem(watchlistStorageKey, JSON.stringify({ players: updatedArr }))
       return updatedArr
     });
-  };
+  }, []);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
-  }
+  }, [])
 
-  const filterPlayers = React.useMemo(() => {
+  const filteredPlayersRows = React.useMemo(() => {
     let playerArr = [...playerRows]
     if (search) {
       playerArr = playerArr.filter((player) => player.name.toLowerCase().includes(search.toLowerCase()))
@@ -96,165 +96,203 @@ export default function PlayersHeatmap() {
     return playerArr
   }, [playerRows, search, pos])
 
+  const watchListRows = React.useMemo(() => {
+    return playerRows
+      .filter(player => watchlist.includes(player.id)) // first, only players in watchlist
+      .filter(player => {
+        // Filter by search
+        const matchesSearch = search
+          ? player.name.toLowerCase().includes(search.toLowerCase())
+          : true;
+
+        // Filter by position
+        const matchesPos =
+          pos.toLowerCase() !== "all"
+            ? player.position.toLowerCase().includes(pos.toLowerCase())
+            : true;
+
+        return matchesSearch && matchesPos;
+      });
+  }, [playerRows, watchlist, search, pos]);
 
   return (
     <div className={"m-2"}>
-      <div className="flex flex-col items-center py-5 sm:py-10 md:py-15 px-10 sm:px-14 md:px-20">
+      {/* <div className="flex flex-col items-center py-5 sm:py-10 md:py-15 px-10 sm:px-14 md:px-20">
         <div className="flex flex-col items-center gap-2 sm:gap-4 text-center">
           <h3 className="text-base sm:text-4xl lg:text-5xl font-semibold text-zinc-700 dark:text-zinc-200">
-            Master the Game with Heatmaps
+            Player Heatmap
           </h3>
           <p className="text-sm sm:text-lg text-zinc-700 dark:text-zinc-300 max-w-250">
-            Explore performance trends, compare categories, and make data-driven decisions.
+            Performance trends and category comparison
           </p>
         </div>
-      </div>
+      </div> */}
       <div className="px-2 sm:px-4 md:px-6 py-2 sm:py-4 md:py-6 pt-2 bg-zinc-100 dark:bg-zinc-900 shadow-xl dark:shadow-none rounded-xl m-3">
-        <div className="relative">
-          <div className={`${processingPlayers ? 'opacity-50 pointer-events-none h-200 overflow-y-hidden' : ''}`}>
-            <div className="flex flex-col gap-2 sm:gap-3 w-full my-4">
-              <div className="flex flex-row justify-center pb-1">
-                <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
-              </div>
-              <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
-                <Dropdown
-                  label="Data from"
-                  dropdownClasses={{
-                    label: 'text-xs md:text-sm',
-                    button: 'min-w-50 p-x-1',
-                  }}
-                  options={Object.entries(datasetLabels).map(([value, label]) => {
-                    return { label, value }
-                  })}
-                  onSelect={value => setDataset(value as DatasetKeys)}
-                  selected={datasetLabels[dataset]}
-                />
-                <Dropdown
-                  label="Z-score"
-                  dropdownClasses={{
-                    label: 'text-xs md:text-sm',
-                    button: 'min-w-1 p-x-1',
-                  }}
-                  options={[
-                    {
-                      label: 'Show',
-                      value: true,
-                    },
-                    {
-                      label: 'Hide',
-                      value: false,
-                    }
-                  ]}
-                  onSelect={value =>
-                    setShowZscore(!!value)
-                  }
-                  selected={showZscore ? 'Show' : 'Hide'}
-                />
-                <Dropdown
-                  label="Mins"
-                  dropdownClasses={{
-                    label: 'text-xs md:text-sm',
-                    button: 'min-w-1 p-x-1',
-                  }}
-                  options={minsPlayedOptions.map((option) => {
-                    return { label: `> ${option.toString()}`, value: option }
-                  })}
-                  onSelect={value =>
-                    setMinsPlayed(value as number)
-                  }
-                  selected={`> ${minsPlayed.toString()}`}
-                />
-                <Dropdown
-                  label="GP"
-                  dropdownClasses={{
-                    label: 'text-xs md:text-sm',
-                    button: 'min-w-1 p-x-1',
-                  }}
-                  options={gamesPlayedOptions.map((option) => {
-                    return { label: option.toString(), value: option }
-                  })}
-                  onSelect={value =>
-                    setGamesPlayed(value as number)
-                  }
-                  selected={gamesPlayed.toString()}
-                />
-                <Dropdown
-                  label="Pos"
-                  dropdownClasses={{
-                    label: 'text-xs md:text-sm',
-                    button: 'min-w-1 p-x-1',
-                  }}
-                  options={posOptions.map((option) => {
-                    return { label: option.toString(), value: option }
-                  })}
-                  onSelect={value =>
-                    setPos(value as string)
-                  }
-                  selected={pos}
-                />
-              </div>
-              <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
-                {statWeightKeys.map((statKey) => {
-                  return (
-                    <div className="flex justify-end" key={`${statKey}-dropdown`}>
-                      <Dropdown
-                        dropdownClasses={{
-                          label: 'text-xs md:text-sm',
-                          button: 'min-w-1 p-x-1',
-                        }}
-                        options={weightOptions.map((option) => {
-                          return { label: `x${option.toString()}`, value: option }
-                        })}
-                        onSelect={value =>
-                          setStatWeightControls(prev => ({
-                            ...prev,
-                            statWeights: {
-                              ...prev.statWeights,
-                              [statKey]: value as number
-                            }
-                          }))
-                        }
-                        selected={`${StatLabels[statKey]}  x${statWeightControls.statWeights[statKey].toString()}`}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
-              <div className="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-6 p-4 md:py-4 md:px-5">
-                <input
-                  type="text"
-                  className="
-                        w-60 px-2 py-1 sm:px-4 sm:py-2
-                        rounded-lg border border-zinc-300 dark:border-zinc-600
-                        bg-white dark:bg-zinc-800
-                        text-zinc-800 dark:text-zinc-200
-                        placeholder:text-zinc-400 dark:placeholder:text-zinc-500
-                        placeholder:text-xs placeholder:sm:text-sm placeholder:md:text-base
-                        focus:outline-none focus:ring-2 focus:ring-amber-500
-                        transition-all duration-150
-                      "
-                  placeholder="Search..."
-                  onChange={handleSearch}
-                />
-              </div>
+        <div className={`${processingPlayers ? 'opacity-50 pointer-events-none h-200 overflow-y-hidden' : ''}`}>
+          <div className="flex flex-col gap-2 sm:gap-3 w-full my-4">
+            <div className="flex flex-row justify-center pb-1">
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
             </div>
-            <PlayerTable
-              players={filterPlayers}
-              showZscore={showZscore}
-              statWeights={statWeightControls.statWeights}
-
-              selectedPlayers={selectedPlayers}
-              onSelect={handleSelectPlayers}
-            />
+            <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+              <Dropdown
+                label="Data from"
+                dropdownClasses={{
+                  label: 'text-xs md:text-sm',
+                  button: 'min-w-50 p-x-1',
+                }}
+                options={Object.entries(datasetLabels).map(([value, label]) => {
+                  return { label, value }
+                })}
+                onSelect={value => setDataset(value as DatasetKeys)}
+                selected={datasetLabels[dataset]}
+              />
+              <Dropdown
+                label="Z-score"
+                dropdownClasses={{
+                  label: 'text-xs md:text-sm',
+                  button: 'min-w-1 p-x-1',
+                }}
+                options={[
+                  {
+                    label: 'Show',
+                    value: true,
+                  },
+                  {
+                    label: 'Hide',
+                    value: false,
+                  }
+                ]}
+                onSelect={value =>
+                  setShowZscore(!!value)
+                }
+                selected={showZscore ? 'Show' : 'Hide'}
+              />
+              <Dropdown
+                label="Mins Played"
+                dropdownClasses={{
+                  label: 'text-xs md:text-sm',
+                  button: 'min-w-1 p-x-1',
+                }}
+                options={minsPlayedOptions.map((option) => {
+                  return { label: `> ${option.toString()}`, value: option }
+                })}
+                onSelect={value =>
+                  setMinsPlayed(value as number)
+                }
+                selected={`> ${minsPlayed.toString()}`}
+              />
+              <Dropdown
+                label="Games Played"
+                dropdownClasses={{
+                  label: 'text-xs md:text-sm',
+                  button: 'min-w-1 p-x-1',
+                }}
+                options={gamesPlayedOptions.map((option) => {
+                  return { label: option.toString(), value: option }
+                })}
+                onSelect={value =>
+                  setGamesPlayed(value as number)
+                }
+                selected={gamesPlayed.toString()}
+              />
+              <Dropdown
+                label="Pos"
+                dropdownClasses={{
+                  label: 'text-xs md:text-sm',
+                  button: 'min-w-1 p-x-1',
+                }}
+                options={posOptions.map((option) => {
+                  return { label: option.toString(), value: option }
+                })}
+                onSelect={value =>
+                  setPos(value as string)
+                }
+                selected={pos}
+              />
+            </div>
+            <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+              {statWeightKeys.map((statKey) => {
+                return (
+                  <div className="flex justify-end" key={`${statKey}-dropdown`}>
+                    <Dropdown
+                      dropdownClasses={{
+                        label: 'text-xs md:text-sm',
+                        button: 'min-w-1 p-x-1',
+                      }}
+                      options={weightOptions.map((option) => {
+                        return { label: `x${option.toString()}`, value: option }
+                      })}
+                      onSelect={value =>
+                        setStatWeightControls(prev => ({
+                          ...prev,
+                          statWeights: {
+                            ...prev.statWeights,
+                            [statKey]: value as number
+                          }
+                        }))
+                      }
+                      selected={`${StatLabels[statKey]}  x${statWeightControls.statWeights[statKey].toString()}`}
+                    />
+                  </div>
+                )
+              })}
+            </div>
           </div>
-          {
-            processingPlayers && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-zinc-900/50">
-                <div className="animate-spin rounded-full border-4 border-zinc-300 border-t-transparent h-12 w-12" />
-              </div>
-            )
-          }
+          <Tabs
+            tabs={[
+              {
+                label: 'All Players',
+                content: (
+                  <PlayerTable
+                    players={filteredPlayersRows}
+                    showZscore={showZscore}
+                    statWeights={statWeightControls.statWeights}
+
+                    watchlist={watchlist}
+                    onSelect={handleSelectPlayers}
+                  />
+                )
+              }, {
+                label: `Watchlist (${watchListRows.length})`,
+                content: (
+                  <PlayerTable
+                    players={watchListRows}
+                    showZscore={showZscore}
+                    statWeights={statWeightControls.statWeights}
+
+                    watchlist={watchlist}
+                    onSelect={handleSelectPlayers}
+                  />
+                )
+              }
+            ]}
+            labelEndComponent={
+              <input
+                type="text"
+                className="
+                    w-50 px-2 py-1 sm:px-4 py-2 mb-2
+                    rounded-lg border border-zinc-300 dark:border-zinc-600
+                    bg-white dark:bg-zinc-800
+                    text-zinc-800 dark:text-zinc-200
+                    placeholder:text-zinc-400 dark:placeholder:text-zinc-500
+                    placeholder:text-xs placeholder:sm:text-sm
+                    focus:outline-none focus:ring-1 focus:ring-zinc-500
+                    transition-all duration-150
+                  "
+                placeholder="Search..."
+                onChange={handleSearch}
+              />
+            }
+          />
+
         </div>
+        {
+          processingPlayers && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/50 dark:bg-zinc-900/50">
+              <div className="animate-spin rounded-full border-4 border-zinc-300 border-t-transparent h-12 w-12" />
+            </div>
+          )
+        }
       </div>
     </div >
   )
