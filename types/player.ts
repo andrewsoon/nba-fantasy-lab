@@ -1,6 +1,7 @@
 export interface Player {
   id: number,
   name: string,
+  position: string,
   team_id: number,
   team: string,
   season_totals: StatCategory,
