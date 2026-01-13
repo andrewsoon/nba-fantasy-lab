@@ -55,9 +55,11 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultIndex = 0, labelEndComp
             <div
               key={index}
               role="tabpanel"
-              className={`
-                ${isActive ? "block" : "hidden"}
-              `}
+              className={
+                isActive
+                  ? "block"
+                  : "hidden"
+              }
             >
               {tab.content}
             </div>

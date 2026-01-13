@@ -293,7 +293,7 @@ export default function PlayersHeatmap() {
             </div>
           )
         }
-      </div>
+      </div >
     </div >
   )
 }
