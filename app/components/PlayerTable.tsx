@@ -4,12 +4,10 @@ import { getHeatmapColor, StatLabels } from "@/utils/playersTable"
 import Image from "next/image"
 import React from "react"
 import Checkbox from "./Checkbox"
-import { usePlayersPositions } from "@/hooks/usePlayersPositions"
 
 interface PlayerTableProps {
   players: PlayerRow[]
   showZscore: boolean
-  selectingPlayers: boolean
   statWeights: Record<StatKeys, number>
 
   selectedPlayers: number[]
@@ -21,10 +19,9 @@ interface PlayerSortProps {
   isDesc: boolean
 }
 
-const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectingPlayers, selectedPlayers, onSelect, statWeights }) => {
+const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectedPlayers, onSelect, statWeights }) => {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
-  const playerPositions = usePlayersPositions()
 
   React.useEffect(() => {
     const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -64,7 +61,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
       <table className="min-w-full">
         <thead>
           <tr className={headerRowClass}>
-            {selectingPlayers && <th className={headerClass}></th>}
             <th
               className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0 cursor-pointer`}
               onClick={() =>
@@ -139,6 +135,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                 </th>
               )
             })}
+            <th className={headerClass}></th>
           </tr>
         </thead>
         <tbody>
@@ -147,11 +144,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
-                  {selectingPlayers &&
-                    <td className={cellClass}>
-                      <Checkbox label="" checked={isSelected} onChange={(e) => onSelect(e, player.id)} />
-                    </td>
-                  }
                   <td className={`sticky left-0 ${cellClass} ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
                     <div className="flex flex-row items-center gap-1 sm:gap-2">
                       {player.rank ?? '-'}.&nbsp;
@@ -162,12 +154,12 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                         height={100} // original image height
                         className="hidden md:block h-6 sm:h-10 w-auto"
                       />
-                      <p className="overflow-hidden overflow-ellipsis max-w-20 sm:max-w-none">{player.name}&nbsp;{isSelected && '✅'}</p>
+                      <p className="overflow-hidden overflow-ellipsis max-w-20 sm:max-w-none">{player.name}</p>
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                     </div>
                   </td>
                   <td className={`${cellClass} border-l-0`}>{player.team}</td>
-                  <td className={`${cellClass} border-l-0`}>{playerPositions[player.id] ?? ''}</td>
+                  <td className={`${cellClass} border-l-0`}>{player.position}</td>
                   <td className={cellClass}>{player.gp}</td>
                   <td className={cellClass}>{player.min.toFixed(1)}</td>
                   {STAT_KEYS.map((statKey) => {
@@ -226,10 +218,12 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                       </td>
                     );
                   })}
+                  <td className={cellClass}>
+                    <Checkbox label="" checked={isSelected} onChange={(e) => onSelect(e, player.id)} />
+                  </td>
                 </tr>
                 {(id + 1) % 15 === 0 && (
                   <tr key={id} className={headerRowClass}>
-                    {selectingPlayers && <th className={headerClass}></th>}
                     <th className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}>
                       Rank
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
@@ -247,6 +241,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, selectin
                         </th>
                       )
                     })}
+                    <th className={headerClass}></th>
                   </tr>
                 )}
               </React.Fragment>
