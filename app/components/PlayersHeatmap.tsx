@@ -111,7 +111,7 @@ export default function PlayersHeatmap() {
 
 
   return (
-    <div className={"m-2"}>
+    <div className="m-2 mb-10">
       <div className="flex flex-col items-center py-5 sm:py-10 md:py-15 px-10 sm:px-14 md:px-20">
         <div className="flex flex-col items-center gap-2 sm:gap-4 text-center">
           <h3 className="text-base sm:text-4xl lg:text-5xl font-semibold text-zinc-700 dark:text-zinc-200">
