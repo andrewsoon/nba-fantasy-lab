@@ -57,12 +57,12 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
   }, [players, sort]);
 
   return (
-    <div className="overflow-x-auto rounded-sm">
+    <div className="overflow-auto relative rounded-sm">
       <table className="min-w-full">
         <thead>
           <tr className={headerRowClass}>
             <th
-              className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0 cursor-pointer`}
+              className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 border-r-0 cursor-pointer`}
               onClick={() =>
                 setSort((prev) => ({
                   ...prev,
