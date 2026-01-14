@@ -133,7 +133,7 @@ export default function PlayersHeatmap() {
             <div className="flex flex-row justify-center pb-1">
               <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
             </div>
-            <div className="flex flex-row items-center justify-start overflow-x-auto xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <div className="flex flex-row flex-wrap items-center justify-start xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
               <Dropdown
                 label="Data from"
                 dropdownClasses={{
@@ -210,7 +210,7 @@ export default function PlayersHeatmap() {
                 selected={pos}
               />
             </div>
-            <div className="flex flex-row items-center justify start overflow-x-auto xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <div className="flex flex-row flex-wrap items-center justify start xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
               {statWeightKeys.map((statKey) => {
                 return (
                   <div className="flex justify-end" key={`${statKey}-dropdown`}>
