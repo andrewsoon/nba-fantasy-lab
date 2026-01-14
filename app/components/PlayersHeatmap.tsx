@@ -7,6 +7,7 @@ import { StatLabels } from "@/utils/playersTable";
 import React from "react";
 import Dropdown from "../../components/Dropdown";
 import PlayerTable from "../../components/PlayerTable";
+import Toggle from "@/components/Toggle";
 
 const datasetLabels: Record<DatasetKeys | string, string> = {
   last7_avgs: "Last 7 days averages",
@@ -65,10 +66,12 @@ export default function PlayersHeatmap() {
       return [];
     }
   });
+  const [selectingPlayers, setSelectingPlayers] = React.useState<boolean>(false)
+  const [selectedPlayers, setSelectedPlayers] = React.useState<number[]>([])
 
   const { rows: playerRows, loading: processingPlayers } = usePlayersData(dataset, statWeightControls.statWeights, gamesPlayed, minsPlayed)
 
-  const handleSelectPlayers = React.useCallback((e: React.ChangeEvent<HTMLInputElement>, value: number) => {
+  const handleUpdateWatchlist = React.useCallback((e: React.ChangeEvent<HTMLInputElement>, value: number) => {
     setWatchlist((prev) => {
       let updatedArr = []
       if (e.target.checked) {
@@ -114,6 +117,16 @@ export default function PlayersHeatmap() {
         return matchesSearch && matchesPos;
       });
   }, [playerRows, watchlist, search, pos]);
+
+  const handleSelectPlayers = (e: React.ChangeEvent<HTMLInputElement>, value: number) => {
+    setSelectedPlayers((prev) =>
+      e.target.checked ? [...prev, value] : prev.filter((p) => p !== value)
+    );
+  };
+
+  const comparePlayersRows = React.useMemo(() => {
+    return playerRows.filter((player) => selectedPlayers.includes(player.id))
+  }, [playerRows, selectedPlayers])
 
   return (
     <div className="m-2 mb-10">
@@ -209,6 +222,7 @@ export default function PlayersHeatmap() {
                 }
                 selected={pos}
               />
+              <Toggle label="Compare Players" enabled={selectingPlayers} onChange={() => setSelectingPlayers((prev) => !prev)} />
             </div>
             <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
               {statWeightKeys.map((statKey) => {
@@ -238,6 +252,22 @@ export default function PlayersHeatmap() {
               })}
             </div>
           </div>
+          <div className="p-2 sm:p-4 md:p-6 flex flex-col gap-2">
+            {selectingPlayers && (
+              <PlayerTable
+                players={comparePlayersRows}
+                showZscore={showZscore}
+                statWeights={statWeightControls.statWeights}
+
+                watchlist={watchlist}
+                onUpdateWatchlist={handleUpdateWatchlist}
+
+                selecting={selectingPlayers}
+                onSelect={handleSelectPlayers}
+                selected={selectedPlayers}
+              />
+            )}
+          </div>
           <Tabs
             tabs={[
               {
@@ -249,7 +279,11 @@ export default function PlayersHeatmap() {
                     statWeights={statWeightControls.statWeights}
 
                     watchlist={watchlist}
+                    onUpdateWatchlist={handleUpdateWatchlist}
+
+                    selecting={selectingPlayers}
                     onSelect={handleSelectPlayers}
+                    selected={selectedPlayers}
                   />
                 )
               }, {
@@ -261,7 +295,11 @@ export default function PlayersHeatmap() {
                     statWeights={statWeightControls.statWeights}
 
                     watchlist={watchlist}
+                    onUpdateWatchlist={handleUpdateWatchlist}
+
+                    selecting={selectingPlayers}
                     onSelect={handleSelectPlayers}
+                    selected={selectedPlayers}
                   />
                 )
               }

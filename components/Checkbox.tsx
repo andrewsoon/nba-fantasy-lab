@@ -1,13 +1,45 @@
 
 interface CheckboxProps {
-  label: React.ReactNode,
+  checkboxLabel?: React.ReactNode,
   checked: boolean,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean,
+  variant?: 'flag' | 'regular'
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange, disabled }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ checkboxLabel, checked, onChange, disabled, variant = 'regular' }) => {
+  if (variant === 'regular') return (
+    <label
+      className="
+        flex items-center gap-3
+        text-zinc-700 dark:text-zinc-300
+      "
+    >
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={onChange}
+        disabled={disabled}
+        className="
+          appearance-none
+          h-4 w-4 rounded-sm border
+          border-zinc-300 dark:border-zinc-600
+          bg-white dark:bg-zinc-800
+          checked:bg-zinc-600 dark:checked:bg-zinc-400
+          
+          dark:checked:border-zinc-600
+          transition-colors duration-150
+          cursor-pointer
 
+          disabled:bg-zinc-300 dark:disabled:bg-zinc-700
+          disabled:border-zinc-400 dark:disabled:border-zinc-600
+          disabled:cursor-not-allowed
+          disabled:checked:bg-zinc-400
+        "
+      />
+      {checkboxLabel && <span>{checkboxLabel}</span>}
+    </label>
+  )
   return (
     <label
       className="
@@ -51,8 +83,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, onChange, disabled 
           d="M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"
         />
       </svg>
-
-      <span>{label}</span>
+      {checkboxLabel && <span>{checkboxLabel}</span>}
     </label>
   );
 }
