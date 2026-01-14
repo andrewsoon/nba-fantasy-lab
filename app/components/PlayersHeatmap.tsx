@@ -308,7 +308,7 @@ export default function PlayersHeatmap() {
               <input
                 type="text"
                 className="
-                    w-50 px-2 py-1 sm:px-4 py-2 mb-2
+                    w-30 sm:w-45 md:w-50 px-2 py-1 sm:px-4 py-2 mb-2
                     rounded-lg border border-zinc-300 dark:border-zinc-600
                     bg-white dark:bg-zinc-800
                     text-zinc-800 dark:text-zinc-200
