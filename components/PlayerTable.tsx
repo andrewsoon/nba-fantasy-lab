@@ -11,7 +11,11 @@ interface PlayerTableProps {
   statWeights: Record<StatKeys, number>
 
   watchlist: number[]
-  onSelect: (e: React.ChangeEvent<HTMLInputElement>, value: number) => void
+  onUpdateWatchlist: (e: React.ChangeEvent<HTMLInputElement>, value: number) => void
+
+  selecting?: boolean
+  selected?: number[]
+  onSelect?: (e: React.ChangeEvent<HTMLInputElement>, value: number) => void
 }
 
 interface PlayerSortProps {
@@ -19,7 +23,7 @@ interface PlayerSortProps {
   isDesc: boolean
 }
 
-const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlist, onSelect, statWeights }) => {
+const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlist, onUpdateWatchlist, statWeights, selecting, onSelect, selected }) => {
   const [isDarkMode, setIsDarkMode] = React.useState<boolean | undefined>(undefined);
   const [sort, setSort] = React.useState<PlayerSortProps>({ sortBy: 'rank', isDesc: false })
 
@@ -56,94 +60,107 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
     });
   }, [players, sort]);
 
+  const TableHeaderRow = (id: string, hasSort: boolean = true) => {
+    return (
+      <tr id={id} className={headerRowClass}>
+        {selecting && <th className={headerClass} />}
+        <th
+          className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 border-r-0 cursor-pointer`}
+          onClick={hasSort ? () =>
+            setSort((prev) => ({
+              ...prev,
+              sortBy: "rank",
+              isDesc: prev.sortBy !== "rank" ? false : !prev.isDesc,
+            })) : undefined
+          }
+        >
+          Rank
+          {sort.sortBy === "rank" && hasSort && (
+            <span className="ml-1 text-xs">
+              {!sort.isDesc ? "▼" : "▲"}
+            </span>
+          )}
+          <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
+        </th>
+        <th className={`${headerClass} border-l-0`}>Team</th>
+        <th className={`${headerClass} border-l-0`}>Pos</th>
+        <th
+          className={`${headerClass} cursor-pointer`}
+          onClick={hasSort ? () =>
+            setSort((prev) => ({
+              ...prev,
+              sortBy: "gp",
+              isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
+            })) : undefined
+          }
+        >
+          GP
+          {sort.sortBy === "gp" && (
+            <span className="ml-1 text-xs">
+              {sort.isDesc ? "▼" : "▲"}
+            </span>
+          )}
+        </th>
+        <th
+          className={`${headerClass} cursor-pointer`}
+          onClick={hasSort ? () =>
+            setSort((prev) => ({
+              ...prev,
+              sortBy: "gp",
+              isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
+            })) : undefined
+          }
+        >
+          MIN
+          {sort.sortBy === "min" && (
+            <span className="ml-1 text-xs">
+              {sort.isDesc ? "▼" : "▲"}
+            </span>
+          )}
+        </th>
+        {STAT_KEYS.map((statKey) => {
+          if (statWeights[statKey] === 0) return
+          return (
+            <th key={statKey} className={`${headerClass} cursor-pointer`}
+              onClick={hasSort ? () =>
+                setSort((prev) => ({
+                  ...prev,
+                  sortBy: statKey,
+                  isDesc: prev.sortBy !== statKey ? !(statKey === 'tov') : !prev.isDesc,
+                })) : undefined
+              }>
+              {StatLabels[statKey]}
+              {sort.sortBy === statKey && hasSort && (
+                <span className="ml-1 text-xs">
+                  {(!(statKey === 'tov') ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
+                </span>
+              )}
+            </th>
+          )
+        })}
+        <th className={headerClass}></th>
+      </tr>
+    )
+  }
+
   return (
     <div className="overflow-auto relative rounded-sm">
       <table className="min-w-full">
         <thead>
-          <tr className={headerRowClass}>
-            <th
-              className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 border-r-0 cursor-pointer`}
-              onClick={() =>
-                setSort((prev) => ({
-                  ...prev,
-                  sortBy: "rank",
-                  isDesc: prev.sortBy !== "rank" ? false : !prev.isDesc,
-                }))
-              }
-            >
-              Rank
-              {sort.sortBy === "rank" && (
-                <span className="ml-1 text-xs">
-                  {!sort.isDesc ? "▼" : "▲"}
-                </span>
-              )}
-              <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
-            </th>
-            <th className={`${headerClass} border-l-0`}>Team</th>
-            <th className={`${headerClass} border-l-0`}>Pos</th>
-            <th
-              className={`${headerClass} cursor-pointer`}
-              onClick={() =>
-                setSort((prev) => ({
-                  ...prev,
-                  sortBy: "gp",
-                  isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
-                }))
-              }
-            >
-              GP
-              {sort.sortBy === "gp" && (
-                <span className="ml-1 text-xs">
-                  {sort.isDesc ? "▼" : "▲"}
-                </span>
-              )}
-            </th>
-            <th
-              className={`${headerClass} cursor-pointer`}
-              onClick={() =>
-                setSort((prev) => ({
-                  ...prev,
-                  sortBy: "gp",
-                  isDesc: prev.sortBy !== "gp" ? true : !prev.isDesc,
-                }))
-              }
-            >
-              MIN
-              {sort.sortBy === "min" && (
-                <span className="ml-1 text-xs">
-                  {sort.isDesc ? "▼" : "▲"}
-                </span>
-              )}
-            </th>
-            {STAT_KEYS.map((statKey) => {
-              if (statWeights[statKey] === 0) return
-              return (
-                <th key={statKey} className={`${headerClass} cursor-pointer`}
-                  onClick={() =>
-                    setSort((prev) => ({
-                      ...prev,
-                      sortBy: statKey,
-                      isDesc: prev.sortBy !== statKey ? !(statKey === 'tov') : !prev.isDesc,
-                    }))
-                  }>
-                  {StatLabels[statKey]}
-                  {sort.sortBy === statKey && (
-                    <span className="ml-1 text-xs">
-                      {(!(statKey === 'tov') ? sort.isDesc : !sort.isDesc) ? "▼" : "▲"}
-                    </span>
-                  )}
-                </th>
-              )
-            })}
-            <th className={headerClass}></th>
-          </tr>
-        </thead>
+          {TableHeaderRow('main-header-with-sort')}
+        </thead >
         <tbody>
           {sortedPlayerRows.map((player, id) => {
-            const isSelected = watchlist.includes(player.id)
+            const isWishlist = watchlist.includes(player.id)
+            const isSelected = !!selected?.includes(player.id)
             return (
               <React.Fragment key={`${id}-row`}>
                 <tr key={`${player.id}-stats`} className={`${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'}`}>
+                  {selecting && onSelect && (
+                    <td className={cellClass}>
+                      <Checkbox checked={isSelected} onChange={(e) => onSelect(e, player.id)} />
+                    </td>
+                  )}
                   <td className={`sticky left-0 ${cellClass} ${id % 2 === 0 ? ' bg-zinc-200 dark:bg-zinc-800' : 'bg-zinc-100 dark:bg-zinc-900'} relative border-r-0`}>
                     <div className="flex flex-row items-center gap-1 sm:gap-2">
                       {player.rank ?? '-'}.&nbsp;
@@ -219,37 +236,18 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
                     );
                   })}
                   <td className={cellClass}>
-                    <Checkbox label="" checked={isSelected} onChange={(e) => onSelect(e, player.id)} />
+                    <Checkbox variant="flag" checked={isWishlist} onChange={(e) => onUpdateWatchlist(e, player.id)} />
                   </td>
                 </tr>
                 {(id + 1) % 15 === 0 && (
-                  <tr key={id} className={headerRowClass}>
-                    <th className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0`}>
-                      Rank
-                      <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
-                    </th>
-                    <th className={`${headerClass} border-l-0`}>Team</th>
-                    <th className={headerClass}>Pos</th>
-                    <th className={headerClass}>GP</th>
-                    <th className={headerClass}>MIN</th>
-                    {STAT_KEYS.map((statKey) => {
-
-                      if (statKey && statWeights[statKey] === 0) return
-                      return (
-                        <th key={statKey} className={headerClass}>
-                          {StatLabels[statKey]}
-                        </th>
-                      )
-                    })}
-                    <th className={headerClass}></th>
-                  </tr>
+                  TableHeaderRow(`mid-header-${id}`, false)
                 )}
               </React.Fragment>
             )
           })}
         </tbody>
-      </table>
-    </div>
+      </table >
+    </div >
   )
 }
 
