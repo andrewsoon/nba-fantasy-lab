@@ -129,7 +129,7 @@ export default function PlayersHeatmap() {
   }, [playerRows, selectedPlayers])
 
   return (
-    <div className="m-2 mb-10">
+    <div className="m-2 mb-20">
       {/* <div className="flex flex-col items-center py-5 sm:py-10 md:py-15 px-10 sm:px-14 md:px-20">
         <div className="flex flex-col items-center gap-2 sm:gap-4 text-center">
           <h3 className="text-base sm:text-4xl lg:text-5xl font-semibold text-zinc-700 dark:text-zinc-200">
@@ -146,7 +146,7 @@ export default function PlayersHeatmap() {
             <div className="flex flex-row justify-center pb-1">
               <p className="text-xs text-zinc-600 dark:text-zinc-400">Last updated at: {new Date(PlayersDataRaw._meta.fetched_at).toISOString()}</p>
             </div>
-            <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <div className="flex flex-row flex-wrap items-center justify-start xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
               <Dropdown
                 label="Data from"
                 dropdownClasses={{
@@ -224,7 +224,7 @@ export default function PlayersHeatmap() {
               />
               <Toggle label="Compare Players" enabled={selectingPlayers} onChange={() => setSelectingPlayers((prev) => !prev)} />
             </div>
-            <div className="flex flex-row items-center justify-center flex-wrap gap-1 sm:gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
+            <div className="flex flex-row flex-wrap items-center justify start xl:justify-center gap-2 md:gap-3 p-4 md:px-5 border-1 border-zinc-200 dark:border-zinc-800">
               {statWeightKeys.map((statKey) => {
                 return (
                   <div className="flex justify-end" key={`${statKey}-dropdown`}>
@@ -308,7 +308,7 @@ export default function PlayersHeatmap() {
               <input
                 type="text"
                 className="
-                    w-30 sm:w-45 md:w-50 px-2 py-1 sm:px-4 py-2 mb-2
+                    w-30 sm:w-50 px-2 py-1 sm:px-4 sm:py-2 mb-2
                     rounded-lg border border-zinc-300 dark:border-zinc-600
                     bg-white dark:bg-zinc-800
                     text-zinc-800 dark:text-zinc-200
@@ -331,7 +331,7 @@ export default function PlayersHeatmap() {
             </div>
           )
         }
-      </div>
+      </div >
     </div >
   )
 }

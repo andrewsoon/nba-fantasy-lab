@@ -39,6 +39,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, selected, options, onSelect,
             text-xs sm:text-sm 
             ${dropdownClasses?.button} 
             shadow-md dark:shadow-none
+            whitespace-nowrap
             `}
         >
           {selected ?? 'Select'}

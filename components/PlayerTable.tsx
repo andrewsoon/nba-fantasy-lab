@@ -65,7 +65,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
       <tr id={id} className={headerRowClass}>
         {selecting && <th className={headerClass} />}
         <th
-          className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 relative border-r-0 cursor-pointer`}
+          className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 border-r-0 cursor-pointer`}
           onClick={hasSort ? () =>
             setSort((prev) => ({
               ...prev,
@@ -144,11 +144,11 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
   }
 
   return (
-    <div className="overflow-x-auto rounded-sm">
+    <div className="overflow-auto relative rounded-sm">
       <table className="min-w-full">
         <thead>
           {TableHeaderRow('main-header-with-sort')}
-        </thead>
+        </thead >
         <tbody>
           {sortedPlayerRows.map((player, id) => {
             const isWishlist = watchlist.includes(player.id)
@@ -246,8 +246,8 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
             )
           })}
         </tbody>
-      </table>
-    </div>
+      </table >
+    </div >
   )
 }
 
