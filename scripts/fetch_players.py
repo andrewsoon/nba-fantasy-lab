@@ -1,8 +1,11 @@
 import json
+import sys
 import time
 from datetime import datetime, timedelta, timezone
 import pandas as pd
 from nba_api.stats.endpoints import LeagueDashPlayerStats, PlayerGameLog
+
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 # ---------------------------
 # Config

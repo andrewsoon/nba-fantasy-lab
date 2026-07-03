@@ -1,6 +1,9 @@
 import json
+import sys
 from nba_api.stats.endpoints import commonallplayers, commonplayerinfo
 from time import sleep
+
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 def fetch_player_positions(season="2025-26"):
     """

@@ -63,7 +63,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
   const TableHeaderRow = (id: string, hasSort: boolean = true) => {
     return (
       <tr id={id} className={headerRowClass}>
-        {selecting && <th className={headerClass} />}
+        {selecting && <th className={headerClass}>Compare</th>}
         <th
           className={`sticky left-0 ${headerClass} bg-zinc-400 dark:bg-zinc-700 border-r-0 cursor-pointer`}
           onClick={hasSort ? () =>
@@ -82,6 +82,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
           )}
           <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
         </th>
+        <th className={headerClass}>Wishlist</th>
         <th className={`${headerClass} border-l-0`}>Team</th>
         <th className={`${headerClass} border-l-0`}>Pos</th>
         <th
@@ -138,7 +139,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
             </th>
           )
         })}
-        <th className={headerClass}></th>
       </tr>
     )
   }
@@ -174,6 +174,9 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
                       <p className="overflow-hidden overflow-ellipsis max-w-20 sm:max-w-none">{player.name}</p>
                       <span className="absolute top-0 right-0 h-full w-[3px] bg-zinc-500"></span>
                     </div>
+                  </td>
+                  <td className={cellClass}>
+                    <Checkbox variant="flag" checked={isWishlist} onChange={(e) => onUpdateWatchlist(e, player.id)} />
                   </td>
                   <td className={`${cellClass} border-l-0`}>{player.team}</td>
                   <td className={`${cellClass} border-l-0`}>{player.position}</td>
@@ -235,9 +238,6 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
                       </td>
                     );
                   })}
-                  <td className={cellClass}>
-                    <Checkbox variant="flag" checked={isWishlist} onChange={(e) => onUpdateWatchlist(e, player.id)} />
-                  </td>
                 </tr>
                 {(id + 1) % 15 === 0 && (
                   TableHeaderRow(`mid-header-${id}`, false)
@@ -252,7 +252,7 @@ const PlayerTable: React.FC<PlayerTableProps> = ({ players, showZscore, watchlis
 }
 
 const headerClass = "border border-2 border-zinc-500 dark:border-zinc-500 px-2 py-1.5 sm:px-4 sm:py-2"
-const headerRowClass = "text-left text-sm md:text-base text-zinc-100 font-semibold bg-zinc-400 dark:bg-zinc-700"
+const headerRowClass = "text-left text-xs md:text-sm lg:text-base text-zinc-100 font-semibold bg-zinc-400 dark:bg-zinc-700"
 const cellClass = "border border-t-2 border-zinc-500 dark:border-zinc-600 px-2 py-1 sm:px-4 sm:py-2 text-xs sm:text-sm md:text-base md:font-medium lg:text-lg transition-discrete"
 
 export default PlayerTable
